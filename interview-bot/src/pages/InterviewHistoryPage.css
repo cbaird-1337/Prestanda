@@ -1,0 +1,17 @@
+.interview-history-page {
+    min-height: 100vh;
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .interview-history-page h1 {
+    margin-top: 1in;
+    font-size: 3rem;
+    text-align: center;
+  }
+  

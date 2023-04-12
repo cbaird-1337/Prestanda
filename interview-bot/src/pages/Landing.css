@@ -1,0 +1,72 @@
+.App {
+  background-image: linear-gradient(135deg, #1f1f1f 0%, #007bff 100%);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.bg-shapes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
+  opacity: 0.2;
+}
+
+.login-container {
+  position: relative;
+  background-color: #ffffff;
+  padding: 2em;
+  border-radius: 0.5em;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  max-width: 400px;
+  width: 90%;
+}
+
+.login-header {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.landing-button {
+  display: inline-block;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.25em;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  text-decoration: none;
+  margin: 0.5em 0;
+  transition: background-color 0.3s;
+}
+
+.landing-button:hover {
+  background-color: #0069d9;
+}
+
+.signup-button {
+  background-color: #28a745;
+}
+
+.signup-button:hover {
+  background-color: #218838;
+}
+
+.login-button {
+  background-color: #007bff;
+}
+
+.login-button:hover {
+  background-color: #0069d9;
+}
