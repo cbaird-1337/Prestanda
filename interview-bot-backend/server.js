@@ -18,15 +18,15 @@ const accountProfileController = require('./account_profiles/accountProfileContr
 
 // Configure AWS SDK and initialize S3 instance
 AWS.config.update({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.AWS_REGION,
+  accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+  region: process.env.REACT_APP_AWS_REGION,
 });
 const s3 = new AWS.S3();
 
 // Configure OpenAI API client
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.REACT_APP_OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
@@ -170,12 +170,12 @@ app.post('/upload', upload.fields([{ name: 'resume' }, { name: 'jobDescription' 
     // Upload the files to the S3 bucket
     const resumeS3Key = `resumes/${resumeFile.originalname}`;
     const jobDescriptionS3Key = `job_descriptions/${jobDescriptionFile.originalname}`;
-    await uploadToS3(resumeFile, process.env.S3_BUCKET_NAME, resumeS3Key);
-    await uploadToS3(jobDescriptionFile, process.env.S3_BUCKET_NAME, jobDescriptionS3Key);
+    await uploadToS3(resumeFile, process.env.REACT_APP_S3_BUCKET_NAME, resumeS3Key);
+    await uploadToS3(jobDescriptionFile, process.env.REACT_APP_S3_BUCKET_NAME, jobDescriptionS3Key);
 
     // Read and extract text from the uploaded files
-    const resumeText = removeStopWordsAndExtraWhitespace(await readAndExtractTextFromS3(process.env.S3_BUCKET_NAME, resumeS3Key));
-    const jobDescriptionText = removeStopWordsAndExtraWhitespace(await readAndExtractTextFromS3(process.env.S3_BUCKET_NAME, jobDescriptionS3Key));
+    const resumeText = removeStopWordsAndExtraWhitespace(await readAndExtractTextFromS3(process.env.REACT_APP_S3_BUCKET_NAME, resumeS3Key));
+    const jobDescriptionText = removeStopWordsAndExtraWhitespace(await readAndExtractTextFromS3(process.env.REACT_APP_S3_BUCKET_NAME, jobDescriptionS3Key));
 
     // Get the number of questions from the request
     const numberOfQuestions = req.body.numberOfQuestions || 5; // Use the provided number or default to 5
