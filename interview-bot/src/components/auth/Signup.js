@@ -42,21 +42,22 @@ const Signup = () => {
     });
   };
 
-  const createAccountProfile = async (name, email, hiringManagerCompany, hiringManagerDept) => {
+  const createAccountProfile = async (name, email, hiringManagerCompany, hiringManagerDept, cognitoAccountId) => {
     try {
-      const response = await axios.post(process.env.REACT_APP_COGNITO_SIGNUP_TO_DYNAMO_API_ENDPOINT, {  // AWS API Gateway 'Cognito-User-Signup-toDynamo-API'
+      const response = await axios.post(process.env.REACT_APP_COGNITO_SIGNUP_TO_DYNAMO_API_ENDPOINT, {
         name: name,
         email: email,
         hiringManagerCompany: hiringManagerCompany,
         hiringManagerDept: hiringManagerDept,
+        managerAccountId: cognitoAccountId // Use the Cognito account ID as the managerAccountId
       });
-
+  
       return response.data.managerAccountId;
     } catch (error) {
       console.error('Error creating account profile:', error.message);
       throw error;
     }
-  };
+  };  
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -74,7 +75,7 @@ const Signup = () => {
         { Name: "name", Value: name },
         { Name: "custom:HiringManagerCompany", Value: company },
         { Name: "custom:HiringManagerDept", Value: department },
-        { Name: "custom:timestamp", Value: new Date().toString() }, // Add current timestamp
+        { Name: "custom:timestamp", Value: new Date().toString() },
       ],
       null,
       async (err, data) => {
@@ -83,7 +84,9 @@ const Signup = () => {
         } else {
           console.log("User signed up:", data);
           try {
-            const managerAccountId = await createAccountProfile(name, email, company, department);
+            const cognitoUser = await UserPool.getCurrentUser();
+            const cognitoAccountId = cognitoUser.getUsername();
+            const managerAccountId = await createAccountProfile(name, email, company, department, cognitoAccountId);
             console.log('Account profile created with ID:', managerAccountId);
           } catch (error) {
             console.error('Error creating account profile:', error.message);
@@ -92,7 +95,7 @@ const Signup = () => {
         }
       }
     );
-  }; 
+  };  
 
   const verifyEmail = (code) => {
     const cognitoUser = new CognitoUser({

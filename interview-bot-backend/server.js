@@ -13,8 +13,7 @@ const multer = require('multer');
 const AWS = require('aws-sdk');
 const textract = require('textract');
 const { Configuration, OpenAIApi } = require('openai');
-const accountProfileController = require('./account_profiles/accountProfileController');
-
+const axios = require('axios');
 
 // Configure AWS SDK and initialize S3 instance
 AWS.config.update({
@@ -73,8 +72,8 @@ function uploadToS3(file, s3Bucket, s3Key) {
 app.get('/account-profile/:managerAccountId', async (req, res) => {
   try {
     const managerAccountId = req.params.managerAccountId;
-    const accountProfile = await accountProfileController.getAccountProfile(managerAccountId);
-    res.json({ message: 'Account profile fetched successfully', accountProfile });
+    const response = await axios.get(`${process.env.LOGIN_API_ENDPOINT}/interviewbotprofileactions/${managerAccountId}`);
+    res.json({ message: 'Account profile fetched successfully', accountProfile: response.data.accountProfile });
   } catch (err) {
     console.error('Error fetching account profile:', err.message);
     res.status(500).json({ message: 'Error fetching account profile' });

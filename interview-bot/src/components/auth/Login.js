@@ -4,6 +4,9 @@
 import React, { useState, useContext } from "react";
 import { AccountContext } from "./Account";
 import { useNavigate } from "react-router-dom";
+import UserPool from "./UserPool";
+import axios from "axios";
+import authApiConfig from "./auth-api-config";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -13,18 +16,30 @@ const Login = () => {
 
   const { authenticate } = useContext(AccountContext);
 
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
 
-    authenticate(email, password)
-      .then((data) => {
-        console.log("Logged in!", data);
+    try {
+      const cognitoUser = await UserPool.getCurrentUser();
+      const managerAccountId = cognitoUser.getUsername();
+      await authenticate(email, password, managerAccountId);
+
+      const response = await axios.post(
+        authApiConfig.baseUrl + authApiConfig.interviewBotProfileRoutes.loginAndFetchProfile,
+        { managerAccountId }
+      );
+
+      if (response.status === 200) {
+        console.log("Logged in!");
+        console.log("User profile and interview history:", response.data);
         navigate("/app");
-      })
-      .catch((err) => {
-        console.error("Failed to login", err);
-        setErrorMessage("Incorrect username or password");
-      });
+      } else {
+        setErrorMessage("Failed to fetch user profile and interview history");
+      }
+    } catch (err) {
+      console.error("Failed to login", err);
+      setErrorMessage("Incorrect username or password");
+    }
   };
 
   return (
@@ -37,7 +52,7 @@ const Login = () => {
         ></input>
         <label htmlFor="password" className="login-text-color">Password</label>
         <input
-          type="password" // Set input type to password
+          type="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         ></input>

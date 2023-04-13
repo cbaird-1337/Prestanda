@@ -59,8 +59,9 @@ const Account = (props) => {
           // Make a POST request to the loginAndFetchProfile Lambda function
           try {
             const response = await axios.post(
-              process.env.REACT_APP_FETCH_PROFILE_API_ENDPOINT,
+              process.env.REACT_APP_LOGIN_API_ENDPOINT + '/interviewbotprofileactions',
               {
+                action: 'loginAndFetchProfile',
                 managerAccountId: data.idToken.payload.sub,
               }
             );
