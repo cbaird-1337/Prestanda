@@ -44,7 +44,7 @@ const Signup = () => {
 
   const createAccountProfile = async (name, email, hiringManagerCompany, hiringManagerDept) => {
     try {
-      const response = await axios.post('https://j1icx7r3z8.execute-api.us-east-1.amazonaws.com/default/Cognito-User-Signup-toDynamo', {  // AWS API Gateway 'Cognito-User-Signup-toDynamo-API'
+      const response = await axios.post(process.env.REACT_APP_COGNITO_SIGNUP_TO_DYNAMO_API_ENDPOINT, {  // AWS API Gateway 'Cognito-User-Signup-toDynamo-API'
         name: name,
         email: email,
         hiringManagerCompany: hiringManagerCompany,

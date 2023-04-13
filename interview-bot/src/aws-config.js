@@ -1,11 +1,10 @@
-import AWS from 'aws-sdk';
-import dotenv from 'dotenv';
+//access keys defined as environment variables in Amplify
 
-dotenv.config(); // Load environment variables from .env file
+import AWS from 'aws-sdk';
 
 const awsConfig = {
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
   region: 'us-east-1',
 };
 

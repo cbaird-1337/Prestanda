@@ -104,7 +104,7 @@ const handleLoginStatus = (status) => {
     formData.append('numberOfQuestions', numQuestions);
   
     try {
-      const response = await axios.post('http://localhost:3001/upload', formData);
+      const response = await axios.post(process.env.REACT_APP_BACKEND_UPLOAD_URL, formData);
       setQuestions(response.data.questions);
     } catch (err) {
       console.error('Error:', err.message);
@@ -118,7 +118,7 @@ const handleLoginStatus = (status) => {
     event.preventDefault();
     try {
       // Make a POST request to the backend API to refine the questions
-      const response = await axios.post('http://localhost:3001/refine', {
+      const response = await axios.post(process.env.REACT_APP_BACKEND_REFINE_URL, {
         questions,
         prompt: refinePrompt,
       });
