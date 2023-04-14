@@ -44,24 +44,19 @@ function App() {
   };
 
   return (
-    <> 
+    <>
       {message && <div className="notification">{message}</div>}
       <Routes>
         {/** Protected Routes */}
-        {/** Wrap all Route under ProtectedRoutes element */}
-        <Route path="/" element={<ProtectedRoutes />}>
-          <Route path="app" element={<MainApp />} />
-          <Route path="accountpage" element={<AccountPage />} />
-          <Route path="interviewhistorypage" element={<InterviewHistoryPage />} />
-        </Route>
+        <Route path="app" element={<ProtectedRoutes Component={MainApp} />} />
+        <Route path="accountpage" element={<ProtectedRoutes Component={AccountPage} />} />
+        <Route path="interviewhistorypage" element={<ProtectedRoutes Component={InterviewHistoryPage} />} />
   
         {/** Public Routes */}
-        {/** Wrap all Route under PublicRoutes element */}
-        <Route path="/" element={<PublicRoutes isLoggedIn={isLoggedIn} />}>
-          <Route path="/" element={<Landing />} />
-          <Route path="login" element={<Login onLogin={() => setIsLoggedIn(true)} />} />
-          <Route path="signup" element={<Signup />} />
-        </Route>
+        <Route path="/" element={<PublicRoutes isLoggedIn={isLoggedIn} />} />
+        <Route index element={<Landing />} />
+        <Route path="login" element={<Login onLogin={() => setIsLoggedIn(true)} />} />
+        <Route path="signup" element={<Signup />} />
       </Routes>
     </>
   );
