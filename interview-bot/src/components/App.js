@@ -9,7 +9,7 @@ import AccountPage from '../pages/AccountPage';
 import InterviewHistoryPage from '../pages/InterviewHistoryPage';
 import ProtectedRoutes from './ProtectedRoutes'; // Import the ProtectedRoute component
 import PublicRoutes from './PublicRoutes'; // Import the PublicRoutes component
-import Account, { AccountContext } from './auth/Account';
+import { AccountContext } from './auth/Account';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 function useCheckSession(accountContext) {
@@ -44,7 +44,7 @@ function App() {
   };
 
   return (
-    <Account>
+    <> 
       {message && <div className="notification">{message}</div>}
       <Routes>
         {/** Protected Routes */}
@@ -63,7 +63,7 @@ function App() {
           <Route path="signup" element={<Signup />} />
         </Route>
       </Routes>
-    </Account>
+    </>
   );
 }
 
