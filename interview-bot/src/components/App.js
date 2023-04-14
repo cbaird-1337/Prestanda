@@ -47,9 +47,9 @@ function App({ accountContext }) {
       {message && <div className="notification">{message}</div>}
       <Routes>
         {/** Protected Routes */}
-        <Route path="app" element={<ProtectedRoutes Component={MainApp} />} />
-        <Route path="accountpage" element={<ProtectedRoutes Component={AccountPage} />} />
-        <Route path="interviewhistorypage" element={<ProtectedRoutes Component={InterviewHistoryPage} />} />
+        <Route path="app" element={<ProtectedRoutes Component={MainApp} context={AccountContext} />} />
+        <Route path="accountpage" element={<ProtectedRoutes Component={AccountPage} context={AccountContext} />} />
+        <Route path="interviewhistorypage" element={<ProtectedRoutes Component={InterviewHistoryPage} context={AccountContext} />} />
   
         {/** Public Routes */}
         <Route path="/" element={<PublicRoutes isLoggedIn={isLoggedIn} />} />
@@ -62,4 +62,3 @@ function App({ accountContext }) {
 }
 
 export default App;
-
