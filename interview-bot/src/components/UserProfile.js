@@ -18,7 +18,7 @@ const UserProfile = () => {
     const fetchUserProfile = async () => {
       try {
         const session = await getSession();
-        const response = await axios.post(process.env.REACT_APP_FETCH_PROFILE_API_ENDPOINT, {
+        const response = await axios.post(process.env.REACT_APP_LOGIN_FETCH_PROFILE_API_ENDPOINT, {
           managerAccountId: session.idToken.payload.sub,
         });
         setUserProfile(response.data.userProfile);

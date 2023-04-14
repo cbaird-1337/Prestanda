@@ -42,14 +42,14 @@ const Signup = () => {
     });
   };
 
-  const createAccountProfile = async (name, email, hiringManagerCompany, hiringManagerDept, cognitoAccountId) => {
+  const createAccountProfile = async (name, email, hiringManagerCompany, hiringManagerDept, cognitoUserId) => {
     try {
       const response = await axios.post(process.env.REACT_APP_COGNITO_SIGNUP_TO_DYNAMO_API_ENDPOINT, {
         name: name,
         email: email,
         hiringManagerCompany: hiringManagerCompany,
         hiringManagerDept: hiringManagerDept,
-        managerAccountId: cognitoAccountId // Use the Cognito account ID as the managerAccountId
+        managerAccountId: cognitoUserId // Use the Cognito User ID as the managerAccountId
       });
   
       return response.data.managerAccountId;
@@ -84,9 +84,8 @@ const Signup = () => {
         } else {
           console.log("User signed up:", data);
           try {
-            const cognitoUser = await UserPool.getCurrentUser();
-            const cognitoAccountId = cognitoUser.getUsername();
-            const managerAccountId = await createAccountProfile(name, email, company, department, cognitoAccountId);
+            const cognitoUserId = data.userSub; // Get the Cognito User ID from the signUp response
+            const managerAccountId = await createAccountProfile(name, email, company, department, cognitoUserId);
             console.log('Account profile created with ID:', managerAccountId);
           } catch (error) {
             console.error('Error creating account profile:', error.message);
@@ -140,7 +139,7 @@ const Signup = () => {
           value={department}
           onChange={(event) => setDepartment(event.target.value)}
         />
-                <label htmlFor="password">Password</label>
+        <label htmlFor="password">Password</label>
         <input
           type="password"
           value={password}
