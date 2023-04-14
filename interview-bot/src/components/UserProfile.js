@@ -30,7 +30,7 @@ const UserProfile = () => {
     };
 
     fetchUserProfile();
-  }, [getSession]);
+  }, [getSession, userProfile, interviewHistory]);
 
   if (isLoading) {
     return <div>Loading...</div>;

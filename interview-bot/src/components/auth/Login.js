@@ -51,22 +51,24 @@ const Login = () => {
       <form onSubmit={onSubmit}>
         <label htmlFor="email" className="login-text-color">Email</label>
         <input
+          id="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
         ></input>
         <label htmlFor="password" className="login-text-color">Password</label>
         <input
+          id="password"
           type="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         ></input>
-
-        {errorMessage && <p className="login-text-color">{errorMessage}</p>} 
-
+  
+        {errorMessage && <p className="login-text-color">{errorMessage}</p>}
+  
         <button type="submit">Login</button>
       </form>
     </div>
-  );
+  );  
 };
 
 export default Login;
