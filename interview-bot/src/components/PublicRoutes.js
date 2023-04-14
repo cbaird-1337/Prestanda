@@ -2,6 +2,7 @@
 import React, { useContext } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { AccountContext } from './auth/Account';
+import Landing from '../pages/Landing';
 
 const useCheckSession = (accountContext) => {
   const user = localStorage.getItem('user');
@@ -16,7 +17,7 @@ const PublicRoutes = () => {
   const accountContext = useContext(AccountContext);
   const isLoggedIn = useCheckSession(accountContext);
 
-  return isLoggedIn ? <Navigate to="/app" /> : <Outlet />;
+  return isLoggedIn ? <Navigate to="/app" /> : <Landing />;
 };
 
 export default PublicRoutes;

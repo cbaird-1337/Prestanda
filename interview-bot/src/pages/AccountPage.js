@@ -1,4 +1,5 @@
 import React from 'react';
+import Protected from '../components/ProtectedRoutes';
 
 function AccountPage() {
   return (
@@ -8,4 +9,4 @@ function AccountPage() {
   );
 }
 
-export default AccountPage;
+export default Protected(AccountPage);

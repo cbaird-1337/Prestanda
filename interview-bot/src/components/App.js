@@ -58,7 +58,7 @@ function App() {
         {/** Public Routes */}
         {/** Wrap all Route under PublicRoutes element */}
         <Route path="/" element={<PublicRoutes isLoggedIn={isLoggedIn} />}>
-          <Route path="landing" element={<Landing />} />
+          <Route path="/" element={<Landing />} />
           <Route path="login" element={<Login onLogin={() => setIsLoggedIn(true)} />} />
           <Route path="signup" element={<Signup />} />
         </Route>

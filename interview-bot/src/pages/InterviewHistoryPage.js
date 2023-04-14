@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import InterviewBox from './elements/InterviewBox';
+import Protected from '../components/ProtectedRoutes';
 
 function InterviewHistoryPage() {
   const [selectedInterview, setSelectedInterview] = useState(null);
@@ -65,4 +66,4 @@ function InterviewHistoryPage() {
   );
 }
 
-export default InterviewHistoryPage;
+export default Protected(InterviewHistoryPage);
