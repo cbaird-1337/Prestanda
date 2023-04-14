@@ -51,28 +51,23 @@ function App() {
         {/** Wrap all Route under ProtectedRoutes element */}
         <Route path="/" element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}>
           <Route path="/" element={<InnerContent />}>
-            <Route path="/app" element={<Navigate replace to="MainApp" />} />
             <Route path="app" element={<MainApp />} />
             <Route path="account" element={<AccountPage />} />
             <Route path="interview-history" element={<InterviewHistoryPage />} />
           </Route>
         </Route>
-
+  
         {/** Public Routes */}
         {/** Wrap all Route under PublicRoutes element */}
-        <Route path="landing" element={<PublicRoutes isLoggedIn={isLoggedIn} />}>
-          <Route path="/" element={<Landing/>}/>
-        </Route>
-        <Route path="login" element={<PublicRoutes isLoggedIn={isLoggedIn} />}>
-          <Route path="/" element={<Login onLogin={() => setIsLoggedIn(true)} />} />
-        </Route>
-        <Route path="/" element={<Signup />} />
-        <Route path="signup" element={<PublicRoutes isLoggedIn={isLoggedIn} />}>
-          <Route path="/" element={<Signup />} />
+        <Route path="/" element={<PublicRoutes isLoggedIn={isLoggedIn} />}>
+          <Route path="landing" element={<Landing />} />
+          <Route path="login" element={<Login onLogin={() => setIsLoggedIn(true)} />} />
+          <Route path="signup" element={<Signup />} />
         </Route>
       </Routes>
     </Account>
   );
+  
 }
 
 export default App;
