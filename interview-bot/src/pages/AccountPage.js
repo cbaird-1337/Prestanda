@@ -1,6 +1,6 @@
 import React from 'react';
-import Protected from '../components/ProtectedRoutes';
-
+import Protected from '../components/Protected';
+ 
 function AccountPage() {
   return (
     <div className="account-page">

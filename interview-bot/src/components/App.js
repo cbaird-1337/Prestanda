@@ -49,10 +49,10 @@ function App() {
       <Routes>
         {/** Protected Routes */}
         {/** Wrap all Route under ProtectedRoutes element */}
-        <Route path="/" element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}>
+        <Route path="/" element={<ProtectedRoutes />}>
           <Route path="app" element={<MainApp />} />
-          <Route path="account" element={<AccountPage />} />
-          <Route path="interview-history" element={<InterviewHistoryPage />} />
+          <Route path="accountpage" element={<AccountPage />} />
+          <Route path="interviewhistorypage" element={<InterviewHistoryPage />} />
         </Route>
   
         {/** Public Routes */}

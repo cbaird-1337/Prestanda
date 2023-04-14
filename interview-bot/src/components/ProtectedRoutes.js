@@ -1,22 +1,21 @@
-// ProtectedRoutes.js
 import React, { useContext } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { AccountContext } from './auth/Account';
 
-const useCheckSession = (accountContext) => {
-  const user = localStorage.getItem('user');
-  if (user) {
-    return true;
-  } else {
-    return false;
-  }
-};
-
-const ProtectedRoutes = () => {
-  const accountContext = useContext(AccountContext);
-  const isLoggedIn = useCheckSession(accountContext);
-
+const ProtectedRoutes = ({ isLoggedIn }) => {
   return isLoggedIn ? <Outlet /> : <Navigate to="/login" />;
 };
 
-export default ProtectedRoutes;
+const Protected = (props) => {
+  const { getSession } = useContext(AccountContext);
+
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+
+  React.useEffect(() => {
+    getSession().then(() => setIsLoggedIn(true)).catch(() => setIsLoggedIn(false));
+  }, [getSession]);
+
+  return <ProtectedRoutes {...props} isLoggedIn={isLoggedIn} />;
+};
+
+export default Protected;
