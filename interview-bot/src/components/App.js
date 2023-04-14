@@ -50,11 +50,9 @@ function App() {
         {/** Protected Routes */}
         {/** Wrap all Route under ProtectedRoutes element */}
         <Route path="/" element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}>
-          <Route path="/" element={<InnerContent />}>
-            <Route path="app" element={<MainApp />} />
-            <Route path="account" element={<AccountPage />} />
-            <Route path="interview-history" element={<InterviewHistoryPage />} />
-          </Route>
+          <Route path="app" element={<MainApp />} />
+          <Route path="account" element={<AccountPage />} />
+          <Route path="interview-history" element={<InterviewHistoryPage />} />
         </Route>
   
         {/** Public Routes */}
@@ -66,7 +64,7 @@ function App() {
         </Route>
       </Routes>
     </Account>
-  );
+  ); 
   
 }
 
