@@ -31,7 +31,7 @@ function useCheckSession(accountContext) {
   return [isLoggedIn, setIsLoggedIn]; // Return both isLoggedIn and setIsLoggedIn
 }
 
-function App() {
+function App({ accountContext }) {
   const accountContext = useContext(AccountContext);
   const [isLoggedIn, setIsLoggedIn] = useCheckSession(accountContext); // Destructure isLoggedIn and setIsLoggedIn
   const [message, setMessage] = useState('');

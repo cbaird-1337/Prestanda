@@ -4,16 +4,18 @@ import './tailwind.output.css'; // Add this line to import the generated Tailwin
 import App from './components/App'; // Updated the import to App
 import reportWebVitals from './reportWebVitals';
 import ReactDOM from 'react-dom/client';
-import Account from './components/auth/Account'; // Add the Account import
+import Account, { AccountContext } from './components/auth/Account'; // Add the Account import
 import { BrowserRouter as Router } from 'react-router-dom'; // Add the Router import
 
 ReactDOM.render(
   <React.StrictMode>
-    <Account>
-      <Router>
-        <App />
-      </Router>
-    </Account>
+    <Router>
+      <Account>
+        <AccountContext.Consumer>
+          {(accountContext) => <App accountContext={accountContext} />}
+        </AccountContext.Consumer>
+      </Account>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

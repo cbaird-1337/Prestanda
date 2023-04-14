@@ -66,4 +66,4 @@ function InterviewHistoryPage() {
   );
 }
 
-export default ProtectedRoutes(InterviewHistoryPage);
+export default InterviewHistoryPage;
