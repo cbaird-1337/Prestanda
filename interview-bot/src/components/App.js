@@ -32,7 +32,6 @@ function useCheckSession(accountContext) {
 }
 
 function App({ accountContext }) {
-  const accountContext = useContext(AccountContext);
   const [isLoggedIn, setIsLoggedIn] = useCheckSession(accountContext); // Destructure isLoggedIn and setIsLoggedIn
   const [message, setMessage] = useState('');
 
@@ -63,3 +62,4 @@ function App({ accountContext }) {
 }
 
 export default App;
+
