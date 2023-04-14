@@ -1,25 +1,16 @@
+// App.js
 import React, { useState, useEffect, useContext } from 'react';
 import './App.css';
-import axios from 'axios';
-import aws from 'aws-sdk';
-import awsConfig from '../aws-config';
-import Typed from 'typed.js';
-import Luminaire from './Luminaire';
-import { BrowserRouter as Router, Route, Routes, Navigate, Outlet } from 'react-router-dom';
 import Landing from '../pages/Landing';
 import Login from './auth/Login';
 import Signup from './auth/Signup';
-import ChangePassword from './auth/ChangePassword';
-import ChangeEmail from './auth/ChangeEmail';
-import Status from './auth/Status';
-import Settings from './auth/Settings';
 import MainApp from '../pages/MainApp';
-import UserPool from './auth/UserPool';
 import AccountPage from '../pages/AccountPage';
 import InterviewHistoryPage from '../pages/InterviewHistoryPage';
-import ProtectedRoute from './ProtectedRoute'; // Import the ProtectedRoute component
+import ProtectedRoutes from './ProtectedRoutes'; // Import the ProtectedRoute component
+import PublicRoutes from './PublicRoutes'; // Import the PublicRoutes component
 import Account, { AccountContext } from './auth/Account';
-import { Link } from "react-router-dom";
+import { Routes, Route } from 'react-router-dom';
 
 function useCheckSession(accountContext) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -45,10 +36,6 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useCheckSession(accountContext);
   const [message, setMessage] = useState("");
 
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
-
   const showMessage = (msg) => {
     setMessage(msg);
     setTimeout(() => {
@@ -61,22 +48,20 @@ function App() {
       {message && <div className="notification">{message}</div>}
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
-        <Route path="/signup" element={<Signup />} />
-        <ProtectedRoute path="/app" isLoggedIn={isLoggedIn} showMessage={showMessage}>
+        <Route path="/login" element={<PublicRoutes isLoggedIn={isLoggedIn} />}>
+          <Route path="/" element={<Login onLogin={() => setIsLoggedIn(true)} />} />
+        </Route>
+        <Route path="/signup" element={<PublicRoutes isLoggedIn={isLoggedIn} />}>
+          <Route path="/" element={<Signup />} />
+        </Route>
+        <Route path="/app" element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}>
           <Route index element={<MainApp />} />
           <Route path="account" element={<AccountPage />} />
           <Route path="interview-history" element={<InterviewHistoryPage />} />
-        </ProtectedRoute>
+        </Route>
       </Routes>
     </Account>
   );
 }
 
 export default App;
-
-
-
-
-
-

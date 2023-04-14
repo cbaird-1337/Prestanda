@@ -15,7 +15,7 @@ import { AccountContext } from "../components/auth/Account";
 import { useNavigate } from 'react-router-dom';
 import AccountPage from './AccountPage';
 import InterviewHistoryPage from './InterviewHistoryPage';
-import Protected from '../components/ProtectedRoute';
+import Protected from '../components/ProtectedRoutes';
 import Landing from './Landing';
 
 aws.config.update(awsConfig);
@@ -40,13 +40,6 @@ function App() {
   const [jobTitle, setJobTitle] = useState('');
   const [candidatePhoneNumber, setCandidatePhoneNumber] = useState('');
 
-  // Inside your MainApp component, before the return statement:
-const [isLoggedIn, setIsLoggedIn] = useState(false); // Initialize the state
-
-// Create a function to handle the login status change
-const handleLoginStatus = (status) => {
-  setIsLoggedIn(status);
-};
 
   useEffect(() => {
     try {
