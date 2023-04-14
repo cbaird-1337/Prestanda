@@ -28,12 +28,12 @@ function useCheckSession(accountContext) {
     checkSession();
   }, [accountContext]);
 
-  return isLoggedIn;
+  return [isLoggedIn, setIsLoggedIn]; // Return both isLoggedIn and setIsLoggedIn
 }
 
 function App() {
   const accountContext = useContext(AccountContext);
-  const isLoggedIn = useCheckSession(accountContext);
+  const [isLoggedIn, setIsLoggedIn] = useCheckSession(accountContext); // Destructure isLoggedIn and setIsLoggedIn
   const [message, setMessage] = useState('');
 
   const showMessage = (msg) => {
@@ -64,8 +64,7 @@ function App() {
         </Route>
       </Routes>
     </Account>
-  ); 
-  
+  );
 }
 
 export default App;
