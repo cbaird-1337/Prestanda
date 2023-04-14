@@ -13,7 +13,7 @@ import Account, { AccountContext } from './auth/Account';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 function useCheckSession(accountContext) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)[0];
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const checkSession = async () => {
