@@ -3,6 +3,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { AccountContext } from './auth/Account';
 
 const ProtectedRoutes = () => {
+  console.log (AccountContext);
   const { getSession } = useContext(AccountContext);
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
