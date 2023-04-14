@@ -9,7 +9,11 @@ import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 import UserPool from "./UserPool";
 import axios from "axios";
 
-const AccountContext = createContext();
+const AccountContext = createContext({
+  authenticate: () => {},
+  getSession: () => {},
+  logout: () => {},
+});
 
 const Account = (props) => {
   const getSession = async () => {
