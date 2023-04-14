@@ -13,7 +13,7 @@ import Account, { AccountContext } from './auth/Account';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 function useCheckSession(accountContext) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false)[0];
 
   useEffect(() => {
     const checkSession = async () => {
@@ -28,12 +28,12 @@ function useCheckSession(accountContext) {
     checkSession();
   }, [accountContext]);
 
-  return [isLoggedIn, setIsLoggedIn];
+  return isLoggedIn;
 }
 
 function App() {
   const accountContext = useContext(AccountContext);
-  const [isLoggedIn, setIsLoggedIn] = useState(useCheckSession(accountContext));
+  const isLoggedIn = useCheckSession(accountContext);
   const [message, setMessage] = useState('');
 
   const showMessage = (msg) => {

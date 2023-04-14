@@ -7,15 +7,15 @@ import ReactDOM from 'react-dom/client';
 import Account from './components/auth/Account'; // Add the Account import
 import { BrowserRouter as Router } from 'react-router-dom'; // Add the Router import
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.render(
   <React.StrictMode>
     <Account>
       <Router>
         <App />
       </Router>
     </Account>
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
