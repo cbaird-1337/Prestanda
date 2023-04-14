@@ -63,12 +63,11 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="*" element={<ProtectedRoute isLoggedIn={isLoggedIn} showMessage={showMessage} />}>
-          <Route path="app" element={<MainApp />}>
-            <Route path="account" element={<AccountPage />} />
-            <Route path="interview-history" element={<InterviewHistoryPage />} />
-          </Route>
-        </Route>
+        <ProtectedRoute path="/app" isLoggedIn={isLoggedIn} showMessage={showMessage}>
+          <Route index element={<MainApp />} />
+          <Route path="account" element={<AccountPage />} />
+          <Route path="interview-history" element={<InterviewHistoryPage />} />
+        </ProtectedRoute>
       </Routes>
     </Account>
   );
