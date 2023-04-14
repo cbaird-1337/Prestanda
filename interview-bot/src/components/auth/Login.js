@@ -6,7 +6,6 @@ import { AccountContext } from "./Account";
 import { useNavigate } from "react-router-dom";
 import UserPool from "./UserPool";
 import axios from "axios";
-import authApiConfig from "./auth-api-config";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -20,12 +19,17 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      const cognitoUser = await UserPool.getCurrentUser();
+      await authenticate(email, password);
+
+      const cognitoUser = UserPool.getCurrentUser();
+      if (!cognitoUser) {
+        throw new Error("User not found");
+      }
+
       const managerAccountId = cognitoUser.getUsername();
-      await authenticate(email, password, managerAccountId);
 
       const response = await axios.post(
-        authApiConfig.baseUrl + authApiConfig.interviewBotProfileRoutes.loginAndFetchProfile,
+        process.env.REACT_APP_LOGIN_FETCH_PROFILE_API_ENDPOINT,
         { managerAccountId }
       );
 

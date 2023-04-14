@@ -72,7 +72,7 @@ function uploadToS3(file, s3Bucket, s3Key) {
 app.get('/account-profile/:managerAccountId', async (req, res) => {
   try {
     const managerAccountId = req.params.managerAccountId;
-    const response = await axios.get(`${process.env.LOGIN_API_ENDPOINT}/interviewbotprofileactions/${managerAccountId}`);
+    const response = await axios.get(`${process.env.ACCOUNT_PROFILE_CONTROLLER_API_ENDPOINT}/interviewbotprofileactions/${managerAccountId}`);
     res.json({ message: 'Account profile fetched successfully', accountProfile: response.data.accountProfile });
   } catch (err) {
     console.error('Error fetching account profile:', err.message);
