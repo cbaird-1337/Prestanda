@@ -1,6 +1,6 @@
 // ProtectedRoutes.js
 import React, { useContext } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { AccountContext } from './auth/Account';
 
 const ProtectedRoutes = ({ Component }) => {
@@ -12,14 +12,8 @@ const ProtectedRoutes = ({ Component }) => {
     getSession().then(() => setIsLoggedIn(true)).catch(() => setIsLoggedIn(false));
   }, [getSession]);
 
-  // Render the passed Component inside the Outlet
-  return isLoggedIn ? (
-    <Outlet>
-      <Component />
-    </Outlet>
-  ) : (
-    <Navigate to="/" />
-  );
+  // Render the passed Component directly
+  return isLoggedIn ? <Component /> : <Navigate to="/" />;
 };
 
 export default ProtectedRoutes;
