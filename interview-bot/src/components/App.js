@@ -57,27 +57,20 @@ function App() {
   };
 
   return (
-    <Router>
+    <Account>
+      {message && <div className="notification">{message}</div>}
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/signup" element={<Signup />} />
-        <Route
-          path="app/*"
-          element={
-            <ProtectedRoute
-              isLoggedIn={isLoggedIn}
-              showMessage={showMessage}
-            >
-              <MainApp />
-            </ProtectedRoute>
-          }
-        >
-          <Route path="account" element={<AccountPage />} />
-          <Route path="interview-history" element={<InterviewHistoryPage />} />
+        <Route path="*" element={<ProtectedRoute isLoggedIn={isLoggedIn} showMessage={showMessage} />}>
+          <Route path="app" element={<MainApp />}>
+            <Route path="account" element={<AccountPage />} />
+            <Route path="interview-history" element={<InterviewHistoryPage />} />
+          </Route>
         </Route>
       </Routes>
-    </Router>
+    </Account>
   );
 }
 
