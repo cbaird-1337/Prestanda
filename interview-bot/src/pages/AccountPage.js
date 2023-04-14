@@ -1,5 +1,5 @@
 import React from 'react';
-import Protected from '../components/Protected';
+import Protected from '../components/ProtectedRoutes';
  
 function AccountPage() {
   return (
