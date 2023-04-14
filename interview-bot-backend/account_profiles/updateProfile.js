@@ -1,4 +1,5 @@
 //Lambda function that updates a user's profile and password in the UserAccounts table, using accountProfileController to update the profile data.
+//These are hosted as Lambda's in AWS under the interviewBotLoginAndFetchProfile function, and are NOT to be directly used by the frontend or backends
 
 const AWS = require('aws-sdk');
 const accountProfileController = require('./accountProfileController');

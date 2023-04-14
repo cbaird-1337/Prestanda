@@ -1,3 +1,4 @@
+//These are hosted as Lambda's in AWS under the interviewBotLoginAndFetchProfile function, and are NOT to be directly used by the frontend or backends
 //Handles creation and retrieval of user account profiles in DynamoDB
 
 const AWS = require('aws-sdk');

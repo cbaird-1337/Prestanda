@@ -1,4 +1,5 @@
 //AWS Lambda function that fetches a user's account profile and interview history based on a provided managerAccountId, returning the results as a JSON object with appropriate HTTP response headers.
+//These are hosted as Lambda's in AWS under the interviewBotLoginAndFetchProfile function, and are NOT to be directly used by the frontend or backends
 
 const AWS = require('aws-sdk');
 const accountProfileController = require('./accountProfileController');

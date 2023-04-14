@@ -1,4 +1,5 @@
 //Exports a function named getInterviewHistory that fetches interview history from a DynamoDB table using a GSI with ManagerAccountId as the partition key
+//These are hosted as Lambda's in AWS under the interviewBotLoginAndFetchProfile function, and are NOT to be directly used by the frontend or backends
 
 const AWS = require('aws-sdk');
 
