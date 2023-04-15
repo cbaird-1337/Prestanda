@@ -1,11 +1,16 @@
 // Landing Page - should be openly accessible to anyone and provide options to allow for login and sign up
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Landing.css";
-import '../animations/blocks-animation';
+import "../animations/blocks-animation.css";
+import startBlocksAnimation from '../animations/blocks-animation';
 
 const Landing = () => {
+  useEffect(() => {
+    startBlocksAnimation();
+  }, []);
+
   return (
     <div className="App">
       <div className="bg-shapes"></div>
