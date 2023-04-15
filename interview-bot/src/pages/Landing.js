@@ -1,16 +1,11 @@
 // Landing Page - should be openly accessible to anyone and provide options to allow for login and sign up
 
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./Landing.css";
 import "../animations/blocks-animation.css";
-import startBlocksAnimation from '../animations/blocks-animation';
 
 const Landing = () => {
-  useEffect(() => {
-    startBlocksAnimation();
-  }, []);
-
   return (
     <div className="App">
       <div className="bg-shapes"></div>
@@ -27,6 +22,20 @@ const Landing = () => {
           <Link to="/login" className="landing-button login-button">
             Login
           </Link>
+        </div>
+      </div>
+      <div className="box-animation-container">
+        <div className="hero-figure">
+          <div className="hero-figure-box hero-figure-box-01"></div>
+          <div className="hero-figure-box hero-figure-box-02"></div>
+          <div className="hero-figure-box hero-figure-box-03"></div>
+          <div className="hero-figure-box hero-figure-box-04"></div>
+          <div className="hero-figure-box hero-figure-box-05"></div>
+          <div className="hero-figure-box hero-figure-box-06"></div>
+          <div className="hero-figure-box hero-figure-box-07"></div>
+          <div className="hero-figure-box hero-figure-box-08"></div>
+          <div className="hero-figure-box hero-figure-box-09"></div>
+          <div className="hero-figure-box hero-figure-box-10"></div>
         </div>
       </div>
     </div>
