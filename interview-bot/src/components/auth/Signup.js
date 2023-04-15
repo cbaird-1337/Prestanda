@@ -1,7 +1,7 @@
 //allows users to sign up with their name, email, company, department, and password, using Amazon Cognito 
 //for authentication, and stores the user information in DynamoDB using an AWS API Gateway. 
 //It also includes email verification and navigates to the main app upon successful registration and authentication
-
+//test
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
