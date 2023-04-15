@@ -17,6 +17,7 @@ import AccountPage from './AccountPage';
 import InterviewHistoryPage from './InterviewHistoryPage';
 import Protected from '../components/ProtectedRoutes';
 import Landing from './Landing';
+import ProtectedRoutes from '../components/ProtectedRoutes';
 
 aws.config.update(awsConfig);
 const dynamodb = new aws.DynamoDB.DocumentClient();
@@ -289,4 +290,4 @@ function App() {
 
 }
 
-export default Protected(App);
+export default App;
