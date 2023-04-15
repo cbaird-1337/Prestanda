@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@babel/core": "^7.16.0",
-    "@inrupt/solid-ui-react": "^2.8.2",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@svgr/webpack": "^5.5.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -54,7 +53,6 @@
     "sass-loader": "^12.3.0",
     "scrollreveal": "^4.0.9",
     "semver": "^7.3.5",
-    "solid-client": "^0.24.3",
     "source-map-loader": "^3.0.0",
     "style-loader": "^3.3.1",
     "tailwindcss": "^3.0.2",
