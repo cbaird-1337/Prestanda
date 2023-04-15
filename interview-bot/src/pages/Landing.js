@@ -3,11 +3,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Landing.css";
+import '../animations/blocks-animation';
 
 const Landing = () => {
   return (
     <div className="App">
       <div className="bg-shapes"></div>
+      <div id="animation-container" className="animation-container"></div>
       <div className="login-container">
         <div className="login-header">
           <h1>Welcome to Prestanda's Automated Interview Screening Service</h1>
