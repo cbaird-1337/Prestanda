@@ -1,3 +1,5 @@
+/* css used for the hero boxes animation in our landing.js file */
+
 .box-animation-container {
   position: absolute;
   top: 0;
@@ -5,7 +7,7 @@
   width: 200px;
   height: 200px;
   overflow: hidden;
-  z-index: -1;
+  z-index: 0;
 }
 
 .hero-figure {
@@ -14,7 +16,6 @@
   right: -40px;
   width: 200px;
   height: 200px;
-  animation: move 20s linear infinite;
 }
 
 .hero-figure-box {
@@ -29,77 +30,49 @@
 .hero-figure-box-01 {
   left: 120px;
   top: 40px;
-  animation: move 4s linear infinite;
 }
 
 .hero-figure-box-02 {
   left: 80px;
   top: 80px;
-  animation: move 6s linear infinite;
 }
 
 .hero-figure-box-03 {
   left: 40px;
   top: 120px;
-  animation: move 8s linear infinite;
 }
 
 .hero-figure-box-04 {
   left: 120px;
   top: 120px;
-  animation: move 10s linear infinite;
 }
 
 .hero-figure-box-05 {
   left: 160px;
   top: 120px;
-  animation: move 12s linear infinite;
 }
 
 .hero-figure-box-06 {
   left: 160px;
   top: 80px;
-  animation: move 14s linear infinite;
 }
 
 .hero-figure-box-07 {
   left: 160px;
   top: 40px;
-  animation: move 16s linear infinite;
 }
 
 .hero-figure-box-08 {
   left: 80px;
   top: 40px;
-  animation: move 18s linear infinite;
 }
 
 .hero-figure-box-09 {
   left: 40px;
   top: 80px;
-  animation: move 20s linear infinite;
 }
 
 .hero-figure-box-10 {
   left: 40px;
   top: 40px;
-  animation: move 22s linear infinite;
-}
-
-@keyframes move {
-  0% {
-    transform: translateY(0) translateX(0);
-  }
-  25% {
-    transform: translateY(-80px) translateX(-80px);
-  }
-  50% {
-    transform: translateY(0) translateX(-160px);
-  }
-  75% {
-    transform: translateY(80px) translateX(-80px);
-  }
-  100% {
-    transform: translateY(0) translateX(0);
-  }
 }

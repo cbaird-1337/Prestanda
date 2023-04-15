@@ -1,5 +1,3 @@
-// Landing Page - should be openly accessible to anyone and provide options to allow for login and sign up
-
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Landing.css";
@@ -26,16 +24,16 @@ const Landing = () => {
       </div>
       <div className="box-animation-container">
         <div className="hero-figure">
-          <div className="hero-figure-box hero-figure-box-01"></div>
-          <div className="hero-figure-box hero-figure-box-02"></div>
-          <div className="hero-figure-box hero-figure-box-03"></div>
-          <div className="hero-figure-box hero-figure-box-04"></div>
+          <div className="hero-figure-box hero-figure-box-01" style={{ transform: 'rotate(45deg)' }}></div>
+          <div className="hero-figure-box hero-figure-box-02" style={{ transform: 'rotate(-45deg)' }}></div>
+          <div className="hero-figure-box hero-figure-box-03" style={{ transform: 'rotate(0deg)' }}></div>
+          <div className="hero-figure-box hero-figure-box-04" style={{ transform: 'rotate(-135deg)' }}></div>
           <div className="hero-figure-box hero-figure-box-05"></div>
           <div className="hero-figure-box hero-figure-box-06"></div>
           <div className="hero-figure-box hero-figure-box-07"></div>
-          <div className="hero-figure-box hero-figure-box-08"></div>
-          <div className="hero-figure-box hero-figure-box-09"></div>
-          <div className="hero-figure-box hero-figure-box-10"></div>
+          <div className="hero-figure-box hero-figure-box-08" style={{ transform: 'rotate(-22deg)' }}></div>
+          <div className="hero-figure-box hero-figure-box-09" style={{ transform: 'rotate(-52deg)' }}></div>
+          <div className="hero-figure-box hero-figure-box-10" style={{ transform: 'rotate(-50deg)' }}></div>
         </div>
       </div>
     </div>
