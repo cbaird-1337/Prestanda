@@ -2,10 +2,13 @@
 import React, { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import { AccountContext } from './auth/Account';
+import { unstable_useSyncExternalStore } from 'use-sync-external-store'; // Update this line
 
 const ProtectedRoutes = ({ Component }) => {
-  console.log("AccountContext:", AccountContext); // Add this line
-  const { getSession } = useContext(AccountContext);
+  console.log("AccountContext:", AccountContext);
+  
+  const contextValue = unstable_useSyncExternalStore(() => useContext(AccountContext)); // Update this line
+  const { getSession } = contextValue; // Update this line
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
@@ -15,10 +18,10 @@ const ProtectedRoutes = ({ Component }) => {
       .catch(() => setIsLoggedIn(false));
   }, [getSession]);
 
-  console.log("isLoggedIn:", isLoggedIn); // Add this line
+  console.log("isLoggedIn:", isLoggedIn);
 
-  // Render the passed Component directly
   return isLoggedIn ? <Component /> : <Navigate to="/" />;
 };
 
 export default ProtectedRoutes;
+
