@@ -22,19 +22,18 @@ const Landing = () => {
           </Link>
         </div>
       </div>
-      <div className="box-animation-container">
-        <div className="hero-figure">
-          <div className="hero-figure-box hero-figure-box-01" style={{ transform: 'rotate(45deg)' }}></div>
-          <div className="hero-figure-box hero-figure-box-02" style={{ transform: 'rotate(-45deg)' }}></div>
-          <div className="hero-figure-box hero-figure-box-03" style={{ transform: 'rotate(0deg)' }}></div>
-          <div className="hero-figure-box hero-figure-box-04" style={{ transform: 'rotate(-135deg)' }}></div>
-          <div className="hero-figure-box hero-figure-box-05"></div>
-          <div className="hero-figure-box hero-figure-box-06"></div>
-          <div className="hero-figure-box hero-figure-box-07"></div>
-          <div className="hero-figure-box hero-figure-box-08" style={{ transform: 'rotate(-22deg)' }}></div>
-          <div className="hero-figure-box hero-figure-box-09" style={{ transform: 'rotate(-52deg)' }}></div>
-          <div className="hero-figure-box hero-figure-box-10" style={{ transform: 'rotate(-50deg)' }}></div>
-        </div>
+      {/* Add 'hero-figure' class to the container */}
+      <div className="box-animation-container hero-figure">
+        <div className="hero-figure-box hero-figure-box-01" style={{ transform: 'rotate(45deg)' }}></div>
+        <div className="hero-figure-box hero-figure-box-02" style={{ transform: 'rotate(-45deg)' }}></div>
+        <div className="hero-figure-box hero-figure-box-03" style={{ transform: 'rotate(0deg)' }}></div>
+        <div className="hero-figure-box hero-figure-box-04" style={{ transform: 'rotate(-135deg)' }}></div>
+        <div className="hero-figure-box hero-figure-box-05"></div>
+        <div className="hero-figure-box hero-figure-box-06"></div>
+        <div className="hero-figure-box hero-figure-box-07"></div>
+        <div className="hero-figure-box hero-figure-box-08" style={{ transform: 'rotate(-22deg)' }}></div>
+        <div className="hero-figure-box hero-figure-box-09" style={{ transform: 'rotate(-52deg)' }}></div>
+        <div className="hero-figure-box hero-figure-box-10" style={{ transform: 'rotate(-50deg)' }}></div>
       </div>
     </div>
   );
