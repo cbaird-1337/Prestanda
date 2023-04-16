@@ -6,6 +6,7 @@ import { AccountContext } from "./Account";
 import { useNavigate } from "react-router-dom";
 import UserPool from "./UserPool";
 import axios from "axios";
+import "./Login.css"
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -47,28 +48,44 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <label htmlFor="email" className="login-text-color">Email</label>
-        <input
-          id="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-        ></input>
-        <label htmlFor="password" className="login-text-color">Password</label>
-        <input
-          id="password"
-          type="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        ></input>
-  
-        {errorMessage && <p className="login-text-color">{errorMessage}</p>}
-  
-        <button type="submit">Login</button>
-      </form>
+    <div className="App">
+      {/* Add the box-animation-container from the Landing.js */}
+      <div className="box-animation-container hero-figure">
+        <div className="hero-figure-box hero-figure-box-01"></div>
+        <div className="hero-figure-box hero-figure-box-02"></div>
+        <div className="hero-figure-box hero-figure-box-03"></div>
+        <div className="hero-figure-box hero-figure-box-04"></div>
+        <div className="hero-figure-box hero-figure-box-05"></div>
+        <div className="hero-figure-box hero-figure-box-06"></div>
+        <div className="hero-figure-box hero-figure-box-07"></div>
+        <div className="hero-figure-box hero-figure-box-08"></div>
+        <div className="hero-figure-box hero-figure-box-09"></div>
+        <div className="hero-figure-box hero-figure-box-10"></div>
+      </div>
+      <div>
+        <form onSubmit={onSubmit}>
+          <label htmlFor="email" className="login-text-color">Email</label>
+          <input
+            id="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          ></input>
+          <label htmlFor="password" className="login-text-color">Password</label>
+          <input
+            id="password"
+            type="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          ></input>
+    
+          {errorMessage && <p className="login-text-color">{errorMessage}</p>}
+    
+          <button type="submit">Login</button>
+        </form>
+      </div>
     </div>
-  );  
+  );
+  
 };
 
 export default Login;

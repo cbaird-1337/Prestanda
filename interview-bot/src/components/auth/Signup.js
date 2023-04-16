@@ -116,6 +116,20 @@ const Signup = () => {
   };
 
   return (
+    <div className="App">
+      {/* Add the box-animation-container from the Landing.js */}
+      <div className="box-animation-container hero-figure">
+        <div className="hero-figure-box hero-figure-box-01"></div>
+        <div className="hero-figure-box hero-figure-box-02"></div>
+        <div className="hero-figure-box hero-figure-box-03"></div>
+        <div className="hero-figure-box hero-figure-box-04"></div>
+        <div className="hero-figure-box hero-figure-box-05"></div>
+        <div className="hero-figure-box hero-figure-box-06"></div>
+        <div className="hero-figure-box hero-figure-box-07"></div>
+        <div className="hero-figure-box hero-figure-box-08"></div>
+        <div className="hero-figure-box hero-figure-box-09"></div>
+        <div className="hero-figure-box hero-figure-box-10"></div>
+      </div>
     <div>
       <form onSubmit={onSubmit}>
         <label htmlFor="name">Name</label>
@@ -159,6 +173,7 @@ const Signup = () => {
         />
       </form>
     </div>
+  </div> 
   );
 };
 
