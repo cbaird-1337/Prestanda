@@ -31,7 +31,7 @@ const Landing = () => {
         </div>
       </div>
       {/* Add 'hero-figure' class to the container */}
-      <div className="box-animation-container hero-figure" style={{ top: '10%', left: '10%' }}> {/* Add top and left styles */}
+      <div className="box-animation-container hero-figure anime-element" style={{ top: '10%', right: '10%' }}>
         <div className="hero-figure-box hero-figure-box-01" data-rotation="45deg"></div>
         <div className="hero-figure-box hero-figure-box-02" data-rotation="-45deg"></div>
         <div className="hero-figure-box hero-figure-box-03" data-rotation="0deg"></div>

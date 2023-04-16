@@ -4,8 +4,8 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 200px;
-  height: 200px;
+  width: 700px;
+  height: 700px;
   overflow: hidden;
   z-index: 0;
 }
@@ -24,83 +24,83 @@
 }
 
 .hero-figure-box-01 {
-  left: 120px;
-  top: 40px;
-  width: 28.03%;
-  height: 37.37%;
+  left: 240px;
+  top: 80px;
+  width: 56.06%;
+  height: 74.74%;
   background: linear-gradient(to left top, #00BFFB, rgba(0, 191, 251, 0));
   transform: rotateZ(45deg);
 }
 
 .hero-figure-box-02 {
-  left: 80px;
-  top: 80px;
-  width: 37.87%;
-  height: 50.50%;
+  left: 160px;
+  top: 160px;
+  width: 75.87%;
+  height: 101.00%;
   background: linear-gradient(to left top, #0270D7, rgba(2, 112, 215, 0));
   transform: rotateZ(-45deg);
 }
 
 .hero-figure-box-03 {
-  left: 40px;
-  top: 120px;
-  width: 56.81%;
-  height: 75.75%;
+  left: 80px;
+  top: 240px;
+  width: 112.41%;
+  height: 151.50%;
   background: linear-gradient(to left top, #00BFFB, rgba(0, 191, 251, 0));
 }
 
 .hero-figure-box-04 {
-  left: 120px;
-  top: 120px;
-  width: 45.45%;
-  height: 60.60%;
+  left: 240px;
+  top: 240px;
+  width: 90.90%;
+  height: 121.20%;
   background: linear-gradient(to left top, #0270D7, rgba(2, 112, 215, 0));
   transform: rotateZ(-135deg);
 }
 
 .hero-figure-box-05 {
-  left: 160px;
-  top: 120px;
-  width: 64%;
-  height: 73.7%;
+  left: 320px;
+  top: 240px;
+  width: 128%;
+  height: 147.4%;
   background-color: #242830;
   box-shadow: -20px 32px 64px rgba(0, 0, 0, 0.25);
 }
 
 .hero-figure-box-06 {
-  left: 160px;
-  top: 80px;
-  width: 30.3%;
-  height: 40.4%;
+  left: 320px;
+  top: 160px;
+  width: 60.6%;
+  height: 80.8%;
   background-color: #242830;
   box-shadow: -20px 32px 64px rgba(0, 0, 0, 0.25);
   transform: rotateZ(20deg);
 }
 
 .hero-figure-box-07 {
-  left: 160px;
-  top: 40px;
-  width: 12.12%;
-  height: 16.16%;
+  left: 320px;
+  top: 80px;
+  width: 24.24%;
+  height: 32.32%;
   background-color: #242830;
   box-shadow: -20px 32px 64px rgba(0, 0, 0, 0.25);
   transform: rotateZ(20deg);
 }
 
 .hero-figure-box-08 {
-  left: 80px;
-  top: 40px;
-  width: 19.51%;
-  height: 26.01%;
+  left: 160px;
+  top: 80px;
+  width: 29.02%;
+  height: 52.02%;
   background: #0270D7;
   transform: rotateZ(-22deg);
 }
 
 .hero-figure-box-09 {
-  left: 40px;
-  top: 80px;
-  width: 6.63%;
-  height: 8.83%;
+  left: 80px;
+  top: 160px;
+  width: 13.26%;
+  height: 17.66%;
   background: #00BFFB;
   transform: rotateZ(-52deg);
 }
@@ -108,8 +108,8 @@
 .hero-figure-box-10 {
   left: 0;
   top: 0;
-  width: 3.03%;
-  height: 4.04%;
+  width: 6.06%;
+  height: 8.08%;
   background: rgba(0, 191, 251, 0.32);
   transform: rotateZ(-50deg);
 }
