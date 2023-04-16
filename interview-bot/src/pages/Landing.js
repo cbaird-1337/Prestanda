@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Landing.css";
-import "../animations/blocks-animation.css";
+import startAnimation from "../animations/blocks-animation.js";
 
 const Landing = () => {
+  useEffect(() => {
+    startAnimation();
+  }, []);
+
   return (
     <div className="App">
       <div className="bg-shapes"></div>
