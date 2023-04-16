@@ -4,8 +4,8 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 800px;
-  height: 800px;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   z-index: 0;
 }
@@ -28,7 +28,7 @@
   top: 80px;
   width: 56.06%;
   height: 74.74%;
-  background: linear-gradient(to left top, #00BFFB, rgba(0, 191, 251, 0));
+  background: linear-gradient(135deg, #00BFFB 0%, #0098C9 100%);
   transform: rotateZ(45deg);
 }
 
@@ -37,7 +37,7 @@
   top: 160px;
   width: 75.87%;
   height: 101.00%;
-  background: linear-gradient(to left top, #0270D7, rgba(2, 112, 215, 0));
+  background: linear-gradient(135deg, #0270D7 0%, #004A9E 100%);
   transform: rotateZ(-45deg);
 }
 
@@ -46,7 +46,7 @@
   top: 240px;
   width: 112.41%;
   height: 151.50%;
-  background: linear-gradient(to left top, #00BFFB, rgba(0, 191, 251, 0));
+  background: linear-gradient(135deg, #00BFFB 0%, #0098C9 100%);
 }
 
 .hero-figure-box-04 {
@@ -54,7 +54,7 @@
   top: 240px;
   width: 90.90%;
   height: 121.20%;
-  background: linear-gradient(to left top, #0270D7, rgba(2, 112, 215, 0));
+  background: linear-gradient(135deg, #0270D7 0%, #004A9E 100%);
   transform: rotateZ(-135deg);
 }
 
@@ -63,7 +63,7 @@
   top: 240px;
   width: 128%;
   height: 147.4%;
-  background-color: #242830;
+  background: linear-gradient(135deg, #2E3448 0%, #1D1F26 100%);
   box-shadow: -20px 32px 64px rgba(0, 0, 0, 0.25);
 }
 
@@ -72,7 +72,7 @@
   top: 160px;
   width: 60.6%;
   height: 80.8%;
-  background-color: #242830;
+  background: linear-gradient(160deg, #2E3448 0%, #1D1F26 100%);
   box-shadow: -20px 32px 64px rgba(0, 0, 0, 0.25);
   transform: rotateZ(20deg);
 }
@@ -82,7 +82,7 @@
   top: 80px;
   width: 24.24%;
   height: 32.32%;
-  background-color: #242830;
+  background: linear-gradient(160deg, #2E3448 0%, #1D1F26 100%);
   box-shadow: -20px 32px 64px rgba(0, 0, 0, 0.25);
   transform: rotateZ(20deg);
 }
@@ -92,7 +92,7 @@
   top: 80px;
   width: 29.02%;
   height: 52.02%;
-  background: #0270D7;
+  background: linear-gradient(158deg, #0270D7 0%, #004A9E 100%);
   transform: rotateZ(-22deg);
 }
 
@@ -101,7 +101,7 @@
   top: 160px;
   width: 13.26%;
   height: 17.66%;
-  background: #00BFFB;
+  background: linear-gradient(158deg, #00BFFB 0%, #0098C9 100%);
   transform: rotateZ(-52deg);
 }
 
@@ -110,6 +110,6 @@
   top: 0;
   width: 6.06%;
   height: 8.08%;
-  background: rgba(0, 191, 251, 0.32);
+  background: linear-gradient(158deg, rgba(0, 191, 251, 0.32) 0%, rgba(0, 152, 201, 0.32) 100%);
   transform: rotateZ(-50deg);
 }
