@@ -16,7 +16,6 @@ const Landing = () => {
   return (
     <div className="App">
       <div className="bg-shapes"></div>
-      <div id="animation-container" className="animation-container"></div>
       <div className="login-container">
         <div className="login-header">
           <h1>Welcome to Prestanda's Automated Interview Screening Service</h1>
@@ -32,7 +31,7 @@ const Landing = () => {
         </div>
       </div>
       {/* Add 'hero-figure' class to the container */}
-      <div className="box-animation-container hero-figure" style={{ top: '25%', left: '25%' }}> {/* Add top and left styles */}
+      <div className="box-animation-container hero-figure" style={{ top: '10%', left: '10%' }}> {/* Add top and left styles */}
         <div className="hero-figure-box hero-figure-box-01" data-rotation="45deg"></div>
         <div className="hero-figure-box hero-figure-box-02" data-rotation="-45deg"></div>
         <div className="hero-figure-box hero-figure-box-03" data-rotation="0deg"></div>
