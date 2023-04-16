@@ -68,12 +68,16 @@ const Account = (props) => {
             );
 
             // Merge the fetched data with the authentication data
-            setIsLoggedIn(true);
-            resolve({ ...data, ...response.data });
-          } catch (error) {
-            console.error("Error fetching user data:", error.message);
-            reject(error);
-          }
+          const mergedData = { ...data, ...response.data };
+
+          // Set the isLoggedIn state to true
+          setIsLoggedIn(true);
+
+          resolve(mergedData);
+        } catch (error) {
+          console.error("Error fetching user data:", error.message);
+          reject(error);
+        }
         },
         onFailure: (err) => {
           console.error("onFailure: ", err);
