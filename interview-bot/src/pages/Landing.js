@@ -5,7 +5,12 @@ import startAnimation from "../animations/blocks-animation.js";
 
 const Landing = () => {
   useEffect(() => {
+    document.body.classList.add("has-animations");
     startAnimation();
+
+    return () => {
+      document.body.classList.remove("has-animations");
+    };
   }, []);
 
   return (
@@ -28,16 +33,16 @@ const Landing = () => {
       </div>
       {/* Add 'hero-figure' class to the container */}
       <div className="box-animation-container hero-figure">
-        <div className="hero-figure-box hero-figure-box-01" style={{ transform: 'rotate(45deg)' }}></div>
-        <div className="hero-figure-box hero-figure-box-02" style={{ transform: 'rotate(-45deg)' }}></div>
-        <div className="hero-figure-box hero-figure-box-03" style={{ transform: 'rotate(0deg)' }}></div>
-        <div className="hero-figure-box hero-figure-box-04" style={{ transform: 'rotate(-135deg)' }}></div>
+        <div className="hero-figure-box hero-figure-box-01" data-rotation="45deg"></div>
+        <div className="hero-figure-box hero-figure-box-02" data-rotation="-45deg"></div>
+        <div className="hero-figure-box hero-figure-box-03" data-rotation="0deg"></div>
+        <div className="hero-figure-box hero-figure-box-04" data-rotation="-135deg"></div>
         <div className="hero-figure-box hero-figure-box-05"></div>
         <div className="hero-figure-box hero-figure-box-06"></div>
         <div className="hero-figure-box hero-figure-box-07"></div>
-        <div className="hero-figure-box hero-figure-box-08" style={{ transform: 'rotate(-22deg)' }}></div>
-        <div className="hero-figure-box hero-figure-box-09" style={{ transform: 'rotate(-52deg)' }}></div>
-        <div className="hero-figure-box hero-figure-box-10" style={{ transform: 'rotate(-50deg)' }}></div>
+        <div className="hero-figure-box hero-figure-box-08" data-rotation="-22deg"></div>
+        <div className="hero-figure-box hero-figure-box-09" data-rotation="-52deg"></div>
+        <div className="hero-figure-box hero-figure-box-10" data-rotation="-50deg"></div>
       </div>
     </div>
   );
