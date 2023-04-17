@@ -3,7 +3,7 @@
 
 import React, { useState, useContext } from "react";
 import { AccountContext } from "./Account";
-import { useHistory } from "react-router-dom"; // Import useHistory here
+import { useNavigate } from "react-router-dom";
 import UserPool from "./UserPool";
 import axios from "axios";
 import "./Login.css"
@@ -12,7 +12,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const history = useHistory(); // Replace useNavigate() with useHistory()
+  const navigate = useNavigate();
 
   const { authenticate } = useContext(AccountContext);
 
@@ -37,7 +37,7 @@ const Login = () => {
       if (response.status === 200) {
         console.log("Logged in!");
         console.log("User profile and interview history:", response.data);
-        history.push("/app"); // Replace navigate("/app") with history.push("/app")
+        navigate("/app");
       } else {
         setErrorMessage("Failed to fetch user profile and interview history");
       }
