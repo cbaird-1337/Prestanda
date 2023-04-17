@@ -34,6 +34,25 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
+// Add the new CORS settings here
+const allowedOrigins = [
+  'https://main.d3jk64z10p9k41.amplifyapp.com',
+  'https://prestanda.io',
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
