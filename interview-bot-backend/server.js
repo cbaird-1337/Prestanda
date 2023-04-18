@@ -212,6 +212,8 @@ app.post('/refine', async (req, res) => {
 
 const PORT = process.env.PORT
 
+console.log('PORT', PORT)
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
