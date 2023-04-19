@@ -36,7 +36,7 @@ app.use(bodyParser.json());
 
 // Add the new CORS settings here
 const allowedOrigins = [
-  'https://prestanda.io',
+  'https://www.prestanda.io',
 ];
 
 const corsOptions = {
