@@ -15,6 +15,7 @@ const textract = require('textract');
 const { Configuration, OpenAIApi } = require('openai');
 const axios = require('axios');
 const { PORT } = process.env
+const pdfParse = require('pdf-parse');
 
 // Configure AWS SDK and initialize S3 instance
 AWS.config.update({
@@ -23,6 +24,12 @@ AWS.config.update({
   region: process.env.AWS_REGION,
 });
 const s3 = new AWS.S3();
+
+// Function to support extracting text from PDFs
+async function readAndExtractTextFromPdf(buffer) {
+  const data = await pdfParse(buffer);
+  return data.text;
+}
 
 // Configure OpenAI API client
 const configuration = new Configuration({
@@ -100,7 +107,6 @@ app.get('/account-profile/:managerAccountId', async (req, res) => {
   }
 });
 
-
 // Read and extract text from documents with textract
 async function readAndExtractTextFromS3(s3Bucket, s3Key) {
   return new Promise((resolve, reject) => {
@@ -114,13 +120,23 @@ async function readAndExtractTextFromS3(s3Bucket, s3Key) {
         reject(err);
       } else {
         const buffer = data.Body;
-        textract.fromBufferWithMime('application/vnd.openxmlformats-officedocument.wordprocessingml.document', buffer, (error, text) => {
-          if (error) {
-            reject(error);
-          } else {
-            resolve(text);
-          }
-        });
+        const mimeType = data.ContentType;
+
+        if (mimeType === 'application/pdf') {
+          resolve(readAndExtractTextFromPdf(buffer));
+        } else if (mimeType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+          textract.fromBufferWithMime(mimeType, buffer, (error, text) => {
+            if (error) {
+              reject(error);
+            } else {
+              resolve(text);
+            }
+          });
+        } else if (mimeType === 'text/plain') {
+          resolve(buffer.toString('utf-8'));
+        } else {
+          reject(new Error('Unsupported file type'));
+        }
       }
     });
   });

@@ -249,35 +249,35 @@ function App() {
                 placeholder="Candidate Name"
                 value={candidateName}
                 onChange={(e) => setCandidateName(e.target.value)}
-                className="p-1 border border-gray-300 w-full"
+                className="p-1 border border-gray-300 w-full input-black-text"
               />
               <input
                 type="email"
                 placeholder="Candidate Email"
                 value={candidateEmail}
                 onChange={(e) => setCandidateEmail(e.target.value)}
-                className="p-1 border border-gray-300 w-full"
+                className="p-1 border border-gray-300 w-full input-black-text"
               />
               <input
                 type="text"
                 placeholder="Hiring Company Name"
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
-                className="p-1 border border-gray-300 w-full"
+                className="p-1 border border-gray-300 w-full input-black-text"
               />
               <input
                 type="text"
                 placeholder="Job Title"
                 value={jobTitle}
                 onChange={(e) => setJobTitle(e.target.value)}
-                className="p-1 border border-gray-300 w-full"
+                className="p-1 border border-gray-300 w-full input-black-text"
               />
               <input
                 type="text"
                 placeholder="Candidate Phone Number"
                 value={candidatePhoneNumber}
                 onChange={(e) => setCandidatePhoneNumber(e.target.value)}
-                className="p-1 border border-gray-300 w-full"
+                className="p-1 border border-gray-300 w-full input-black-text"
               />
               <button type="button" onClick={handleConfirmAndSaveQuestions} className="bg-blue-600 text-white px-4 py-2 rounded">Confirm and Save Questions</button>
             </div>

@@ -176,6 +176,10 @@ body {
   .luminaire:nth-child(2) {
     animation-delay: -0.8s;
   }
+
+  .input-black-text {
+    color: rgb(25, 24, 24);
+  }  
   
   @keyframes loading {
     0% {
