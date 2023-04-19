@@ -1,6 +1,6 @@
 //defines the behavior and layout of a web application. It contains state variables and functions to handle file uploads, 
 //generate interview questions based on uploaded files, refine generated questions, and save questions and 
-//candidate information to an AWS DynamoDB table. It also uses other React components and React Router for navigation.
+//candidate information to an AWS DynamoDB table. It also uses other React components and React Router for navigation. 
 
 
 import React, { useState, useEffect, useContext } from 'react';
