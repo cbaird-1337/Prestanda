@@ -1,5 +1,5 @@
 // App.js
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Landing from '../pages/Landing';
 import Login from './auth/Login';
@@ -13,7 +13,6 @@ import Account, { AccountContext } from './auth/Account';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [message, setMessage] = useState('');
 
   const showMessage = (msg) => {
@@ -35,7 +34,7 @@ function App() {
         {/** Public Routes */}
         <Route path="/" element={<PublicRoutes />} />
         <Route index element={<Landing />} />
-        <Route path="login" element={<Login onLogin={() => setIsLoggedIn(true)} />} />
+        <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
       </Routes>
     </Account>
