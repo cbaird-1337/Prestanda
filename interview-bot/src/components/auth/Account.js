@@ -21,6 +21,7 @@ const Account = (props) => {
           if (err) {
             reject();
           } else {
+            setIsLoggedIn(true); 
             const attributes = await new Promise((resolve, reject) => {
               user.getUserAttributes((err, attributes) => {
                 if (err) {
