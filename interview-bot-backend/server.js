@@ -14,6 +14,7 @@ const AWS = require('aws-sdk');
 const textract = require('textract');
 const { Configuration, OpenAIApi } = require('openai');
 const axios = require('axios');
+const { PORT } = process.env
 
 // Configure AWS SDK and initialize S3 instance
 AWS.config.update({
@@ -209,8 +210,6 @@ app.post('/refine', async (req, res) => {
     res.status(500).json({ message: 'Error refining questions' });
   }
 });
-
-const PORT = process.env.PORT
 
 console.log('PORT', PORT)
 
