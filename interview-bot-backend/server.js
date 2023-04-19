@@ -37,7 +37,6 @@ app.use(cors());
 
 // Add the new CORS settings here
 const allowedOrigins = [
-  'https://main.d3jk64z10p9k41.amplifyapp.com',
   'https://prestanda.io',
 ];
 
