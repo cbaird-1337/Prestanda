@@ -181,7 +181,7 @@ function App() {
         <div className="container mx-auto px-4 py-8">
              <>
                 <h1 className="text-4xl font-bold mb-4">
-                  Self-service, automated, first call screening.
+                  Self-service, automated, first call interview screening.
                 </h1>
                 <div className="typed-text-container">
                   <div id="typed-text" className="text-2xl mb-4"></div>
@@ -213,7 +213,9 @@ function App() {
               </div>
             </div>
             <div className="form-instructions ml-4">
-              <p>Please upload the candidate's resume, the job description, and specify the desired number of interview questions to generate.</p>
+              <p>Step 1: Upload the candidate's resume, the job description you're hiring for, and the desired number of interview questions to generate.</p>
+              <p></p>
+              <p>Supported file formats: .docx, .pdf & .txt</p>
             </div>
           </div>
           <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">Generate Interview Questions</button>
