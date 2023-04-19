@@ -17,12 +17,7 @@ const PublicRoutes = () => {
   const accountContext = useContext(AccountContext);
   const isLoggedIn = useCheckSession(accountContext);
 
-  return (
-    <Outlet>
-      {!isLoggedIn && <Landing />}
-      <Navigate to="/app" replace={true} />
-    </Outlet>
-  );
+  return isLoggedIn ? <Navigate to="/app" /> : <Landing />;
 };
 
 export default PublicRoutes;
