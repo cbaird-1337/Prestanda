@@ -33,7 +33,6 @@ const openai = new OpenAIApi(configuration);
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors());
 
 // Add the new CORS settings here
 const allowedOrigins = [
@@ -49,6 +48,8 @@ const corsOptions = {
     }
   },
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'x-amz-date', 'authorization', 'x-api-key', 'x-amz-security-token', 'x-amz-user-agent'],
 };
 
 app.use(cors(corsOptions));
