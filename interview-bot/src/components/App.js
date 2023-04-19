@@ -33,7 +33,7 @@ function App() {
         <Route path="interviewhistorypage" element={<ProtectedRoutes Component={InterviewHistoryPage} />} />
   
         {/** Public Routes */}
-        <Route path="/" element={<PublicRoutes isLoggedIn={isLoggedIn} />} />
+        <Route path="/" element={<PublicRoutes />} />
         <Route index element={<Landing />} />
         <Route path="login" element={<Login onLogin={() => setIsLoggedIn(true)} />} />
         <Route path="signup" element={<Signup />} />
