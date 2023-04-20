@@ -30,7 +30,7 @@
   }
   
   .feature {
-    padding: 1.5rem;
+    padding: 2rem;
   }
 
   .feature-inner {
@@ -54,13 +54,13 @@
   
   .features-white-text {
     color: rgb(220, 208, 208);
-    font-size: 1.55rem;
+    font-size: 1.25rem;
   }  
 
   .feature-title-text {
     font-weight: bold;
-    font-size: 1.95rem; 
-    color: rgb(228, 189, 70)
+    font-size: 1.75rem; 
+    color: rgb(192, 176, 129)
   }  
   
   .text-center {
