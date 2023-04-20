@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './VerificationModal.css';
 
 const VerificationModal = ({ isOpen, onSubmit, onClose }) => {
   const [code, setCode] = useState('');
@@ -13,9 +14,10 @@ const VerificationModal = ({ isOpen, onSubmit, onClose }) => {
   }
 
   return (
-    <div>
-      <div>
+    <div className="verification-modal-overlay">
+      <div className="verification-modal">
         <h2>Email Verification</h2>
+        <p>Please input the verification code that was just sent to your email.</p>
         <div>
           <label htmlFor="code">Verification Code</label>
           <input
@@ -27,7 +29,7 @@ const VerificationModal = ({ isOpen, onSubmit, onClose }) => {
         <button onClick={onClose}>Close</button>
       </div>
     </div>
-  );
+  );  
 };
 
 export default VerificationModal;
