@@ -5,15 +5,6 @@
     z-index: 10;
   }
   
-  .features-container {
-    position: absolute;
-    width: 100%;
-    top: 50%; /* Center the container vertically */
-    transform: translateY(-50%); /* Move the container up by half of its height */
-    z-index: 5; /* To make sure the feature icons are on top of the background box items */
-  }
-  
-  
   .features-inner {
     display: flex;
     flex-wrap: wrap;
