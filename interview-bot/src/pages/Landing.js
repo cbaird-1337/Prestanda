@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Landing.css";
 import startAnimation from "../animations/blocks-animation.js";
+import Features from "./elements/Features";
+import "./elements/scroll-animation.css"; 
 
 const Landing = () => {
   useEffect(() => {
@@ -30,6 +32,7 @@ const Landing = () => {
           </Link>
         </div>
       </div>
+      <Features />
       {/* Add 'hero-figure' class to the container */}
       <div className="box-animation-container hero-figure anime-element">
         <div className="hero-figure-box hero-figure-box-01" data-rotation="45deg"></div>
