@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { createStyles, Header, Group, Center, Container, rem } from "@mantine/core";
 import { AccountContext } from "./auth/Account";
+import logo from "../pages/elements/images/Prestanda-Logo-Transparent.png";
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -20,6 +21,12 @@ const useStyles = createStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
   },
+
+  logo: {
+    display: "block",
+    height: rem(30), // Adjust the logo height
+    marginLeft: rem(5),
+  },  
 
   link: {
     display: "block",
@@ -57,7 +64,8 @@ function Banner() {
     <Header height={56} className={classes.header}>
         <div className={classes.inner}>
           {/* Add your logo here */}
-          <Group spacing={5}>
+          <img src={logo} alt="Prestanda Logo" className={classes.logo} />
+          <Group spacing={5} style={{ marginLeft: "auto" }}>
             <Link to="/account" className={classes.link}>
               Account
             </Link>
