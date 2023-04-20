@@ -17,27 +17,27 @@ const Features = () => {
   const featureItems = [
     {
       icon: featureIcon1,
-      text: "Custom text for Feature 1",
+      text: "Automated first call interview screening",
     },
     {
       icon: featureIcon2,
-      text: "Custom text for Feature 2",
+      text: "Generate unique interview questions catered specifically to your role, and to each candidates background",
     },
     {
       icon: featureIcon3,
-      text: "Custom text for Feature 3",
+      text: "Automated job fit recommendations",
     },
     {
       icon: featureIcon4,
-      text: "Custom text for Feature 4",
+      text: "Easy, simple to use interface",
     },
     {
       icon: featureIcon5,
-      text: "Custom text for Feature 5",
+      text: "Pay as you go",
     },
     {
       icon: featureIcon6,
-      text: "Custom text for Feature 6",
+      text: "Integrate with your preferred candidate tracking system",
     },
   ];
 
