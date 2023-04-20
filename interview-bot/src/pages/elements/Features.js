@@ -1,7 +1,7 @@
 import React from "react";
 import "./Features.css";
 import "./scroll-animation.css";
-import { ScrollTrigger } from "react-scroll-trigger";
+import ScrollTrigger from "react-scroll-trigger";
 import featureIcon1 from "./images/feature-icon-01.svg";
 import featureIcon2 from "./images/feature-icon-02.svg";
 import featureIcon3 from "./images/feature-icon-03.svg";
