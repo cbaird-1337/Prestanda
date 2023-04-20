@@ -65,7 +65,7 @@ const Features = () => {
                     <div className="feature-icon">
                       <img src={icon} alt={`Feature ${index + 1}`} />
                     </div>
-                    <h4 className="feature-title mt-24 features-white-text">{title}</h4>
+                    <h4 className="feature-title mt-24 features-white-text feature-title-text">{title}</h4>
                     <p className="text-sm mb-0 features-white-text">{text}</p>
                   </div>
                 </div>

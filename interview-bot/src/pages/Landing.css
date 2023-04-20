@@ -18,6 +18,14 @@
   opacity: 0.2;
 }
 
+.content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+}
+
 .login-container {
   position: relative;
   background-color: #ffffff;
@@ -27,7 +35,7 @@
   max-width: 400px;
   width: 90%;
   z-index: 20;
-  margin-bottom: 1.5rem; /* Add this line to push the Features container down */
+  margin-bottom: 1.5rem;
 }
 
 .login-header {
@@ -74,4 +82,9 @@
 
 .login-button:hover {
   background-color: #0069d9;
+}
+
+.features-container {
+  background-color: #1c1f2b;
+  padding: 5rem 0;
 }
