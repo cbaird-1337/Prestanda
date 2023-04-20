@@ -58,7 +58,11 @@ const Features = () => {
                 onEnter={() => onEnterViewport(`feature-${index}`)}
               >
                 <div
-                  className={`feature text-center`}
+                  className={`feature text-center ${
+                    index < 3
+                      ? "is-revealing-first-row"
+                      : "is-revealing-second-row"
+                  }`} // Add this line
                   id={`feature-${index}`}
                 >
                   <div className="feature-inner">

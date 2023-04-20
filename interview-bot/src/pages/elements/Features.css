@@ -54,12 +54,13 @@
   
   .features-white-text {
     color: rgb(220, 208, 208);
-    font-size: 1.25rem;
+    font-size: 1.55rem;
   }  
 
   .feature-title-text {
     font-weight: bold;
-    font-size: 1.75rem; 
+    font-size: 1.95rem; 
+    color: rgb(228, 189, 70)
   }  
   
   .text-center {
