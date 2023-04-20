@@ -7,6 +7,11 @@ const useStyles = createStyles((theme) => ({
   header: {
     backgroundColor: theme.fn.variant({ variant: "filled", color: theme.primaryColor }).background,
     borderBottom: 0,
+    position: "fixed", 
+    top: 0, 
+    left: 0, 
+    width: "100%", 
+    zIndex: 1000, 
   },
 
   inner: {
@@ -50,7 +55,6 @@ function Banner() {
 
   return (
     <Header height={56} className={classes.header}>
-      <Container>
         <div className={classes.inner}>
           {/* Add your logo here */}
           <Group spacing={5}>
@@ -71,7 +75,6 @@ function Banner() {
             </a>
           </Group>
         </div>
-      </Container>
     </Header>
   );
 }

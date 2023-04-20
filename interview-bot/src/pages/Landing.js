@@ -32,7 +32,6 @@ const Landing = () => {
           </Link>
         </div>
       </div>
-      <Features />
       {/* Add 'hero-figure' class to the container */}
       <div className="box-animation-container hero-figure anime-element">
         <div className="hero-figure-box hero-figure-box-01" data-rotation="45deg"></div>
@@ -46,6 +45,7 @@ const Landing = () => {
         <div className="hero-figure-box hero-figure-box-09" data-rotation="-52deg"></div>
         <div className="hero-figure-box hero-figure-box-10" data-rotation="-50deg"></div>
       </div>
+      <Features />
     </div>
   );
 };

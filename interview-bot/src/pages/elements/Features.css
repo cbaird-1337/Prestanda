@@ -1,6 +1,8 @@
 .features {
-    padding-top: 1.5rem;
+    padding-top: 5rem;
     padding-bottom: 1.5rem;
+    position: relative;
+    z-index: 10;
   }
   
   .features-inner {
@@ -8,17 +10,9 @@
     flex-wrap: wrap;
     justify-content: center;
   }
-  
+
   .features-wrap {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-  
-  @media (max-width: 767px) {
-    .features-wrap {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    grid-template-columns: repeat(2, 1fr);
   }
   
   @media (max-width: 480px) {
@@ -35,11 +29,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 4rem;
-    height: 4rem;
+    width: 8rem;
+    height: 8rem;
     margin: 0 auto;
     border-radius: 50%;
-    background-color: #f0f2f7;
+    background-color: rgba(240, 242, 247, 0.179);
   }
   
   .text-center {
