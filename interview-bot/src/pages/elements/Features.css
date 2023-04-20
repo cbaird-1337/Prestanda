@@ -5,12 +5,6 @@
     z-index: 10;
   }
   
-  .features-container {
-    width: 100%;
-    margin-top: 4.5rem; /* Add this line to push the Features container down */
-    position: center;
-  }
-  
   .features-inner {
     display: flex;
     flex-wrap: wrap;

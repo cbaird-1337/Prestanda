@@ -27,6 +27,7 @@
   max-width: 400px;
   width: 90%;
   z-index: 20;
+  margin-bottom: 1.5rem; /* Add this line to push the Features container down */
 }
 
 .login-header {
