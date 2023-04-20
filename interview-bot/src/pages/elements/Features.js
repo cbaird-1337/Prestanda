@@ -17,12 +17,12 @@ const Features = () => {
   const featureItems = [
     {
       icon: featureIcon1,
-      title: "Automated Screening",
+      title: "Automated Phone Screening",
       text: "Automated first call phone or chat based interview screening",
     },
     {
       icon: featureIcon2,
-      title: "Customized Questions",
+      title: "Customized Candidate Questions",
       text: "Generate unique interview questions catered specifically to your role, and to each candidates background",
     },
     {
@@ -37,13 +37,13 @@ const Features = () => {
     },
     {
       icon: featureIcon5,
-      title: "Flexible Pricing",
+      title: "No Contracts",
       text: "Pay as you go pricing model, no contracts or obligations (bulk discounts are available upon inquiry)",
     },
     {
       icon: featureIcon6,
-      title: "Integrations",
-      text: "We integrate with your preferred candidate tracking system to help you more easily track and manage your job candidates",
+      title: "ATS Integrations",
+      text: "We integrate with your preferred applicant tracking system to help you more easily track and manage your job candidates",
     },
   ];
 

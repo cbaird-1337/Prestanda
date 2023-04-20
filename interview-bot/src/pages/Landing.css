@@ -19,6 +19,7 @@
 }
 
 .content-container {
+  position: relative; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,7 +27,8 @@
 }
 
 .login-container {
-  position: relative;
+  position: absolute; /* Change to absolute */
+  top: 20vh; /* Adjust this value to position the login-container */
   background-color: #ffffffad;
   padding: 2em;
   border-radius: 0.5em;
@@ -34,7 +36,6 @@
   max-width: 400px;
   width: 90%;
   z-index: 20;
-  margin-bottom: 1.5rem;
 }
 
 .login-header {
@@ -52,7 +53,7 @@
 
 .landing-button {
   display: inline-block;
-  background-color: #007bff;
+  background-color: #007bfff1;
   color: #ffffff;
   border: none;
   border-radius: 0.25em;
@@ -68,7 +69,7 @@
 }
 
 .signup-button {
-  background-color: #28a745;
+  background-color: #28a746f1;
 }
 
 .signup-button:hover {
