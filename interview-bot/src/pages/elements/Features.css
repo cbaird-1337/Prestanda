@@ -8,9 +8,11 @@
   .features-container {
     position: absolute;
     width: 100%;
-    top: 70%; /* Adjust this value to change the vertical position of the feature icons */
-    z-index: 20; /* To make sure the feature icons are on top of the background box items */
+    top: 50%; /* Center the container vertically */
+    transform: translateY(-50%); /* Move the container up by half of its height */
+    z-index: 5; /* To make sure the feature icons are on top of the background box items */
   }
+  
   
   .features-inner {
     display: flex;
@@ -39,7 +41,7 @@
   .feature {
     padding: 1.5rem;
   }
-  
+
   .feature-inner {
     display: flex;
     flex-direction: column;
