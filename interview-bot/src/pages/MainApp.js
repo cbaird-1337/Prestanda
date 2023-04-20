@@ -214,9 +214,8 @@ function App() {
               </div>
             </div>
             <div className="form-instructions ml-4">
-              <p>Step 1: Upload the candidate's resume, the job description you're hiring for, and the desired number of interview questions to generate.</p>
-              <p></p>
-              <p>Supported file formats: .docx, .pdf & .txt</p>
+              <p><strong>Step 1:</strong> Upload the candidate's resume, the job description you're hiring for, and the desired number of interview questions to generate.</p>
+              <p style={{ marginTop: '1rem' }}><strong>Supported file formats:</strong> .docx, .pdf &amp; .txt</p>
             </div>
           </div>
           <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">Generate Interview Questions</button>
