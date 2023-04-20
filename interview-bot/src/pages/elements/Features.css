@@ -4,6 +4,13 @@
     position: relative;
     z-index: 10;
   }
+
+  .features-container {
+    position: absolute;
+    width: 100%;
+    top: 70%; /* Adjust this value to change the vertical position of the feature icons */
+    z-index: 20; /* To make sure the feature icons are on top of the background box items */
+  }  
   
   .features-inner {
     display: flex;

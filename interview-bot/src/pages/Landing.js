@@ -45,7 +45,9 @@ const Landing = () => {
         <div className="hero-figure-box hero-figure-box-09" data-rotation="-52deg"></div>
         <div className="hero-figure-box hero-figure-box-10" data-rotation="-50deg"></div>
       </div>
-      <Features />
+      <div className="features-container">
+        <Features />
+      </div>
     </div>
   );
 };
