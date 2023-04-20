@@ -30,7 +30,7 @@
   }
   
   .feature {
-    padding: 2.5rem;
+    padding: 2rem;
   }
 
   .feature-inner {
@@ -68,11 +68,11 @@
   }
   
   .text-sm {
-    font-size: 1rem;
+    font-size: 0.90rem;
   }
   
   .mt-24 {
-    margin-top: 1.6rem;
+    margin-top: 1.5rem;
   }
   
   .mb-0 {
