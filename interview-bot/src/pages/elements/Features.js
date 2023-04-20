@@ -17,27 +17,33 @@ const Features = () => {
   const featureItems = [
     {
       icon: featureIcon1,
-      text: "Automated first call interview screening",
+      title: "Automated Screening",
+      text: "Automated first call phone or chat based interview screening",
     },
     {
       icon: featureIcon2,
+      title: "Customized Questions",
       text: "Generate unique interview questions catered specifically to your role, and to each candidates background",
     },
     {
       icon: featureIcon3,
-      text: "Automated job fit recommendations",
+      title: "Job Fit Analysis",
+      text: "Automated job fit recommendations provided by our system that rate the candidates fit based on your unique job description",
     },
     {
       icon: featureIcon4,
-      text: "Easy, simple to use interface",
+      title: "User-Friendly",
+      text: "Easy, simple to use interface that doesnt overwhelm with features. We do what we say, and we do it well!",
     },
     {
       icon: featureIcon5,
-      text: "Pay as you go",
+      title: "Flexible Pricing",
+      text: "Pay as you go pricing model, no contracts or obligations (bulk discounts are available upon inquiry)",
     },
     {
       icon: featureIcon6,
-      text: "Integrate with your preferred candidate tracking system",
+      title: "Integrations",
+      text: "We integrate with your preferred candidate tracking system to help you more easily track and manage your job candidates",
     },
   ];
 
@@ -46,7 +52,7 @@ const Features = () => {
       <div className="container">
         <div className="features-inner section-inner has-bottom-divider">
           <div className="features-wrap">
-            {featureItems.map(({ icon, text }, index) => (
+            {featureItems.map(({ icon, title, text }, index) => (
               <ScrollTrigger
                 key={index}
                 onEnter={() => onEnterViewport(`feature-${index}`)}
@@ -59,8 +65,8 @@ const Features = () => {
                     <div className="feature-icon">
                       <img src={icon} alt={`Feature ${index + 1}`} />
                     </div>
-                    <h4 className="feature-title mt-24">Be Productive</h4>
-                    <p className="text-sm mb-0">{text}</p>
+                    <h4 className="feature-title mt-24 features-white-text">{title}</h4>
+                    <p className="text-sm mb-0 features-white-text">{text}</p>
                   </div>
                 </div>
               </ScrollTrigger>

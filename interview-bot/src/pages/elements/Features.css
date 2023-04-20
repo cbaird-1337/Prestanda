@@ -7,7 +7,8 @@
   
   .features-container {
     width: 100%;
-    margin-top: 1.5rem; /* Add this line to push the Features container down */
+    margin-top: 4.5rem; /* Add this line to push the Features container down */
+    position: center;
   }
   
   .features-inner {
@@ -56,6 +57,10 @@
     border-radius: 50%;
     background-color: rgba(240, 242, 247, 0.179);
   }
+  
+  .features-white-text {
+    color: rgb(220, 208, 208);
+  }  
   
   .text-center {
     text-align: center;
