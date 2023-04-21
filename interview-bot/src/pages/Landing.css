@@ -37,6 +37,13 @@
   margin-bottom: 1.5rem;
 }
 
+/* Add a media query for mobile devices */
+@media (max-width: 768px) {
+  .login-container {
+    margin-top: -5%; /* Adjust this value for mobile devices */
+  }
+}
+
 .login-header {
   text-align: center;
   font-size: 1.5em;
@@ -93,6 +100,6 @@
 /* Add a media query for mobile devices */
 @media (max-width: 768px) {
   .features-container {
-    margin-top: 80%; /* Adjust this value for mobile devices */
+    margin-top: 90%; /* Adjust this value for mobile devices */
   }
 }
