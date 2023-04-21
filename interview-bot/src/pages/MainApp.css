@@ -40,6 +40,16 @@ body {
     transform: perspective(500px) rotateX(1deg);
   }
   
+  @media (max-width: 767px) {
+    .form-content {
+      flex-direction: column;
+    }
+    .form-instructions {
+      margin-top: 1rem;
+      max-width: 100%;
+    }
+  }  
+
   .form-content {
     display: flex;
     flex-direction: row;
