@@ -9,13 +9,13 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 100%;
   }
   
   .features-wrap {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 2rem;
+    align-items: center;
   }
   
   @media (max-width: 768px) {

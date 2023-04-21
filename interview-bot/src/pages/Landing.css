@@ -26,13 +26,12 @@
 .centered-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   min-height: 100vh;
 }
 
 .login-container {
-  position: absolute;
   background-color: #ffffffad;
   padding: 2em;
   border-radius: 0.1em;
@@ -40,9 +39,13 @@
   max-width: 400px;
   width: 90%;
   z-index: 3;
-  top: 17.5%;
-  left: 50%;
   transform: translate(-50%, -50%);
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    transform: translateY(-20%);
+  }
 }
 
 .login-header {
