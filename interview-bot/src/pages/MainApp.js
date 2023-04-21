@@ -176,50 +176,80 @@ function App() {
   };      
 
   return (
-      <div className="App min-h-screen text-gray-100">
-        <Banner onLogout={handleLogout} />
-        <div className="main-content pt-16"> {/* Add this wrapper div with a custom className */}
+    <div className="App min-h-screen text-gray-100">
+      <Banner onLogout={handleLogout} />
+      <div className="main-content pt-16"> {/* Add this wrapper div with a custom className */}
         <div className="container mx-auto px-4 py-8">
-             <>
-                <h1 className="text-4xl font-bold mb-4">
-                  Self-service, automated, first call interview screening.
-                </h1>
-                <div className="typed-text-container">
-                  <div id="typed-text" className="text-2xl mb-4"></div>
+          <>
+            <h1 className="text-4xl font-bold mb-4">
+              Self-service, automated, first call interview screening.
+            </h1>
+            <div className="typed-text-container">
+              <div id="typed-text" className="text-2xl mb-4"></div>
+            </div>
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-4 bg-gray-800 p-6 rounded-lg form-container"
+            >
+              <div className="form-content">
+                <div className="form-inputs">
+                  <div>
+                    <label htmlFor="resume" className="block">
+                      Upload Resume:
+                    </label>
+                    <input
+                      type="file"
+                      id="resume"
+                      onChange={handleResumeUpload}
+                      className="mt-1 p-1 border border-gray-300"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="jobDescription" className="block">
+                      Upload Job Description:
+                    </label>
+                    <input
+                      type="file"
+                      id="jobDescription"
+                      onChange={handleJobDescriptionUpload}
+                      className="mt-1 p-1 border border-gray-300"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="numQuestions" className="block">
+                      Number of Interview Questions:
+                    </label>
+                    <input
+                      type="number"
+                      id="numQuestions"
+                      min="1"
+                      step="1"
+                      value={numQuestions}
+                      onChange={(e) =>
+                        setNumQuestions(parseInt(e.target.value, 10))
+                      }
+                      className="mt-1 p-1 border border-gray-300 text-gray-700"
+                    />
+                  </div>
                 </div>
-                <form
-                  onSubmit={handleSubmit}
-                  className="space-y-4 bg-gray-800 p-6 rounded-lg form-container">
-          <div className="form-content flex">
-            <div className="form-inputs">
-              <div>
-                <label htmlFor="resume" className="block">Upload Resume:</label>
-                <input type="file" id="resume" onChange={handleResumeUpload} className="mt-1 p-1 border border-gray-300" />
+                <div className="form-instructions">
+                  <p>
+                    <strong>Step 1:</strong> Upload the candidate's resume, the job
+                    description you're hiring for, and the desired number of interview
+                    questions to generate.
+                  </p>
+                  <p style={{ marginTop: "1rem" }}>
+                    <strong>Supported file formats:</strong> .docx, .pdf &amp; .txt
+                  </p>
+                </div>
               </div>
-              <div>
-                <label htmlFor="jobDescription" className="block">Upload Job Description:</label>
-                <input type="file" id="jobDescription" onChange={handleJobDescriptionUpload} className="mt-1 p-1 border border-gray-300" />
-              </div>
-              <div>
-                <label htmlFor="numQuestions" className="block">Number of Interview Questions:</label>
-                <input
-                  type="number"
-                  id="numQuestions"
-                  min="1"
-                  step="1"
-                  value={numQuestions}
-                  onChange={(e) => setNumQuestions(parseInt(e.target.value, 10))}
-                  className="mt-1 p-1 border border-gray-300 text-gray-700"
-                />
-              </div>
-            </div>
-            <div className="form-instructions ml-4">
-              <p><strong>Step 1:</strong> Upload the candidate's resume, the job description you're hiring for, and the desired number of interview questions to generate.</p>
-              <p style={{ marginTop: '1rem' }}><strong>Supported file formats:</strong> .docx, .pdf &amp; .txt</p>
-            </div>
-          </div>
-          <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">Generate Interview Questions</button>
-        </form>
+              <button
+                type="submit"
+                className="bg-blue-600 text-white px-4 py-2 rounded"
+              >
+                Generate Interview Questions
+              </button>
+            </form>
   
         {isLoading && <Luminaire />}
   
