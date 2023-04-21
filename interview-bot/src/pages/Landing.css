@@ -89,3 +89,10 @@
   padding: 5rem 0;
   margin-top: 27.5%;
 }
+
+/* Add a media query for mobile devices */
+@media (max-width: 768px) {
+  .features-container {
+    margin-top: 80%; /* Adjust this value for mobile devices */
+  }
+}
