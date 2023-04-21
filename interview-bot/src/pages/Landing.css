@@ -33,10 +33,6 @@
   margin: 0 auto; 
 }
 
-.login-content-wrapper {
-  transform: translateY(-30%);
-}
-
 .login-container {
   background-color: #ffffffad;
   padding: 2em;
@@ -45,6 +41,7 @@
   max-width: 400px;
   width: 90%;
   z-index: 3;
+  transform: translateY(-30%); 
 }
 
 .login-header {
