@@ -1,15 +1,16 @@
 /* Login.css */
 
-.App {
+  .App {
     background-image: linear-gradient(135deg, #1f1f1f 0%, #007bff 100%);
     min-height: 100vh;
+    display: flex; /* CHANGE */
+    flex-direction: column; /* CHANGE */
+    align-items: center; /* CHANGE */
   }
 
-.login-container {
+  .login-container {
     position: relative;
     top: 15vh;
-    left: 50%;
-    transform: translate(-50%, -50%);
     z-index: 1;
   }
   
