@@ -22,9 +22,9 @@
       grid-template-columns: repeat(2, 1fr);
     }
     .features {
-      margin-top: 5rem; /* Add some space on mobile devices */
+      padding-top: 2rem; /* Adjust the space on mobile devices */
     }
-  }
+  }  
   
   @media (max-width: 480px) {
     .features-wrap {
