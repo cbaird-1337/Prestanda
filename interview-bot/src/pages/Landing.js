@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Landing.css";
 import startAnimation from "../animations/blocks-animation.js";
 import Features from "./elements/Features";
-import "./elements/scroll-animation.css"; 
+import "./elements/scroll-animation.css";
 
 const Landing = () => {
   useEffect(() => {
@@ -19,6 +19,18 @@ const Landing = () => {
     <div className="App">
       <div className="bg-shapes"></div>
       <div className="content-container">
+        <div className="box-animation-container hero-figure anime-element">
+          <div className="hero-figure-box hero-figure-box-01" data-rotation="45deg"></div>
+          <div className="hero-figure-box hero-figure-box-02" data-rotation="-45deg"></div>
+          <div className="hero-figure-box hero-figure-box-03" data-rotation="0deg"></div>
+          <div className="hero-figure-box hero-figure-box-04" data-rotation="-135deg"></div>
+          <div className="hero-figure-box hero-figure-box-05"></div>
+          <div className="hero-figure-box hero-figure-box-06"></div>
+          <div className="hero-figure-box hero-figure-box-07"></div>
+          <div className="hero-figure-box hero-figure-box-08" data-rotation="-22deg"></div>
+          <div className="hero-figure-box hero-figure-box-09" data-rotation="-52deg"></div>
+          <div className="hero-figure-box hero-figure-box-10" data-rotation="-50deg"></div>
+        </div>
         <div className="login-container">
           <div className="login-header">
             <h1>Welcome to Prestanda's Automated Interview Screening Service</h1>
@@ -32,19 +44,6 @@ const Landing = () => {
               Login
             </Link>
           </div>
-        </div>
-        {/* Add 'hero-figure' class to the container */}
-        <div className="box-animation-container hero-figure anime-element">
-        <div className="hero-figure-box hero-figure-box-01" data-rotation="45deg"></div>
-        <div className="hero-figure-box hero-figure-box-02" data-rotation="-45deg"></div>
-        <div className="hero-figure-box hero-figure-box-03" data-rotation="0deg"></div>
-        <div className="hero-figure-box hero-figure-box-04" data-rotation="-135deg"></div>
-        <div className="hero-figure-box hero-figure-box-05"></div>
-        <div className="hero-figure-box hero-figure-box-06"></div>
-        <div className="hero-figure-box hero-figure-box-07"></div>
-        <div className="hero-figure-box hero-figure-box-08" data-rotation="-22deg"></div>
-        <div className="hero-figure-box hero-figure-box-09" data-rotation="-52deg"></div>
-        <div className="hero-figure-box hero-figure-box-10" data-rotation="-50deg"></div>
         </div>
       </div>
       <div className="features-container">
