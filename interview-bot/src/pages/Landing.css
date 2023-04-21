@@ -41,7 +41,7 @@
   max-width: 400px;
   width: 90%;
   z-index: 3;
-  transform: translateY(-30%); 
+  transform: translateY(-15%); 
 }
 
 .login-header {
@@ -93,13 +93,13 @@
 .features-container {
   background: linear-gradient(135deg, #353b4b 0%, #08396a 100%);
   box-shadow: -20px 32px 64px rgba(0, 0, 0, 0.25);
-  padding: 5rem 0;
-  margin-top: 2.5rem; /* Add margin-top here */
+  padding: 2rem 0;
+  margin-top: 0rem; /* Add margin-top here */
 }
 
 /* Add a media query for mobile devices */
 @media (max-width: 768px) {
   .features-container {
-    padding-top: 2rem;
+    padding-top: 1rem;
   }
 }
