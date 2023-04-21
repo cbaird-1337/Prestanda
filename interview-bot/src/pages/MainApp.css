@@ -146,6 +146,7 @@ body {
   #typed-text {
     display: inline-block;
     color: #FFDB58; /* mustard yellow */
+    padding-bottom: 2rem;
     /* min-height: 1.5em; */ /* remove or adjust this property */
   }
   

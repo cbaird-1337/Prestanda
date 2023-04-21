@@ -234,12 +234,12 @@ function App() {
                 </div>
                 <div className="form-instructions">
                   <p>
-                    <strong>Step 1:</strong> Upload the candidate's resume, the job
+                  <strong style={{ color: "#ffdb58" }}>Step 1:</strong> Upload the candidate's resume, the job
                     description you're hiring for, and the desired number of interview
                     questions to generate.
                   </p>
                   <p style={{ marginTop: "1rem" }}>
-                    <strong>Supported file formats:</strong> .docx, .pdf &amp; .txt
+                  <strong style={{ color: "#ffdb58" }}>Supported file formats:</strong> .docx, .pdf &amp; .txt
                   </p>
                 </div>
               </div>
