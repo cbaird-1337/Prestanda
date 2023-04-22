@@ -66,18 +66,21 @@ function Banner() {
           {/* Add your logo here */}
           <img src={logo} alt="Prestanda Logo" className={classes.logo} />
           <Group spacing={5} style={{ marginLeft: "auto" }}>
-            <Link to="/account" className={classes.link}>
+            <Link to="/accountpage" className={classes.link}>
               Account
             </Link>
-            <Link to="/interview-history" className={classes.link}>
+            <Link to="/interviewhistorypage" className={classes.link}>
               Interview History
             </Link>
-            <a href="/pricing" className={classes.link}>
-              Pricing
-            </a>
-            <a href="/support" className={classes.link}>
+            <Link to="/featurerequestspage" className={classes.link}>
+              Feature Requests
+            </Link>
+            <Link to="/billingpage" className={classes.link}>
+              Billing
+            </Link>
+            <Link to="/supportpage" className={classes.link}>
               Support
-            </a>
+            </Link>
             <a href="/" className={classes.link} onClick={handleLogoutClick}>
               Logout
             </a>

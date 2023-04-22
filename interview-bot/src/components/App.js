@@ -7,8 +7,11 @@ import Signup from './auth/Signup';
 import MainApp from '../pages/MainApp';
 import AccountPage from '../pages/AccountPage';
 import InterviewHistoryPage from '../pages/InterviewHistoryPage';
-import ProtectedRoutes from './ProtectedRoutes'; // Import the ProtectedRoute component
-import PublicRoutes from './PublicRoutes'; // Import the PublicRoutes component
+import FeatureRequestsPage from '../pages/FeatureRequestsPage';
+import BillingPage from '../pages/BillingPage'; 
+import SupportPage from '../pages/SupportPage'; 
+import ProtectedRoutes from './ProtectedRoutes'; 
+import PublicRoutes from './PublicRoutes';
 import Account, { AccountContext } from './auth/Account';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
@@ -30,6 +33,9 @@ function App() {
         <Route path="app" element={<ProtectedRoutes Component={MainApp} />} />
         <Route path="accountpage" element={<ProtectedRoutes Component={AccountPage} />} />
         <Route path="interviewhistorypage" element={<ProtectedRoutes Component={InterviewHistoryPage} />} />
+        <Route path="featurerequestspage" element={<ProtectedRoutes Component={FeatureRequestsPage} />} />
+        <Route path="billingpage" element={<ProtectedRoutes Component={BillingPage} />} />
+        <Route path="supportpage" element={<ProtectedRoutes Component={SupportPage} />} />
   
         {/** Public Routes */}
         <Route path="/" element={<PublicRoutes />} />
