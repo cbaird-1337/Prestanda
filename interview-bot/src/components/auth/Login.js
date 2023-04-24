@@ -68,7 +68,7 @@ const Login = () => {
           <input
             id="email"
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            onChange={(event) => setEmail(event.target.value.toLowerCase())}
           ></input>
           <label htmlFor="password" className="login-text-color">Password</label>
           <input

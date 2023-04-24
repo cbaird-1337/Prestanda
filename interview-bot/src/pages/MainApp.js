@@ -18,6 +18,8 @@ import InterviewHistoryPage from './InterviewHistoryPage';
 import Protected from '../components/ProtectedRoutes';
 import Landing from './Landing';
 import ProtectedRoutes from '../components/ProtectedRoutes';
+import { Dialog, Transition } from "@headlessui/react";
+import { Fragment } from "react";
 
 aws.config.update(awsConfig);
 const dynamodb = new aws.DynamoDB.DocumentClient();
@@ -32,7 +34,7 @@ function App() {
   const [luminaireOn, setLuminaireOn] = useState(false);
   const navigate = useNavigate();
   const { logout } = useContext(AccountContext);
-
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
   //form to fill out candidate information for saving to s3
   const [candidateName, setCandidateName] = useState('');
@@ -40,7 +42,6 @@ function App() {
   const [companyName, setCompanyName] = useState('');
   const [jobTitle, setJobTitle] = useState('');
   const [candidatePhoneNumber, setCandidatePhoneNumber] = useState('');
-
 
   useEffect(() => {
     try {
@@ -129,24 +130,28 @@ function App() {
     navigate('/');
   };
 
+  const openConfirmationModal = () => {
+    setShowConfirmationModal(true);
+  };
+
   // handleConfirmAndSaveQuestions function to save questions and candidate details to s3
   const handleConfirmAndSaveQuestions = async (event) => {
     event.preventDefault();
-  
+
     if (!candidateName || !candidateEmail || !companyName || !jobTitle) {
       alert('Please fill out all the fields before saving.');
       return;
     }
-  
+
     const lowerCaseCandidateName = candidateName.toLowerCase();
     const lowerCaseCompanyName = companyName.toLowerCase();
     const lowerCaseJobTitle = jobTitle.toLowerCase();
     const countryCode = '+1'; // Set the desired country code here
     const sanitizedPhoneNumber = candidatePhoneNumber.replace(/[-\s]/g, '');
-  
+
     // Prepend the country code if it's not already present
     const phoneNumberWithCountryCode = sanitizedPhoneNumber.startsWith(countryCode) ? sanitizedPhoneNumber : countryCode + sanitizedPhoneNumber;
-  
+
     const interviewData = {
       candidateName: lowerCaseCandidateName,
       candidateEmail,
@@ -155,25 +160,42 @@ function App() {
       candidatePhoneNumber: phoneNumberWithCountryCode,
       numQuestions: questions.length // Add numQuestions field to the JSON document
     };
-  
+
     // Add each question as an individual attribute with a prefix (e.g., question1, question2, etc.)
     questions.forEach((question, index) => {
       interviewData[`question${index + 1}`] = question;
     });
-  
+
     try {
       const params = {
         TableName: 'PrestandaInterviewBot',
         Item: interviewData
       };
-  
+
       await dynamodb.put(params).promise();
       alert('Questions and candidate information saved successfully!');
+      
+      // Call the backend API to send SES email to the candidate
+      const sesResponse = await axios.post(process.env.REACT_APP_BACKEND_SEND_EMAIL_URL, {
+        candidateName: lowerCaseCandidateName,
+        candidateEmail,
+        companyName: lowerCaseCompanyName,
+        jobTitle: lowerCaseJobTitle,
+        candidatePhoneNumber: phoneNumberWithCountryCode,
+        questions
+      });
+
+      if (sesResponse.data.success) {
+        alert('Email sent successfully to the candidate.');
+      } else {
+        alert('Error sending email. Please try again.');
+      }
+
     } catch (error) {
-      console.error('Error saving data to DynamoDB:', error);
-      alert('Error saving data. Please try again.');
+      console.error('Error saving data and sending email:', error);
+      alert('Error saving data and sending email. Please try again.');
     }
-  };      
+  };
 
   return (
     <div className="App min-h-screen text-gray-100">
@@ -305,16 +327,66 @@ function App() {
                 className="p-1 border border-gray-300 w-full input-black-text"
               />
               <input
-                type="text"
+                type="tel"
                 placeholder="Candidate Phone Number"
                 value={candidatePhoneNumber}
                 onChange={(e) => setCandidatePhoneNumber(e.target.value)}
                 className="p-1 border border-gray-300 w-full input-black-text"
               />
-              <button type="button" onClick={handleConfirmAndSaveQuestions} className="bg-blue-600 text-white px-4 py-2 rounded">Confirm and Save Questions</button>
+              <button type="button" onClick={openConfirmationModal} className="bg-blue-600 text-white px-4 py-2 rounded">Confirm and Save Questions</button>
             </div>
           </div>
          )}
+        {/* Add this code block right before the </> closing tag */}
+        <Transition show={showConfirmationModal} as={Fragment}>
+          <Dialog
+            as="div"
+            className="fixed inset-0 z-10 overflow-y-auto"
+            onClose={() => setShowConfirmationModal(false)}
+          >
+            <div className="min-h-screen px-4 text-center">
+              <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
+              <span
+                className="inline-block h-screen align-middle"
+                aria-hidden="true"
+              >
+                &#8203;
+              </span>
+              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-gray-800 shadow-xl rounded-lg">
+                <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-white">
+                  Confirmation
+                </Dialog.Title>
+                <div className="mt-2">
+                  <p className="text-sm text-white">
+                    We are going to email the candidate with instructions to complete the phone screening using the following information:
+                  </p>
+                  <p className="text-sm text-white mt-2">Name: {candidateName}</p>
+                  <p className="text-sm text-white">Email: {candidateEmail}</p>
+                  <p className="text-sm text-white">Phone: {candidatePhoneNumber}</p>
+                </div>
+                <div className="mt-4">
+                  <button
+                    type="button"
+                    className="bg-blue-600 text-white px-4 py-2 rounded mr-2"
+                    onClick={() => {
+                      setShowConfirmationModal(false);
+                      handleConfirmAndSaveQuestions();
+                    }}
+                  >
+                    Confirm
+                  </button>
+                  <button
+                    type="button"
+                    className="bg-red-600 text-white px-4 py-2 rounded"
+                    onClick={() => setShowConfirmationModal(false)}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          </Dialog>
+        </Transition>
        </>
       </div>
      </div> {/* Close the wrapper div */}

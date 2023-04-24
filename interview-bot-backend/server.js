@@ -233,6 +233,66 @@ app.post('/refine', async (req, res) => {
   }
 });
 
+// API endpoint for sending SES emails to candidate for interview
+app.post('/send-email', async (req, res) => {
+  const { candidateName, candidateEmail, companyName, candidatePhoneNumber, emailSubject, emailBody } = req.body;
+
+  async function sendEmail(from, to, subject, body) {
+    const ses = new AWS.SES({
+      apiVersion: '2010-12-01',
+      region: process.env.AWS_REGION,
+    });
+  
+    const params = {
+      Destination: {
+        ToAddresses: [to],
+      },
+      Message: {
+        Body: {
+          Text: {
+            Data: `Hello ${candidateName},
+  
+  ${companyName} has requested a phone interview screening for the job you recently applied for. Please call the following number at your earliest convenience to complete your screening:
+  
+  Phone number: +1-123-456-7890
+  
+  We have your number on record as ${candidatePhoneNumber}. Please be sure to call in to take your interview using only this number.
+  
+  If you have received this email in error, please feel free to disregard, no further action is necessary. If you are no longer interested in this opportunity at ${companyName}, please email the hiring manager to let them know.
+  
+  Best regards,
+  The Prestanda team`,
+          },
+        },
+        Subject: {
+          Charset: 'UTF-8',
+          Data: subject,
+        },
+      },
+      Source: from,
+    };
+  
+    return new Promise((resolve, reject) => {
+      ses.sendEmail(params, (err, data) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(data);
+        }
+      });
+    });
+  }
+
+  try {
+    const senderEmail = 'interview@prestanda.io'; // Replace with your email or use an environment variable
+    await sendEmail(senderEmail, candidateEmail, emailSubject, emailBody);
+    res.json({ message: 'Email sent successfully' });
+  } catch (err) {
+    console.error('Error sending email:', err.message);
+    res.status(500).json({ message: 'Error sending email' });
+  }
+});
+
 console.log('PORT', PORT)
 
 app.listen(PORT, () => {

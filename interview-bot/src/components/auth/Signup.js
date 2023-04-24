@@ -140,7 +140,7 @@ const Signup = () => {
         <label htmlFor="email">Email</label>
         <input
           value={email}
-          onChange={(event) => setEmail(event.target.value)}
+          onChange={(event) => setEmail(event.target.value.toLowerCase())}
         ></input>
         <label htmlFor="company">Company</label>
         <input
