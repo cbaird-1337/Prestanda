@@ -131,8 +131,9 @@ function App() {
   };
 
   const openConfirmationModal = () => {
+    console.log('Opening confirmation modal'); // Add this line
     setShowConfirmationModal(true);
-  };
+  };  
 
   // handleConfirmAndSaveQuestions function to save questions and candidate details to s3
   const handleConfirmAndSaveQuestions = async (event) => {
