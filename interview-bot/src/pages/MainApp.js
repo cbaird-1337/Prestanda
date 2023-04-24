@@ -182,7 +182,6 @@ function App() {
         companyName: lowerCaseCompanyName,
         jobTitle: lowerCaseJobTitle,
         candidatePhoneNumber: phoneNumberWithCountryCode,
-        questions
       });
 
       if (sesResponse.data.success) {
@@ -333,7 +332,7 @@ function App() {
                 onChange={(e) => setCandidatePhoneNumber(e.target.value)}
                 className="p-1 border border-gray-300 w-full input-black-text"
               />
-              <button type="button" onClick={openConfirmationModal} className="bg-blue-600 text-white px-4 py-2 rounded">Confirm and Save Questions</button>
+              <button type="button" onClick={openConfirmationModal} className="bg-blue-600 text-white px-4 py-2 rounded">Schedule Phone Screening</button>
             </div>
           </div>
          )}
