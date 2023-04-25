@@ -7,17 +7,20 @@ import { useNavigate } from "react-router-dom";
 import UserPool from "./UserPool";
 import axios from "axios";
 import "./Login.css"
+import { LoadingDots } from "@mantine/core";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const { authenticate } = useContext(AccountContext);
 
   const onSubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
 
     try {
       await authenticate(email, password);
@@ -44,6 +47,8 @@ const Login = () => {
     } catch (err) {
       console.error("Failed to login", err);
       setErrorMessage("Incorrect username or password");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -82,6 +87,11 @@ const Login = () => {
     
           <button type="submit">Login</button>
         </form>
+        {isLoading && (
+          <div style={{ display: "flex", justifyContent: "center", marginTop: "1rem" }}>
+            <LoadingDots />
+          </div>
+        )}
       </div>
     </div>
   );

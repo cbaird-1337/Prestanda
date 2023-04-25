@@ -64,7 +64,7 @@ function Banner() {
     <Header height={56} className={classes.header}>
         <div className={classes.inner}>
           {/* Add your logo here */}
-          <Link to="/mainapp">
+          <Link to="/app">
             <img src={logo} alt="Prestanda Logo" className={classes.logo} />
           </Link>
           <Group spacing={5} style={{ marginLeft: "auto" }}>
