@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom';
 const PricingCards = () => {
   return (
     <div className="flex flex-col items-center space-y-12">
-      <h1 className="text-5xl font-bold text-[#f9f1db]">Pricing</h1>
+      <h1 className="text-4xl font-bold text-[#b3b2af]">Pricing</h1>
       <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-8 z-50">
         {/* Card 1 */}
         <div className="bg-gradient-to-br from-[#0270d7] via-[#0270d7] to-[#004a9e] shadow-lg rounded-sm px-8 pt-8 pb-10 text-center w-[20rem] h-[28rem] flex flex-col justify-between"> {/* Increase height and add flex classes */}
-          <h2 className="text-3xl font-semibold mb-4 text-[#c0b081]">Free</h2>
+          <h2 className="text-3xl font-semibold mb-4 text-[#c0b081]">FREE</h2>
           <div className="flex-grow flex items-center justify-center">
             <ul className="list-none space-y-2 text-[#dcd0d0] w-full" style={{listStyleType: 'disc'}}>
-                <li className="text-base"> 5 Automated screening calls per month</li>
-                <li className="text-base"> 5 Psychometric assessments per month</li>
+                <li className="text-base"> 5 Automated screening calls /month</li>
+                <li className="text-base"> 5 Psychometric assessments /month</li>
                 <li className="text-base"> Job fit recommendations</li>
                 <li className="text-base"> Psychometric assessment reports</li>
             </ul>
@@ -27,7 +27,7 @@ const PricingCards = () => {
           <h2 className="text-3xl font-semibold mb-4 text-[#c0b081]">Pay as you Go</h2>
           <div className="flex-grow flex items-center justify-center">
             <ul className="list-none space-y-2 text-[#dcd0d0] w-full" style={{listStyleType: 'disc'}}>
-                <li className="text-base"> $1.95 per interview screening call</li>
+                <li className="text-base"> $1.95 per automated screening call</li>
                 <li className="text-base"> $3.95 per psychometric assessment</li>
                 <li className="text-base"> Job fit recommendations</li>
                 <li className="text-base"> Psychometric assessment report</li>
@@ -43,8 +43,11 @@ const PricingCards = () => {
           <h2 className="text-3xl font-semibold mb-4 text-[#c0b081]">Monthly or Annual Commit</h2>
           <div className="flex-grow flex items-center justify-center">
             <ul className="list-none space-y-2 text-[#dcd0d0] w-full" style={{listStyleType: 'disc'}}>
-                <li className="text-base"> As low as $1 per interview screening</li>
-                <li className="text-base"> As low as $2.50 per psychometric assessment</li>
+                <li className="text-base"> 100+ screens /month = $1.75 /unit</li>
+                <li className="text-base"> 100+ psych. assesments /month = $3.50 /unit</li>
+                <li className="text-base"> 500+ screens /month = $1.50 /unit</li>
+                <li className="text-base"> 500+ psych. assesments /month = $3 /unit</li>
+                <li className="text-base"> For 1,000+ please inquire</li>
             </ul>
             </div>
           <button className="bg-[#444444] text-white font-semibold py-2 px-4 rounded-md hover:bg-[#666666]">
