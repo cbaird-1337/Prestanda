@@ -4,6 +4,7 @@ import "./Landing.css";
 import startAnimation from "../animations/blocks-animation.js";
 import Features from "./elements/Features";
 import "./elements/scroll-animation.css"; 
+import PricingCards from "./elements/PricingCards";
 
 const Landing = () => {
   useEffect(() => {
@@ -51,6 +52,9 @@ const Landing = () => {
       </div>
       <div className="features-container">
         <Features />
+      </div>
+      <div className="pricing-container">
+        <PricingCards />
       </div>
     </div>
   );  
