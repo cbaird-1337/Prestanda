@@ -93,16 +93,10 @@ const Login = () => {
           <button type="submit">Login</button>
         </form>
         {isLoading && (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "1rem",
-            }}
-          >
-            <Loader color="yellow" size="lg" />
-          </div>
-        )}
+        <div className="mantine-loader-container"> {/* <- Add the CSS class here */}
+          <Loader color="yellow" size="lg" />
+        </div>
+      )}
       </div>
     </div>
   );

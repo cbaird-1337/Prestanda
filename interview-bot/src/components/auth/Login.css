@@ -19,6 +19,14 @@
   
   /* Add the styles from the landing page for the boxes */
   
+  .mantine-loader-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    position: relative;
+    z-index: 1;
+  }  
+
   .box-animation-container {
     position: fixed;
     top: 0;
