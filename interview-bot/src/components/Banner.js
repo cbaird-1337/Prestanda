@@ -64,10 +64,12 @@ function Banner() {
     <Header height={56} className={classes.header}>
         <div className={classes.inner}>
           {/* Add your logo here */}
-          <img src={logo} alt="Prestanda Logo" className={classes.logo} />
+          <Link to="/mainapp">
+            <img src={logo} alt="Prestanda Logo" className={classes.logo} />
+          </Link>
           <Group spacing={5} style={{ marginLeft: "auto" }}>
-            <Link to="/accountpage" className={classes.link}>
-              Account
+            <Link to="/app" className={classes.link}>
+              Home
             </Link>
             <Link to="/interviewhistorypage" className={classes.link}>
               Interview History
@@ -77,6 +79,9 @@ function Banner() {
             </Link>
             <Link to="/billingpage" className={classes.link}>
               Billing
+            </Link>
+            <Link to="/accountpage" className={classes.link}>
+              Profile
             </Link>
             <Link to="/supportpage" className={classes.link}>
               Support
