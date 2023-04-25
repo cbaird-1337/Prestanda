@@ -24,7 +24,7 @@ const PricingCards = () => {
 
         {/* Card 2 */}
         <div className="bg-gradient-to-br from-[#0270d7] via-[#0270d7] to-[#004a9e] shadow-lg rounded-sm px-8 pt-8 pb-10 text-center w-[20rem] h-[28rem] flex flex-col justify-between"> {/* Increase height and add flex classes */}
-          <h2 className="text-3xl font-semibold mb-4 text-[#c0b081]">Pay as you Go</h2>
+          <h2 className="text-3xl font-semibold mb-4 text-[#c0b081]">Pay As You Go</h2>
           <div className="flex-grow flex items-center justify-center">
             <ul className="list-none space-y-2 text-[#dcd0d0] w-full" style={{listStyleType: 'disc'}}>
                 <li className="text-base"> $1.95 per automated screening call</li>
@@ -43,11 +43,9 @@ const PricingCards = () => {
           <h2 className="text-3xl font-semibold mb-4 text-[#c0b081]">Monthly or Annual Commit</h2>
           <div className="flex-grow flex items-center justify-center">
             <ul className="list-none space-y-2 text-[#dcd0d0] w-full" style={{listStyleType: 'disc'}}>
-                <li className="text-base"> 100+ screens /month = $1.75 /unit</li>
-                <li className="text-base"> 100+ psych. assesments /month = $3.50 /unit</li>
-                <li className="text-base"> 500+ screens /month = $1.50 /unit</li>
-                <li className="text-base"> 500+ psych. assesments /month = $3 /unit</li>
-                <li className="text-base"> For 1,000+ please inquire</li>
+                <li className="text-base"> Discounts applied in per-month increments of 250 calls or assessments</li>
+                <li className="text-base"> As low as $1 per call screening</li>
+                <li className="text-base"> As low as $3 per psychometric assessment</li>
             </ul>
             </div>
           <button className="bg-[#444444] text-white font-semibold py-2 px-4 rounded-md hover:bg-[#666666]">

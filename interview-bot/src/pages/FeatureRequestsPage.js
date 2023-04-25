@@ -1,8 +1,14 @@
 import React from 'react';
 import './FeatureRequestsPage.css';
+import Banner from '../components/Banner';
 
 function FeatureRequestsPage() {
-  return <div>Feature Requests Page Placeholder</div>;
+  return (
+    <div className="feature-requests-page">
+      <Banner />
+      <div>Feature Requests Page Placeholder</div>
+    </div>
+  );
 }
 
 export default FeatureRequestsPage;

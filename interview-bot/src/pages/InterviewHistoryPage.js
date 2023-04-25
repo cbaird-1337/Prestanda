@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import InterviewBox from './elements/InterviewBox';
 import ProtectedRoutes from '../components/ProtectedRoutes';
+import Banner from "../components/Banner";
+
 
 function InterviewHistoryPage() {
   const [selectedInterview, setSelectedInterview] = useState(null);
@@ -39,6 +41,7 @@ function InterviewHistoryPage() {
 
   return (
     <div className="interview-history-page">
+      <Banner/>
       <h1>Interview History Page</h1>
       <div className="interview-box-container">
         {interviews.map((interview, index) => (
