@@ -300,14 +300,14 @@ function App() {
             <div className="space-y-4 mt-8">
               <input
                 type="text"
-                placeholder="Candidate Name"
+                placeholder="Candidate Full Name"
                 value={candidateName}
                 onChange={(e) => setCandidateName(e.target.value)}
                 className="p-1 border border-gray-300 w-full input-black-text"
               />
               <input
                 type="email"
-                placeholder="Candidate Email"
+                placeholder="Candidate Email Address"
                 value={candidateEmail}
                 onChange={(e) => setCandidateEmail(e.target.value)}
                 className="p-1 border border-gray-300 w-full input-black-text"
@@ -321,7 +321,7 @@ function App() {
               />
               <input
                 type="text"
-                placeholder="Job Title"
+                placeholder="Hiring Job Title"
                 value={jobTitle}
                 onChange={(e) => setJobTitle(e.target.value)}
                 className="p-1 border border-gray-300 w-full input-black-text"
