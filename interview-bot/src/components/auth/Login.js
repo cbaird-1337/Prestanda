@@ -89,7 +89,7 @@ const Login = () => {
         </form>
         {isLoading && (
           <div style={{ display: "flex", justifyContent: "center", marginTop: "1rem" }}>
-            <Loader />
+            <Loader color="yellow" size="lg" />
           </div>
         )}
       </div>
