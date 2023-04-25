@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import UserPool from "./UserPool";
 import axios from "axios";
 import "./Login.css"
-import { Loader } from "@mantine/core";
+import { Loader, TextInput, PasswordInput } from "@mantine/core";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -69,22 +69,25 @@ const Login = () => {
       </div>
       <div>
         <form onSubmit={onSubmit}>
-          <label htmlFor="email" className="login-text-color">Email</label>
-          <input
+          <TextInput
             id="email"
             value={email}
             onChange={(event) => setEmail(event.target.value.toLowerCase())}
-          ></input>
-          <label htmlFor="password" className="login-text-color">Password</label>
-          <input
+            label="Email"
+            className="login-text-color"
+            placeholder="Email"
+          />
+          <PasswordInput
             id="password"
-            type="password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
-          ></input>
-    
+            label="Password"
+            className="login-text-color"
+            placeholder="Password"
+          />
+
           {errorMessage && <p className="login-text-color">{errorMessage}</p>}
-    
+
           <button type="submit">Login</button>
         </form>
         {isLoading && (
@@ -95,7 +98,6 @@ const Login = () => {
       </div>
     </div>
   );
-  
 };
 
 export default Login;
