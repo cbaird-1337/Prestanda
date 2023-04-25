@@ -2,7 +2,7 @@ import React from 'react';
 
 const PricingCards = () => {
   return (
-    <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 z-10">
+    <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 z-50">
       {/* Card 1 */}
       <div className="bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 shadow-lg rounded-lg px-8 pt-6 pb-8 text-center">
         <h2 className="text-2xl font-semibold mb-4">Free</h2>
