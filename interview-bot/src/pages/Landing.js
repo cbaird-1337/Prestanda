@@ -50,7 +50,7 @@ const Landing = () => {
           </div>
         </div>
       </div>
-      <div className="features-container">
+      <div className="pricing-container pt-12 md:pt-16 lg:pt-24">
         <Features />
       </div>
       <div className="pricing-container">
