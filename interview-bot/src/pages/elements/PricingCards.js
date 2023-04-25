@@ -3,7 +3,7 @@ import React from 'react';
 const PricingCards = () => {
   return (
     <div className="flex flex-col items-center space-y-12">
-      <h1 className="text-4xl font-bold text-[#c0b081]">Pricing</h1>
+      <h1 className="text-5xl font-bold text-[#e6e4df]">Pricing</h1>
       <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-8 z-50">
         {/* Card 1 */}
         <div className="bg-gradient-to-br from-[#0270d7] via-[#0270d7] to-[#004a9e] shadow-lg rounded-lg px-8 pt-8 pb-10 text-center w-[20rem] h-[28rem] flex flex-col justify-between"> {/* Increase height and add flex classes */}
