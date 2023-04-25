@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import UserPool from "./UserPool";
 import axios from "axios";
 import "./Login.css"
-import { LoadingDots } from "@mantine/core";
+import { Loader } from "@mantine/core";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -89,7 +89,7 @@ const Login = () => {
         </form>
         {isLoading && (
           <div style={{ display: "flex", justifyContent: "center", marginTop: "1rem" }}>
-            <LoadingDots />
+            <Loader />
           </div>
         )}
       </div>
