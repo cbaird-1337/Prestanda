@@ -74,6 +74,7 @@ const Login = () => {
             value={email}
             onChange={(event) => setEmail(event.target.value.toLowerCase())}
             label="Email"
+            labelProps={{ style: { color: "lightgray" } }}
             className="login-text-color"
             placeholder="Email"
           />
@@ -82,6 +83,7 @@ const Login = () => {
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             label="Password"
+            labelProps={{ style: { color: "lightgray" } }}
             className="login-text-color"
             placeholder="Password"
           />
@@ -91,7 +93,13 @@ const Login = () => {
           <button type="submit">Login</button>
         </form>
         {isLoading && (
-          <div style={{ display: "flex", justifyContent: "center", marginTop: "1rem" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "1rem",
+            }}
+          >
             <Loader color="yellow" size="lg" />
           </div>
         )}
