@@ -10,9 +10,11 @@ const PricingCards = () => {
           <h2 className="text-2xl font-semibold mb-4 text-[#c0b081]">Free</h2>
           <div className="flex-grow"> 
            <ul className="list-none space-y-2 text-[#dcd0d0] w-full">
-            <li className="text-base"><strong>Our default plan:</strong></li>
-            <li className="text-base">5 Automated interviews per month</li>
-            <li className="text-base">5 Psychometric assessments per month</li>
+            <li className="text-base"><strong>Our default 'free forever' plan:</strong></li>
+            <li className="text-base">* 5 Automated interviews per month</li>
+            <li className="text-base">* 5 Psychometric assessments per month</li>
+            <li className="text-base">* Job fit recommendations for each interview</li>
+            <li className="text-base">* Psychometric assessment report</li>
           </ul>
           </div>
           <button className="bg-[#444444] text-white font-semibold py-2 px-4 rounded-md hover:bg-[#666666]">
@@ -26,8 +28,10 @@ const PricingCards = () => {
           <div className="flex-grow"> 
            <ul className="list-none space-y-2 text-[#dcd0d0] w-full">
             <li className="text-base"><strong>No need for contracts or commitments, only pay for what you use, as you use it:</strong></li>
-            <li className="text-base">$2 per interview screening</li>
-            <li className="text-base">$4 per psychometric assessment</li>
+            <li className="text-base">* $2 per interview screening</li>
+            <li className="text-base">* $4 per psychometric assessment</li>
+            <li className="text-base">* Job fit recommendations for each interview</li>
+            <li className="text-base">* Psychometric assessment report</li>
           </ul>
           </div>
           <button className="bg-[#444444] text-white font-semibold py-2 px-4 rounded-md hover:bg-[#666666]">
@@ -40,7 +44,7 @@ const PricingCards = () => {
           <h2 className="text-2xl font-semibold mb-4 text-[#c0b081]">Monthly or Annual Commit</h2>
           <div className="flex-grow"> 
            <ul className="list-none space-y-2 text-[#dcd0d0] w-full">
-            <li className="text-base"><strong>Looking for a bit more flexibility with higher screening volume? Contact us to find out more about our custom pricing:</strong></li>
+            <li className="text-base"><strong>Looking for more flexibility with higher screening volumes? Contact us to inquire about custom pricing:</strong></li>
             <li className="text-base">As low as $0.95 per interview screening</li>
             <li className="text-base">As low as $2.95 per psychometric assessment</li>
           </ul>
