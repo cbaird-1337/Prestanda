@@ -52,11 +52,11 @@ const Landing = () => {
       </div>
       <div className="features-container">
         <Features />
-      </div>
-      <div className="pricing-container pt-12 md:pt-16 lg:pt-24">
+        <div className="pricing-container pt-12 md:pt-16 lg:pt-24">
         <PricingCards />
       </div>
     </div>
+   </div>
   );  
 };
 
