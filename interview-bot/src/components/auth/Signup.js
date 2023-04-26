@@ -1,13 +1,14 @@
 //allows users to sign up with their name, email, company, department, and password, using Amazon Cognito 
 //for authentication, and stores the user information in DynamoDB using an AWS API Gateway. 
 //It also includes email verification and navigates to the main app upon successful registration and authentication
-//test
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 import UserPool from "./UserPool";
 import VerificationModal from "./VerificationModal";
 import axios from 'axios';
+import { TextInput, PasswordInput } from "@mantine/core"; 
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -131,40 +132,43 @@ const Signup = () => {
         <div className="hero-figure-box hero-figure-box-10"></div>
       </div>
     <div>
-      <form onSubmit={onSubmit}>
-        <label htmlFor="name">Name</label>
-        <input
+    <form onSubmit={onSubmit}>
+        <TextInput
+          id="name"
           value={name}
           onChange={(event) => setName(event.target.value)}
-        ></input>
-        <label htmlFor="email">Email</label>
-        <input
+          label="Name"
+        />
+        <TextInput
+          id="email"
           value={email}
           onChange={(event) => setEmail(event.target.value.toLowerCase())}
-        ></input>
-        <label htmlFor="company">Company</label>
-        <input
+          label="Email"
+        />
+        <TextInput
+          id="company"
           value={company}
           onChange={(event) => setCompany(event.target.value)}
+          label="Company"
         />
-
-        <label htmlFor="department">Department</label>
-        <input
+        <TextInput
+          id="department"
           value={department}
           onChange={(event) => setDepartment(event.target.value)}
+          label="Department"
         />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
+        <PasswordInput
+          id="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
-        ></input>
-        <label htmlFor="confirmPassword">Confirm Password</label>
-        <input
-          type="password"
+          label="Password"
+        />
+        <PasswordInput
+          id="confirmPassword"
           value={confirmPassword}
           onChange={(event) => setConfirmPassword(event.target.value)}
-        ></input>
+          label="Confirm Password"
+        />
         <button type="submit">Signup</button>
         <VerificationModal
           isOpen={showVerificationModal}
