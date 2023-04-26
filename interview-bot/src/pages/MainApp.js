@@ -200,7 +200,7 @@ function App() {
   return (
     <div className="App min-h-screen text-gray-100">
       <Banner onLogout={handleLogout} />
-      <div className="main-content pt-40"> {/* Add this wrapper div with a custom className */}
+      <div className="main-content pt-20"> {/* Add this wrapper div with a custom className */}
         <div className="container mx-auto px-4 py-8">
           <>
             <h1 className="text-4xl font-bold mb-4">
