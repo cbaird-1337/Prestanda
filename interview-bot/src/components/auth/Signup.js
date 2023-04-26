@@ -137,37 +137,43 @@ const Signup = () => {
           id="name"
           value={name}
           onChange={(event) => setName(event.target.value)}
-          label="Name"
+          label="Full Name"
+          labelProps={{ style: { color: "lightgray" } }}
         />
         <TextInput
           id="email"
           value={email}
           onChange={(event) => setEmail(event.target.value.toLowerCase())}
-          label="Email"
+          label="Email Address"
+          labelProps={{ style: { color: "lightgray" } }}
         />
         <TextInput
           id="company"
           value={company}
           onChange={(event) => setCompany(event.target.value)}
           label="Company"
+          labelProps={{ style: { color: "lightgray" } }}
         />
         <TextInput
           id="department"
           value={department}
           onChange={(event) => setDepartment(event.target.value)}
           label="Department"
+          labelProps={{ style: { color: "lightgray" } }}
         />
         <PasswordInput
           id="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
           label="Password"
+          labelProps={{ style: { color: "lightgray" } }}
         />
         <PasswordInput
           id="confirmPassword"
           value={confirmPassword}
           onChange={(event) => setConfirmPassword(event.target.value)}
           label="Confirm Password"
+          labelProps={{ style: { color: "lightgray" } }}
         />
         <button type="submit">Signup</button>
         <VerificationModal
