@@ -28,8 +28,13 @@ const getManagerAccountId = () => {
   }
 };
 
-const handleSubmit = async () => {
-  // Add form validation if needed
+    const handleSubmit = async (
+      candidateName,
+      candidateEmail,
+      companyName,
+      jobTitle,
+      candidatePhoneNumber
+    ) => {
 
   try {
     const managerAccountId = await getManagerAccountId();
@@ -139,13 +144,20 @@ const AssessmentScheduler = ({
                 />
 
                 <button
-                type="submit"
-                onClick={handleSubmit}
-                className="bg-blue-600 text-white px-4 py-2 rounded mt-4"
+                  type="submit"
+                  onClick={() =>
+                    handleSubmit(
+                      candidateName,
+                      candidateEmail,
+                      companyName,
+                      jobTitle,
+                      candidatePhoneNumber
+                    )
+                  }
+                  className="bg-blue-600 text-white px-4 py-2 rounded mt-4"
                 >
-                Submit
+                  Submit
                 </button>
-
             </div>
   );
 };
