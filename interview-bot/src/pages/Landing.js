@@ -1,12 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react"; //delete useState when moving into production!
 import { Link } from "react-router-dom";
 import "./Landing.css";
 import startAnimation from "../animations/blocks-animation.js";
 import Features from "./elements/Features";
 import "./elements/scroll-animation.css"; 
 import PricingCards from "./elements/PricingCards";
+import { Modal } from '@mantine/core';  //delete when moving into production!
 
 const Landing = () => {
+  const [modalOpened, setModalOpened] = useState(true); //delete when moving into production!
+
+  const handleModalClose = () => {  //delete when moving into production!
+    setModalOpened(false);  //delete when moving into production!
+  };   //delete when moving into production!
+
   useEffect(() => {
     document.body.classList.add("has-animations");
     startAnimation();
@@ -18,6 +25,19 @@ const Landing = () => {
 
   return (
     <div className="App">
+      <Modal  //delete this whole modal statement (lines 28-40) when moving into production!
+      opened={modalOpened}  
+      onClose={handleModalClose}  
+      transition="rotate-left"  
+      classNames={{ content: 'warning-modal-content' }}  
+    >  
+      <div className="p-4"> 
+        <span role="img" aria-label="Warning">
+          ⚠️
+        </span>{' '}
+        Warning: this website is currently in active development. As such, please expect functionality to be limited or impaired.
+      </div>
+    </Modal> 
       <div className="bg-shapes"></div>
       <div className="centered-container">
         <div className="login-container">

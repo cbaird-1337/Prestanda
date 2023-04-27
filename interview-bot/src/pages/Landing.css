@@ -100,3 +100,8 @@
     padding-top: 1rem;
   }
 }
+
+.warning-modal-content {
+  background-color: gray;
+  color: maroon;
+}
