@@ -19,6 +19,7 @@ const pdfParse = require('pdf-parse');
 const { v4: uuidv4 } = require("uuid");
 const morgan = require('morgan');
 
+
 // Configure AWS SDK and initialize S3 instance
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -26,6 +27,9 @@ AWS.config.update({
   region: process.env.AWS_REGION,
 });
 const s3 = new AWS.S3();
+
+// Initialize DynamoDb client
+const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 // Function to support extracting text from PDFs
 async function readAndExtractTextFromPdf(buffer) {
