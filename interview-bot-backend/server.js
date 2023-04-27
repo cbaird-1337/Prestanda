@@ -378,6 +378,8 @@ app.post("/schedule-assessment", async (req, res) => {
 app.get('/get-assessment-status/:id', async (req, res) => {
   const id = req.params.id;
 
+  console.log(`Fetching assessment status for ID: ${id}`);
+
   // Fetch the status from the CandidateAssessmentResults table
   const params = {
     TableName: 'CandidateAssessmentResults',
@@ -388,8 +390,10 @@ app.get('/get-assessment-status/:id', async (req, res) => {
 
   try {
     const result = await dynamoDb.get(params).promise();
+    console.log(`Fetched assessment status: ${result.Item.AssessmentStatus}`);
     res.status(200).send({ status: result.Item.AssessmentStatus }); // Send only the AssessmentStatus field
   } catch (error) {
+    console.error("Error fetching assessment status:", error);
     res.status(500).send({ error: 'Error fetching assessment status' });
   }
   });
@@ -397,28 +401,36 @@ app.get('/get-assessment-status/:id', async (req, res) => {
 
 // 2. Get psychometric questions
 app.get('/get-psychometric-questions', async (req, res) => {
+  console.log("Fetching psychometric questions");
+  
   const params = {
     TableName: 'PsychometricQuestions',
   };
 
   try {
     const result = await dynamoDb.scan(params).promise();
+    console.log(`Fetched ${result.Items.length} psychometric questions`);
     res.status(200).send(result.Items);
   } catch (error) {
+    console.error("Error fetching psychometric questions:", error);
     res.status(500).send({ error: 'Error fetching psychometric questions' });
   }
 });
 
 // 3. Get situational questions
 app.get('/get-situational-questions', async (req, res) => {
+  console.log("Fetching situational questions");
+  
   const params = {
     TableName: 'SituationalQuestions',
   };
 
   try {
     const result = await dynamoDb.scan(params).promise();
+    console.log(`Fetched ${result.Items.length} situational questions`);
     res.status(200).send(result.Items);
   } catch (error) {
+    console.error("Error fetching situational questions:", error);
     res.status(500).send({ error: 'Error fetching situational questions' });
   }
 });
