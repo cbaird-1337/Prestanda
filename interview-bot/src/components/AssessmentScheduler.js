@@ -78,14 +78,14 @@ const AssessmentScheduler = () => {
   const [candidatePhoneNumber, setCandidatePhoneNumber] = useState('');
 
   return (
-    <div className="bg-gradient-to-b from-gray-600 to-gray-900 rounded-md shadow-md p-6 w-3/4 mx-auto">
+    <div className="bg-gradient-to-b from-gray-600 to-gray-900 rounded-md shadow-md p-6 w-3/4 mx-auto pt-8">
       <h2 className="text-2xl font-bold mb-4">
         Psychometric Assessment Scheduler
       </h2>
       <p className="mb-4">
         Our comprehensive psychometric assessment features 100 scientifically-backed IPIP questions and 10 situational judgment questions that are designed to provide a reliable and accurate evaluation of your candidate's potential. Fill out their information below to schedule an assessment:
       </p>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="candidateName" className="block">
             Candidate Full Name:
