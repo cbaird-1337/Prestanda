@@ -394,14 +394,19 @@ app.get('/get-assessment-status/:id', async (req, res) => {
 
   try {
     const result = await dynamoDb.get(params).promise();
-    console.log(`Fetched assessment status: ${result.Item.AssessmentStatus}`);
-    res.status(200).send({ status: result.Item.AssessmentStatus }); // Send only the AssessmentStatus field
+    
+    if (result.Item) {
+      console.log(`Fetched assessment status: ${result.Item.AssessmentStatus}`);
+      res.status(200).send({ status: result.Item.AssessmentStatus }); // Send only the AssessmentStatus field
+    } else {
+      console.error("Error fetching assessment status: No item found for the given ID");
+      res.status(404).send({ error: 'No assessment found for the given ID' });
+    }
   } catch (error) {
     console.error("Error fetching assessment status:", error);
     res.status(500).send({ error: 'Error fetching assessment status' });
   }
-  });
-
+});
 
 // 2. Get psychometric questions
 app.get('/get-psychometric-questions', async (req, res) => {
