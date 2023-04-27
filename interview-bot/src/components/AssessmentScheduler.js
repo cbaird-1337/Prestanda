@@ -83,7 +83,7 @@ const AssessmentScheduler = ({
   setCandidatePhoneNumber
 }) => {
   return (
-    <div className="bg-gray-100 rounded-md shadow-md p-6">
+    <div className="bg-gradient-to-b from-gray-600 to-gray-900 rounded-md shadow-md p-6 w-3/4 mx-auto">
       <h2 className="text-2xl font-bold mb-4">
         Schedule a psychometric assessment for this candidate
       </h2>
