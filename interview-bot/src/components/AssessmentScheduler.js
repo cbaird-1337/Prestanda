@@ -94,21 +94,25 @@ const AssessmentScheduler = () => {
       <Modal
         opened={successModalOpened}
         onClose={toggleSuccessModal}
-        title="Success!"
+        title="Invitation Sent!"
       >
-        <Paper padding="md" shadow="xs">
+        <Paper
+          className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          padding="md"
+          shadow="xs"
+          >
           <Text>
-            We have sent an email to {candidateName} at the following address{' '}
-            {candidateEmail} with instructions on how to take their assessment. Once
-            the candidate has completed their assessment, we will send you the results
-            to your primary email address. You can also view all of your candidates'
+            We've sent an email to {candidateName} at the following address{' '}
+            {candidateEmail} with instructions for taking their assessment. Once
+            the candidate has completed the assessment we will send you the results
+            via email. Please note that you can also view all of your candidates'
             assessments from the "Interview History" page.
           </Text>
         </Paper>
       </Modal>
-
-      <div className="bg-gradient-to-b from-gray-600 to-gray-900 rounded-md shadow-md p-6 w-3/4 mx-auto pt-12">
-        <h2 className="text-2xl font-bold mb-4">
+  
+      <div className="mt-20 mb-24 max-w-xl mx-auto p-8 rounded-lg bg-gradient-to-br from-gray-700 via-indigo-900 to-purple-800 shadow-2xl transform rotate-1">
+        <h2 className="text-2xl font-bold mb-4 text-center">
           Psychometric Assessment Scheduler
         </h2>
         <p className="mb-4">

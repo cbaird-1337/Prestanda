@@ -19,7 +19,8 @@ body {
   }
   
   .form-container {
-    margin-top: 2rem; 
+    margin-top: 2rem;
+    margin-bottom: 6rem; 
   }
   
   form {
