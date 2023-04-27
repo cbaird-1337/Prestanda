@@ -304,6 +304,7 @@ app.post("/schedule-assessment", async (req, res) => {
     candidateEmail,
     jobTitle,
     candidateName,
+    companyName,
   } = req.body;  
 
   // Code to save the assessment scheduling details to DynamoDB

@@ -70,18 +70,13 @@ const getManagerAccountId = () => {
   }
 };
 
-const AssessmentScheduler = ({
-  candidateName,
-  candidateEmail,
-  companyName,
-  jobTitle,
-  candidatePhoneNumber,
-  setCandidateName,
-  setCandidateEmail,
-  setCompanyName,
-  setJobTitle,
-  setCandidatePhoneNumber
-}) => {
+const AssessmentScheduler = () => {
+  const [candidateName, setCandidateName] = useState('');
+  const [candidateEmail, setCandidateEmail] = useState('');
+  const [companyName, setCompanyName] = useState('');
+  const [jobTitle, setJobTitle] = useState('');
+  const [candidatePhoneNumber, setCandidatePhoneNumber] = useState('');
+
   return (
     <div className="bg-gradient-to-b from-gray-600 to-gray-900 rounded-md shadow-md p-6 w-3/4 mx-auto">
       <h2 className="text-2xl font-bold mb-4">
@@ -158,18 +153,17 @@ const AssessmentScheduler = ({
           type="submit"
           onClick={() =>
             handleSubmit(
-              candidateName.current,
-              candidateEmail.current,
-              companyName.current,
-              jobTitle.current,
-              candidatePhoneNumber.current
+              candidateName,
+              candidateEmail,
+              companyName,
+              jobTitle,
+              candidatePhoneNumber
             )
           }
           className="bg-blue-600 text-white px-4 py-2 rounded mt-4"
-          >
-            Submit
+        >
+          Submit
         </button>
-
         </div>
       </div>
     </div>
