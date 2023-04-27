@@ -59,7 +59,7 @@ const handleSubmit = async (
       companyName,
       jobTitle,
       candidatePhoneNumber,
-      assessmentStatus: "pending",
+      assessmentStatus: "Pending",
     };
 
     await fetch(`${process.env.REACT_APP_BACKEND_API_URL}/schedule-assessment`, {

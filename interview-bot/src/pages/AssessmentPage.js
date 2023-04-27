@@ -21,12 +21,12 @@ function Assessment() {
       const response = await axios.get(`${process.env.REACT_APP_BACKEND_API_URL}/get-assessment-status/${id}`);
       const data = response.data;
   
-      if (!data || data.Status === 'completed') {
+      if (!data || data.status === 'Completed') {
         // Redirect to another page or show an error message when the assessment is not valid or completed
         navigate('/error'); // Replace '/error' with your desired URL or display an error message
       } else {
-        setAssessmentStatus(data.Status);
-      }
+        setAssessmentStatus(data.status);
+      }      
     } catch (error) {
       console.error('Error fetching assessment status:', error);
       // Redirect to another page or show an error message when there's an error fetching the assessment status
@@ -55,7 +55,7 @@ function Assessment() {
   };
 
   const handleSubmit = async () => {
-    if (assessmentStatus === 'completed') {
+    if (assessmentStatus === 'Completed') {
       alert('Sorry, this test can only be taken once.');
       return;
     }

@@ -384,11 +384,12 @@ app.get('/get-assessment-status/:id', async (req, res) => {
 
   try {
     const result = await dynamoDb.get(params).promise();
-    res.status(200).send(result.Item);
+    res.status(200).send({ status: result.Item.AssessmentStatus }); // Send only the AssessmentStatus field
   } catch (error) {
     res.status(500).send({ error: 'Error fetching assessment status' });
   }
-});
+  });
+
 
 // 2. Get psychometric questions
 app.get('/get-psychometric-questions', async (req, res) => {
