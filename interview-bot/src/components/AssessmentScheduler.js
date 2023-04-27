@@ -3,7 +3,6 @@ import { v4 as uuidv4 } from "uuid";
 import { CognitoUserPool } from 'amazon-cognito-identity-js';
 import { TextInput, Loader, Modal, Paper, Text } from '@mantine/core';
 import { Button } from '@mantine/core';
-import { useToggle } from '@mantine/hooks';
 
 const userPool = new CognitoUserPool({
   UserPoolId: process.env.REACT_APP_USER_POOL_ID,
@@ -86,13 +85,15 @@ const AssessmentScheduler = () => {
   const [jobTitle, setJobTitle] = useState('');
   const [candidatePhoneNumber, setCandidatePhoneNumber] = useState('');
   const [loading, setLoading] = useState(false);
-  const [successModalOpened, setSuccessModalOpened] = useToggle(false);
+  const [successModalOpened, setSuccessModalOpened] = useState(false);
+
+  const toggleSuccessModal = () => setSuccessModalOpened(!successModalOpened);
 
   return (
     <>
       <Modal
         opened={successModalOpened}
-        onClose={setSuccessModalOpened.toggle}
+        onClose={toggleSuccessModal}
         title="Success!"
       >
         <Paper padding="md" shadow="xs">
