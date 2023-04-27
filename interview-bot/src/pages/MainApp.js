@@ -275,10 +275,6 @@ function App() {
                 Generate Interview Questions
               </button>
             </form>
-
-            <div>
-              <AssessmentScheduler />
-            </div>
           </div>
   
         {isLoading && <Luminaire />}
