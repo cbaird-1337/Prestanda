@@ -154,21 +154,22 @@ const AssessmentScheduler = ({
           />
         </div>
         <div className="col-span-2 flex justify-center">
-          <button
-            type="submit"
-            onClick={() =>
-              handleSubmit(
-                candidateName,
-                candidateEmail,
-                companyName,
-                jobTitle,
-                candidatePhoneNumber
-              )
-            }
-            className="bg-blue-600 text-white px-4 py-2 rounded mt-4"
+        <button
+          type="submit"
+          onClick={() =>
+            handleSubmit(
+              candidateName.current,
+              candidateEmail.current,
+              companyName.current,
+              jobTitle.current,
+              candidatePhoneNumber.current
+            )
+          }
+          className="bg-blue-600 text-white px-4 py-2 rounded mt-4"
           >
             Submit
-          </button>
+        </button>
+
         </div>
       </div>
     </div>
