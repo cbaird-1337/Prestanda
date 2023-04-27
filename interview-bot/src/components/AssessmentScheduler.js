@@ -1,6 +1,8 @@
 import React from 'react';
 import { v4 as uuidv4 } from "uuid";
 import { CognitoUserPool } from 'amazon-cognito-identity-js';
+import { TextInput } from '@mantine/core';
+
 
 const userPool = new CognitoUserPool({
   UserPoolId: process.env.REACT_APP_USER_POOL_ID,
@@ -91,56 +93,58 @@ const AssessmentScheduler = ({
                 <label htmlFor="candidateName" className="block">
                 Candidate Full Name:
                 </label>
-                <input
-                type="text"
-                id="candidateName"
-                value={candidateName}
-                onChange={(e) => setCandidateName(e.target.value)}
-                className="mt-1 p-1 border border-gray-300 w-full input-black-text"
+                <TextInput
+                  id="candidateName"
+                  placeholder="Candidate Full Name"
+                  value={candidateName}
+                  onChange={(e) => setCandidateName(e.target.value)}
+                  className="mt-1"
                 />
 
                 <label htmlFor="candidateEmail" className="block mt-4">
                 Candidate Email Address:
                 </label>
-                <input
-                type="email"
-                id="candidateEmail"
-                value={candidateEmail}
-                onChange={(e) => setCandidateEmail(e.target.value)}
-                className="mt-1 p-1 border border-gray-300 w-full input-black-text"
+                <TextInput
+                  type="email"
+                  id="candidateEmail"
+                  placeholder="Candidate Email Address"
+                  value={candidateEmail}
+                  onChange={(e) => setCandidateEmail(e.target.value)}
+                  className="mt-1"
                 />
 
                 <label htmlFor="companyName" className="block mt-4">
                 Hiring Company Name:
                 </label>
-                <input
-                type="text"
-                id="companyName"
-                value={companyName}
-                onChange={(e) => setCompanyName(e.target.value)}
-                className="mt-1 p-1 border border-gray-300 w-full input-black-text"
+                <TextInput
+                  id="companyName"
+                  placeholder="Hiring Company Name"
+                  value={companyName}
+                  onChange={(e) => setCompanyName(e.target.value)}
+                  className="mt-1"
                 />
 
                 <label htmlFor="jobTitle" className="block mt-4">
                 Hiring Job Title:
                 </label>
-                <input
-                type="text"
-                id="jobTitle"
-                value={jobTitle}
-                onChange={(e) => setJobTitle(e.target.value)}
-                className="mt-1 p-1 border border-gray-300 w-full input-black-text"
+                <TextInput
+                  id="jobTitle"
+                  placeholder="Hiring Job Title"
+                  value={jobTitle}
+                  onChange={(e) => setJobTitle(e.target.value)}
+                  className="mt-1"
                 />
 
                 <label htmlFor="candidatePhoneNumber" className="block mt-4">
                 Candidate Phone Number:
                 </label>
-                <input
-                type="tel"
-                id="candidatePhoneNumber"
-                value={candidatePhoneNumber}
-                onChange={(e) => setCandidatePhoneNumber(e.target.value)}
-                className="mt-1 p-1 border border-gray-300 w-full input-black-text"
+                <TextInput
+                  type="tel"
+                  id="candidatePhoneNumber"
+                  placeholder="Candidate Phone Number"
+                  value={candidatePhoneNumber}
+                  onChange={(e) => setCandidatePhoneNumber(e.target.value)}
+                  className="mt-1"
                 />
 
                 <button
