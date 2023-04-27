@@ -17,6 +17,7 @@ const axios = require('axios');
 const { PORT } = process.env
 const pdfParse = require('pdf-parse');
 const { v4: uuidv4 } = require("uuid");
+const morgan = require('morgan');
 
 // Configure AWS SDK and initialize S3 instance
 AWS.config.update({
@@ -41,6 +42,9 @@ const openai = new OpenAIApi(configuration);
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// Enable detailed logging using morgan middleware
+app.use(morgan('combined'));
 
 // Add the new CORS settings here
 const allowedOrigins = [
