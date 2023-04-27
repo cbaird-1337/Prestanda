@@ -99,7 +99,7 @@ const AssessmentScheduler = ({
             id="candidateName"
             placeholder="Candidate Full Name"
             value={candidateName}
-            onChange={(event) => setCandidateName(event.target.value)}
+            onChange={setCandidateName}
             className="mt-1"
           />
         </div>
@@ -112,7 +112,7 @@ const AssessmentScheduler = ({
             id="candidateEmail"
             placeholder="Candidate Email Address"
             value={candidateEmail}
-            onChange={(event) => setCandidateEmail(event.target.value)}
+            onChange={setCandidateEmail}
             className="mt-1"
           />
         </div>
@@ -124,7 +124,7 @@ const AssessmentScheduler = ({
             id="companyName"
             placeholder="Hiring Company Name"
             value={companyName}
-            onChange={(event) => setCompanyName(event.target.value)}
+            onChange={setCompanyName}
             className="mt-1"
           />
         </div>
@@ -136,7 +136,7 @@ const AssessmentScheduler = ({
             id="jobTitle"
             placeholder="Hiring Job Title"
             value={jobTitle}
-            onChange={(event) => setJobTitle(event.target.value)}
+            onChange={setJobTitle}
             className="mt-1"
           />
         </div>
@@ -149,7 +149,7 @@ const AssessmentScheduler = ({
             id="candidatePhoneNumber"
             placeholder="Candidate Phone Number"
             value={candidatePhoneNumber}
-            onChange={(event) => setCandidatePhoneNumber(event.target.value)}
+            onChange={setCandidatePhoneNumber}
             className="mt-1"
           />
         </div>
