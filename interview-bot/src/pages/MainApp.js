@@ -20,6 +20,7 @@ import Landing from './Landing';
 import ProtectedRoutes from '../components/ProtectedRoutes';
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
+import AssessmentScheduler from '../components/AssessmentScheduler';
 
 aws.config.update(awsConfig);
 const dynamodb = new aws.DynamoDB.DocumentClient();
@@ -32,6 +33,7 @@ function App() {
   const [refinePrompt, setRefinePrompt] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [luminaireOn, setLuminaireOn] = useState(false);
+  const [showScheduler, setShowScheduler] = useState(false);
   const navigate = useNavigate();
   const { logout } = useContext(AccountContext);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
@@ -196,7 +198,7 @@ function App() {
       alert('Error saving data and sending email. Please try again.');
     }
   };
-
+  
   return (
     <div className="App min-h-screen text-gray-100">
       <Banner onLogout={handleLogout} />
@@ -209,10 +211,11 @@ function App() {
             <div className="typed-text-container">
               <div id="typed-text" className="text-2xl mb-4"></div>
             </div>
-            <form
+            <div className="forms-container flex flex-col space-y-8">
+             <form
               onSubmit={handleSubmit}
               className="space-y-4 bg-gray-800 p-6 rounded-lg form-container"
-            >
+             >
               <div className="form-content">
                 <div className="form-inputs">
                   <div>
@@ -272,6 +275,14 @@ function App() {
                 Generate Interview Questions
               </button>
             </form>
+
+            <div>
+              <AssessmentScheduler
+                candidateName={candidateName}
+                candidateEmail={candidateEmail}
+              />
+            </div>
+          </div>
   
         {isLoading && <Luminaire />}
   

@@ -14,6 +14,8 @@ import ProtectedRoutes from './ProtectedRoutes';
 import PublicRoutes from './PublicRoutes';
 import Account, { AccountContext } from './auth/Account';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import AssessmentPage from '../pages/AssessmentPage';
+
 
 function App() {
   const [message, setMessage] = useState('');
@@ -42,6 +44,7 @@ function App() {
         <Route index element={<Landing />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
+        <Route path="/assessment/:assessmentId" element={<AssessmentPage />} />
       </Routes>
     </Account>
   );

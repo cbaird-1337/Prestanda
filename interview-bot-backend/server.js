@@ -16,6 +16,7 @@ const { Configuration, OpenAIApi } = require('openai');
 const axios = require('axios');
 const { PORT } = process.env
 const pdfParse = require('pdf-parse');
+const { v4: uuidv4 } = require("uuid");
 
 // Configure AWS SDK and initialize S3 instance
 AWS.config.update({
@@ -293,6 +294,156 @@ The Prestanda team`;
     console.error('Error sending email:', error);
     res.status(500).send({ success: false, error: error.message });
   }
+});
+
+//code that handles psychometric assessment scheduling email via SES and writing data to DynamoDB
+app.post("/schedule-assessment", async (req, res) => {
+  const {
+    managerAccountId,
+    assessmentId,
+    candidateEmail,
+    jobTitle,
+    candidateName,
+  } = req.body;  
+
+  // Code to save the assessment scheduling details to DynamoDB
+  try {
+    const docClient = new AWS.DynamoDB.DocumentClient();
+
+    const params = {
+      TableName: "CandidateAssessmentResults",
+      Item: {
+        ManagerAccountId: managerAccountId,
+        AssessmentId: assessmentId,
+        CandidateName: req.body.candidateName,
+        CandidateEmail: candidateEmail,
+        CompanyName: req.body.companyName,
+        JobTitle: jobTitle,
+        CandidatePhoneNumber: req.body.candidatePhoneNumber,
+        AssessmentStatus: "pending",
+        AssessmentResults: null,
+        Timestamp: null,
+      },
+    };    
+
+    await docClient.put(params).promise();
+  } catch (error) {
+    console.error("Error saving scheduling details to DynamoDB:", error);
+    res.status(500).send({ success: false, error: error.message });
+  }
+
+  // Code to send email using SES to the candidate
+  try {
+    const ses = new AWS.SES({
+      apiVersion: "2010-12-01",
+      region: process.env.AWS_REGION,
+    });
+
+    const emailSubject = "Interview Assessment Scheduled";
+    const emailBody = `Dear ${candidateName},\n\nWe have scheduled your psychometric assessment. Please complete the assessment using the following link: https://prestanda.io/assessment/${assessmentId}\n\nBest Regards,\nInterview Bot`;
+
+    const params = {
+      Destination: {
+        ToAddresses: [candidateEmail],
+      },
+      Message: {
+        Body: {
+          Text: {
+            Data: emailBody,
+          },
+        },
+        Subject: {
+          Charset: "UTF-8",
+          Data: emailSubject,
+        },
+      },
+      Source: "interview@prestanda.io",
+    };
+
+    await ses.sendEmail(params).promise();
+  } catch (error) {
+    console.error("Error sending email:", error);
+    res.status(500).send({ success: false, error: error.message });
+  }
+
+  res.status(200).send({ success: true });
+});
+
+// 1. Get assessment status
+app.get('/get-assessment-status/:id', async (req, res) => {
+  const id = req.params.id;
+
+  // Fetch the status from the CandidateAssessmentResults table
+  const params = {
+    TableName: 'CandidateAssessmentResults',
+    Key: {
+      AssessmentId: id,
+    },
+  };
+
+  try {
+    const result = await dynamoDb.get(params).promise();
+    res.status(200).send(result.Item);
+  } catch (error) {
+    res.status(500).send({ error: 'Error fetching assessment status' });
+  }
+});
+
+// 2. Get psychometric questions
+app.get('/get-psychometric-questions', async (req, res) => {
+  const params = {
+    TableName: 'PsychometricQuestions',
+  };
+
+  try {
+    const result = await dynamoDb.scan(params).promise();
+    res.status(200).send(result.Items);
+  } catch (error) {
+    res.status(500).send({ error: 'Error fetching psychometric questions' });
+  }
+});
+
+// 3. Get situational questions
+app.get('/get-situational-questions', async (req, res) => {
+  const params = {
+    TableName: 'SituationalQuestions',
+  };
+
+  try {
+    const result = await dynamoDb.scan(params).promise();
+    res.status(200).send(result.Items);
+  } catch (error) {
+    res.status(500).send({ error: 'Error fetching situational questions' });
+  }
+});
+
+// 4. Submit assessment
+app.post('/submit-assessment', async (req, res) => {
+  const { assessmentId, answers } = req.body;
+
+  const params = {
+    TableName: 'CandidateAssessmentResults',
+    Key: {
+      AssessmentId: assessmentId,
+    },
+    UpdateExpression: 'set Answers = :answers, Status = :status',
+    ExpressionAttributeValues: {
+      ':answers': answers,
+      ':status': 'completed',
+    },
+  };
+
+  try {
+    await dynamoDb.update(params).promise();
+    res.status(200).send({ message: 'Assessment submitted successfully' });
+  } catch (error) {
+    res.status(500).send({ error: 'Error submitting assessment' });
+  }
+});
+
+const port = process.env.PORT || 3001;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
 
 console.log('PORT', PORT)
