@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { v4 as uuidv4 } from "uuid";
 import { CognitoUserPool } from 'amazon-cognito-identity-js';
 import { TextInput } from '@mantine/core';
 import { Button } from '@mantine/core';
-import React, { useState } from 'react';
 
 const userPool = new CognitoUserPool({
   UserPoolId: process.env.REACT_APP_USER_POOL_ID,
