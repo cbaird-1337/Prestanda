@@ -85,12 +85,12 @@ const AssessmentScheduler = ({
   return (
     <div className="bg-gradient-to-b from-gray-600 to-gray-900 rounded-md shadow-md p-6 w-3/4 mx-auto">
       <h2 className="text-2xl font-bold mb-4">
-        Schedule a psychometric assessment for this candidate
+        Psychometric Assessment Scheduler
       </h2>
       <p className="mb-4">
-        Want to schedule a psychometric assessment for this candidate? If so, fill out their information below and click submit:
+        Our comprehensive psychometric assessment features 100 scientifically-backed IPIP questions and 10 situational judgment questions that are designed to provide a reliable and accurate evaluation of your candidate's potential. Fill out their information below to schedule an assessment:
       </p>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div>
           <label htmlFor="candidateName" className="block">
             Candidate Full Name:
