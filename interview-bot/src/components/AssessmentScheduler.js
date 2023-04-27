@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from "uuid";
 import { CognitoUserPool } from 'amazon-cognito-identity-js';
-import { TextInput } from '@mantine/core';
+import { TextInput, Loader, Modal, Paper, Text } from '@mantine/core';
 import { Button } from '@mantine/core';
+import { useToggle } from '@mantine/hooks';
 
 const userPool = new CognitoUserPool({
   UserPoolId: process.env.REACT_APP_USER_POOL_ID,
@@ -30,18 +31,22 @@ const getManagerAccountId = () => {
   }
 };
 
-    const handleSubmit = async (
-      candidateName,
-      candidateEmail,
-      companyName,
-      jobTitle,
-      candidatePhoneNumber
-    ) => {
+const handleSubmit = async (
+  candidateName,
+  candidateEmail,
+  companyName,
+  jobTitle,
+  candidatePhoneNumber,
+  setLoading,
+  setSuccessModalOpened
+) => {
+  setLoading(true);
 
   try {
     const managerAccountId = await getManagerAccountId();
     if (!managerAccountId) {
       console.error('Failed to get manager account ID');
+      setLoading(false);
       return;
     }
 
@@ -59,13 +64,17 @@ const getManagerAccountId = () => {
     };
 
     await fetch(`${process.env.REACT_APP_BACKEND_API_URL}/schedule-assessment`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestData),
-      });      
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestData),
+    });
+
+    setLoading(false);
+    setSuccessModalOpened(true);
   } catch (error) {
+    setLoading(false);
     console.error("Error while creating the assessment:", error);
   }
 };
@@ -76,16 +85,35 @@ const AssessmentScheduler = () => {
   const [companyName, setCompanyName] = useState('');
   const [jobTitle, setJobTitle] = useState('');
   const [candidatePhoneNumber, setCandidatePhoneNumber] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [successModalOpened, setSuccessModalOpened] = useToggle(false);
 
   return (
-    <div className="bg-gradient-to-b from-gray-600 to-gray-900 rounded-md shadow-md p-6 w-3/4 mx-auto pt-8">
-      <h2 className="text-2xl font-bold mb-4">
-        Psychometric Assessment Scheduler
-      </h2>
-      <p className="mb-4">
-        Our comprehensive psychometric assessment features 100 scientifically-backed IPIP questions and 10 situational judgment questions that are designed to provide a reliable and accurate evaluation of your candidate's potential. Fill out their information below to schedule an assessment:
-      </p>
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4">
+    <>
+      <Modal
+        opened={successModalOpened}
+        onClose={setSuccessModalOpened.toggle}
+        title="Success!"
+      >
+        <Paper padding="md" shadow="xs">
+          <Text>
+            We have sent an email to {candidateName} at the following address{' '}
+            {candidateEmail} with instructions on how to take their assessment. Once
+            the candidate has completed their assessment, we will send you the results
+            to your primary email address. You can also view all of your candidates'
+            assessments from the "Interview History" page.
+          </Text>
+        </Paper>
+      </Modal>
+
+      <div className="bg-gradient-to-b from-gray-600 to-gray-900 rounded-md shadow-md p-6 w-3/4 mx-auto pt-12">
+        <h2 className="text-2xl font-bold mb-4">
+          Psychometric Assessment Scheduler
+        </h2>
+        <p className="mb-4">
+          Our comprehensive psychometric assessment features 100 scientifically-backed IPIP questions and 10 situational judgment questions that are designed to provide a reliable and accurate evaluation of your candidate's potential. Fill out their information below to schedule an assessment:
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="candidateName" className="block">
             Candidate Full Name:
@@ -148,26 +176,31 @@ const AssessmentScheduler = () => {
             className="mt-1"
           />
         </div>
-        <div className="col-span-2 flex justify-center">
-        <Button
-          type="submit"
-          onClick={() =>
-            handleSubmit(
-              candidateName,
-              candidateEmail,
-              companyName,
-              jobTitle,
-              candidatePhoneNumber
-            )
-          }
-          color="blue"
-          className="mt-4"
-        >
-          Submit
-        </Button>
+          <div className="col-span-2 flex justify-center">
+            <Button
+              type="submit"
+              onClick={() =>
+                handleSubmit(
+                  candidateName,
+                  candidateEmail,
+                  companyName,
+                  jobTitle,
+                  candidatePhoneNumber,
+                  setLoading,
+                  setSuccessModalOpened
+                )
+              }
+              color="blue"
+              className="mt-4"
+              disabled={loading}
+            >
+              Submit
+            </Button>
+            {loading && <Loader className="ml-4" />}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
