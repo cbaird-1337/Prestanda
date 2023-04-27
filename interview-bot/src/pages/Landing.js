@@ -8,7 +8,7 @@ import PricingCards from "./elements/PricingCards";
 import { Modal } from '@mantine/core';  //delete when moving into production!
 
 const Landing = () => {
-  const [modalOpened, setModalOpened] = useState(true); //delete when moving into production!
+  const [modalOpened, setModalOpened] = useState(false); //delete when moving into production!
 
   const handleModalClose = () => {  //delete when moving into production!
     setModalOpened(false);  //delete when moving into production!
@@ -18,6 +18,10 @@ const Landing = () => {
     document.body.classList.add("has-animations");
     startAnimation();
 
+    setTimeout(() => {         //delete these 3 lines for the modal at launch!
+      setModalOpened(true);
+    }, 5000);
+
     return () => {
       document.body.classList.remove("has-animations");
     };
@@ -25,17 +29,18 @@ const Landing = () => {
 
   return (
     <div className="App">
-      <Modal  //delete this whole modal statement (lines 28-40) when moving into production!
+      <Modal  //delete this whole modal statement (lines 32-45) when moving into production!
       opened={modalOpened}  
       onClose={handleModalClose}  
       transition="rotate-left"  
-      classNames={{ content: 'warning-modal-content' }}  
+      classNames={{ content: 'warning-modal-content' }}
+      overlayColor="transparent"  
     >  
       <div className="p-4"> 
         <span role="img" aria-label="Warning">
           ⚠️
         </span>{' '}
-        Warning: this website is currently in active development. As such, please expect functionality to be limited or impaired.
+        Warning: this website is currently in active development. As such, please expect functionality to be limited or impaired until launch on June 30th 2023.
       </div>
     </Modal> 
       <div className="bg-shapes"></div>

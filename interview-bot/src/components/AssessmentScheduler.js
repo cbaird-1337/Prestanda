@@ -111,7 +111,7 @@ const AssessmentScheduler = () => {
         </Paper>
       </Modal>
   
-      <div className="mt-20 mb-24 max-w-xl mx-auto p-8 rounded-lg bg-gradient-to-br from-gray-700 via-indigo-900 to-purple-800 shadow-2xl transform rotate-1">
+      <div className="mt-20 mb-24 max-w-2xl mx-auto p-8 rounded-lg bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 shadow-2xl">
         <h2 className="text-2xl font-bold mb-4 text-center">
           Psychometric Assessment Scheduler
         </h2>
