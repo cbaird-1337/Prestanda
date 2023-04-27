@@ -2,7 +2,8 @@ import React from 'react';
 import { v4 as uuidv4 } from "uuid";
 import { CognitoUserPool } from 'amazon-cognito-identity-js';
 import { TextInput } from '@mantine/core';
-
+import { Button } from '@mantine/core';
+import React, { useState } from 'react';
 
 const userPool = new CognitoUserPool({
   UserPoolId: process.env.REACT_APP_USER_POOL_ID,
@@ -149,7 +150,7 @@ const AssessmentScheduler = () => {
           />
         </div>
         <div className="col-span-2 flex justify-center">
-        <button
+        <Button
           type="submit"
           onClick={() =>
             handleSubmit(
@@ -160,10 +161,11 @@ const AssessmentScheduler = () => {
               candidatePhoneNumber
             )
           }
-          className="bg-blue-600 text-white px-4 py-2 rounded mt-4"
+          color="blue"
+          className="mt-4"
         >
           Submit
-        </button>
+        </Button>
         </div>
       </div>
     </div>
