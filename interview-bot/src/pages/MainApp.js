@@ -277,10 +277,7 @@ function App() {
             </form>
 
             <div>
-              <AssessmentScheduler
-                candidateName={candidateName}
-                candidateEmail={candidateEmail}
-              />
+              <AssessmentScheduler />
             </div>
           </div>
   

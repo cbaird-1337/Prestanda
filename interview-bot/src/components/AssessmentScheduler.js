@@ -83,86 +83,95 @@ const AssessmentScheduler = ({
   setCandidatePhoneNumber
 }) => {
   return (
-            <div>
-            <h2 className="text-2xl font-bold mb-4">
-                Schedule a psychometric assessment for this candidate
-                </h2>
-                <p className="mb-4">
-                Want to schedule a psychometric assessment for this candidate? If so, fill out their information below and click submit:
-                </p>
-                <label htmlFor="candidateName" className="block">
-                Candidate Full Name:
-                </label>
-                <TextInput
-                  id="candidateName"
-                  placeholder="Candidate Full Name"
-                  value={candidateName}
-                  onChange={(event) => setCandidateName(event.target.value)}
-                  className="mt-1"
-                />
-
-                <label htmlFor="candidateEmail" className="block mt-4">
-                Candidate Email Address:
-                </label>
-                <TextInput
-                  type="email"
-                  id="candidateEmail"
-                  placeholder="Candidate Email Address"
-                  value={candidateEmail}
-                  onChange={(event) => setCandidateEmail(event.target.value)}
-                  className="mt-1"
-                />
-
-                <label htmlFor="companyName" className="block mt-4">
-                Hiring Company Name:
-                </label>
-                <TextInput
-                  id="companyName"
-                  placeholder="Hiring Company Name"
-                  value={companyName}
-                  onChange={(event) => setCompanyName(event.target.value)}
-                  className="mt-1"
-                />
-
-                <label htmlFor="jobTitle" className="block mt-4">
-                Hiring Job Title:
-                </label>
-                <TextInput
-                  id="jobTitle"
-                  placeholder="Hiring Job Title"
-                  value={jobTitle}
-                  onChange={(event) => setJobTitle(event.target.value)}
-                  className="mt-1"
-                />
-
-                <label htmlFor="candidatePhoneNumber" className="block mt-4">
-                Candidate Phone Number:
-                </label>
-                <TextInput
-                  type="tel"
-                  id="candidatePhoneNumber"
-                  placeholder="Candidate Phone Number"
-                  value={candidatePhoneNumber}
-                  onChange={(event) => setCandidatePhoneNumber(event.target.value)}
-                  className="mt-1"
-                />
-
-                <button
-                  type="submit"
-                  onClick={() =>
-                    handleSubmit(
-                      candidateName,
-                      candidateEmail,
-                      companyName,
-                      jobTitle,
-                      candidatePhoneNumber
-                    )
-                  }
-                  className="bg-blue-600 text-white px-4 py-2 rounded mt-4"
-                >
-                  Submit
-                </button>
-            </div>
+    <div className="bg-gray-100 rounded-md shadow-md p-6">
+      <h2 className="text-2xl font-bold mb-4">
+        Schedule a psychometric assessment for this candidate
+      </h2>
+      <p className="mb-4">
+        Want to schedule a psychometric assessment for this candidate? If so, fill out their information below and click submit:
+      </p>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div>
+          <label htmlFor="candidateName" className="block">
+            Candidate Full Name:
+          </label>
+          <TextInput
+            id="candidateName"
+            placeholder="Candidate Full Name"
+            value={candidateName}
+            onChange={(event) => setCandidateName(event.target.value)}
+            className="mt-1"
+          />
+        </div>
+        <div>
+          <label htmlFor="candidateEmail" className="block">
+            Candidate Email Address:
+          </label>
+          <TextInput
+            type="email"
+            id="candidateEmail"
+            placeholder="Candidate Email Address"
+            value={candidateEmail}
+            onChange={(event) => setCandidateEmail(event.target.value)}
+            className="mt-1"
+          />
+        </div>
+        <div>
+          <label htmlFor="companyName" className="block">
+            Hiring Company Name:
+          </label>
+          <TextInput
+            id="companyName"
+            placeholder="Hiring Company Name"
+            value={companyName}
+            onChange={(event) => setCompanyName(event.target.value)}
+            className="mt-1"
+          />
+        </div>
+        <div>
+          <label htmlFor="jobTitle" className="block">
+            Hiring Job Title:
+          </label>
+          <TextInput
+            id="jobTitle"
+            placeholder="Hiring Job Title"
+            value={jobTitle}
+            onChange={(event) => setJobTitle(event.target.value)}
+            className="mt-1"
+          />
+        </div>
+        <div>
+          <label htmlFor="candidatePhoneNumber" className="block">
+            Candidate Phone Number:
+          </label>
+          <TextInput
+            type="tel"
+            id="candidatePhoneNumber"
+            placeholder="Candidate Phone Number"
+            value={candidatePhoneNumber}
+            onChange={(event) => setCandidatePhoneNumber(event.target.value)}
+            className="mt-1"
+          />
+        </div>
+        <div className="col-span-2 flex justify-center">
+          <button
+            type="submit"
+            onClick={() =>
+              handleSubmit(
+                candidateName,
+                candidateEmail,
+                companyName,
+                jobTitle,
+                candidatePhoneNumber
+              )
+            }
+            className="bg-blue-600 text-white px-4 py-2 rounded mt-4"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 
