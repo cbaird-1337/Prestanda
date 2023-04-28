@@ -450,21 +450,41 @@ app.get('/get-situational-questions', async (req, res) => {
 app.post('/submit-assessment', async (req, res) => {
   const { assessmentId, answers } = req.body;
 
-  const params = {
+  // First, query the CandidateAssessmentResults table using the GSI to get the primary key
+  const queryParams = {
     TableName: 'CandidateAssessmentResults',
-    Key: {
-      AssessmentId: assessmentId,
-    },
-    UpdateExpression: 'set AssessmentResults = :answers, AssessmentStatus = :status',
+    IndexName: 'AssessmentId-index',
+    KeyConditionExpression: 'AssessmentId = :id',
     ExpressionAttributeValues: {
-      ':answers': answers,
-      ':status': 'Completed',
+      ':id': assessmentId,
     },
   };
 
   try {
-    await dynamoDb.update(params).promise();
-    res.status(200).send({ message: 'Assessment submitted successfully' });
+    const queryResult = await dynamoDb.query(queryParams).promise();
+
+    if (queryResult.Items && queryResult.Items.length > 0) {
+      // Get the primary key (e.g., CandidateId or UserId) from the fetched document
+      const primaryKey = queryResult.Items[0].ManagerAccountId;
+
+      // Now, update the document using the primary key
+      const updateParams = {
+        TableName: 'CandidateAssessmentResults',
+        Key: {
+          ManagerAccountId: primaryKey,
+        },
+        UpdateExpression: 'set AssessmentResults = :answers, AssessmentStatus = :status',
+        ExpressionAttributeValues: {
+          ':answers': answers,
+          ':status': 'Completed',
+        },
+      };
+
+      await dynamoDb.update(updateParams).promise();
+      res.status(200).send({ message: 'Assessment submitted successfully' });
+    } else {
+      res.status(404).send({ error: 'No assessment found for the given ID' });
+    }
   } catch (error) {
     res.status(500).send({ error: 'Error submitting assessment' });
   }
