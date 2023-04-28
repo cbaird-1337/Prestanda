@@ -1,5 +1,5 @@
 .assessment-page {
-    background-color: #b0c4de; /* Blueish gray */
+    background-color: #4c6484; /* Blueish gray */
     color: white; /* Text color */
     min-height: 100vh; /* Ensure the background color covers the full height of the page */
     padding: 16px; /* Add some padding around the content */
@@ -17,7 +17,7 @@
     justify-content: space-between;
     position: sticky;
     top: 0;
-    background-color: white;
+    background-color: rgb(48, 21, 21);
     z-index: 100;
     padding: 10px;
     border-bottom: 1px solid #ccc;
@@ -35,17 +35,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex: 1; /* Distribute the space evenly */
   }
-
+  
   .question-row,
   .situational-question {
     margin-bottom: 20px; /* Adjust the value as needed for your desired spacing */
-  }
-  
-  .section-title {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 16px;
   }
   
   .instructions {
@@ -55,7 +50,7 @@
   
   .submission-warning {
     text-align: center;
-    color: red;
+    color: rgb(197, 18, 18);
     margin-top: 16px;
     margin-bottom: 8px;
   }
@@ -66,3 +61,13 @@
     margin-top: 16px;
   }
   
+  /* Media queries for smaller screens */
+  @media (max-width: 767px) {
+    .question-row,
+    .header-row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-column-gap: 8px;
+      align-items: center;
+    }
+  }

@@ -40,6 +40,7 @@ function Assessment() {
     try {
       const response = await axios.get(`${process.env.REACT_APP_BACKEND_API_URL}/get-psychometric-questions`);
       const data = response.data;
+      console.log('Psychometric questions data:', data); // Remove this line after verifying ALL question data is returned
       setPsychometricQuestions(data);
     } catch (error) {
       console.error('Error fetching psychometric questions:', error);
@@ -50,6 +51,7 @@ function Assessment() {
     try {
       const response = await axios.get(`${process.env.REACT_APP_BACKEND_API_URL}/get-situational-questions`);
       const data = response.data;
+      console.log('Situational questions data:', data); // Remove this line after verifying ALL question data is returned
       setSituationalQuestions(data);
     } catch (error) {
       console.error('Error fetching situational questions:', error);
@@ -64,15 +66,18 @@ function Assessment() {
   
     // Collect user's answers and submit them to your API
     const answers = {
-        psychometric: psychometricQuestions.map((question) => ({
-          questionId: question.QuestionId,
-          answer: Number(document.querySelector(`input[name="psychometric-${question.QuestionId}"]:checked`)?.value) || 0,
-        })),
-        situational: situationalQuestions.map((question) => ({
-          questionId: question.QuestionId,
-          answer: Number(document.querySelector(`input[name="situational-${question.QuestionId}"]:checked`)?.value) || 0,
-        })),
-      };
+      psychometric: psychometricQuestions.map((question) => ({
+        questionId: question.QuestionId,
+        reverseCoded: question.ReverseCoded,
+        category: question.Category,
+        answer: Number(document.querySelector(`input[name="psychometric-${question.QuestionId}"]:checked`)?.value) || 0,
+      })),
+      situational: situationalQuestions.map((question) => ({
+        questionId: question.QuestionId,
+        category: question.Category,
+        answer: Number(document.querySelector(`input[name="situational-${question.QuestionId}"]:checked`)?.value) || 0,
+      })),
+    };
   
     try {
       const response = await axios.post(`${process.env.REACT_APP_BACKEND_API_URL}/submit-assessment`, {
