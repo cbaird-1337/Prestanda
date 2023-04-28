@@ -112,13 +112,13 @@ function Assessment() {
           {question.AnswerChoices.map((choice, index) => (
             <label key={index}>
               <input type="radio" name={`situational-${question.QuestionId}`} value={index + 1} />
-              {choice}
+              {choice.answer} {/* Extract the answer text from the choice object */}
             </label>
           ))}
         </div>
       </div>
     );
-  };
+  };  
   
   return (
     <div>
