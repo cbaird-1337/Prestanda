@@ -455,10 +455,10 @@ app.post('/submit-assessment', async (req, res) => {
     Key: {
       AssessmentId: assessmentId,
     },
-    UpdateExpression: 'set Answers = :answers, Status = :status',
+    UpdateExpression: 'set AssessmentResults = :answers, AssessmentStatus = :status',
     ExpressionAttributeValues: {
       ':answers': answers,
-      ':status': 'completed',
+      ':status': 'Completed',
     },
   };
 

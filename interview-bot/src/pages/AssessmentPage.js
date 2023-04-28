@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import './AssessmentPage.css';
+import { Button } from '@mantine/core';
 
 function Assessment() {
   const [assessmentStatus, setAssessmentStatus] = useState(null);
@@ -89,20 +91,31 @@ function Assessment() {
     }
   };
   
-  const PsychometricQuestion = ({ question }) => {
+  const PsychometricHeader = () => {
     return (
-      <div className="psychometric-question">
-        <p>{question.QuestionId}. {question.QuestionText}</p>
-        <div className="answer-options">
-          <label><input type="radio" name={`psychometric-${question.QuestionId}`} value="1" /> Strongly Disagree</label>
-          <label><input type="radio" name={`psychometric-${question.QuestionId}`} value="2" /> Disagree</label>
-          <label><input type="radio" name={`psychometric-${question.QuestionId}`} value="3" /> Neither Agree nor Disagree</label>
-          <label><input type="radio" name={`psychometric-${question.QuestionId}`} value="4" /> Agree</label>
-          <label><input type="radio" name={`psychometric-${question.QuestionId}`} value="5" /> Strongly Agree</label>
-        </div>
+      <div className="header-row">
+        <div>Psychometric Questions</div>
+        <div>Strongly Disagree</div>
+        <div>Disagree</div>
+        <div>Neither Agree nor Disagree</div>
+        <div>Agree</div>
+        <div>Strongly Agree</div>
       </div>
     );
-  };
+  };  
+
+  const PsychometricQuestion = ({ question }) => {
+    return (
+      <div className="question-row">
+        <div>{question.QuestionId}. {question.QuestionText}</div>
+        {question.AnswerChoices.map((choice, index) => (
+          <div key={index} className="answer-option">
+            <input type="radio" name={`psychometric-${question.QuestionId}`} value={index + 1} />
+          </div>
+        ))}
+      </div>
+    );
+  };  
   
   const SituationalQuestion = ({ question }) => {
     return (
@@ -121,18 +134,30 @@ function Assessment() {
   };  
   
   return (
-    <div>
-      <h2>Psychometric Questions</h2>
+    <div className="assessment-page">
+      <h2 className="section-title">Candidate Psychometric Assessment</h2>
+      <div className="instructions">
+        <p>Below you will find a pool of 100 psychometric questions to answer. There are no right or wrong answers, this assessment is designed to provide the hiring manager insights into your personality type and motivators. Please ensure that you are in a space where you can focus, and have enough time to complete the full assessment, as it cannot be saved and resumed. Please answer as honestly as possible:</p>
+      </div>
+      <PsychometricHeader />
       {psychometricQuestions.map((question) => (
         <PsychometricQuestion key={question.QuestionId} question={question} />
       ))}
-      <h2>Situational Assessment Questions</h2>
+      <h2 className="section-title">Situational Assessment Questions</h2>
+      <div className="instructions">
+        <p>Below you will find 10 situational judgement questions. Please select the answer that reflects the course of action you feel is best suited to the given scenario.</p>
+      </div>
       {situationalQuestions.map((question) => (
         <SituationalQuestion key={question.QuestionId} question={question} />
       ))}
-      <button onClick={handleSubmit}>Submit Assessment</button>
+      <div className="submission-warning">
+        Submissions are final, and you can only take this assessment once. Please ensure you have answered all questions.
+      </div>
+      <div className="submit-button-container">
+        <Button onClick={handleSubmit} variant="outline">Submit Assessment</Button>
+      </div>
     </div>
-  );  
+  );   
 }
 
 export default Assessment;

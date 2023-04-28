@@ -1,0 +1,68 @@
+.assessment-page {
+    background-color: #b0c4de; /* Blueish gray */
+    color: white; /* Text color */
+    min-height: 100vh; /* Ensure the background color covers the full height of the page */
+    padding: 16px; /* Add some padding around the content */
+  }
+  
+  .section-title {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: #d4af37; /* Deep gold/yellow color */
+  }  
+
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 100;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .question-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .answer-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .question-row,
+  .situational-question {
+    margin-bottom: 20px; /* Adjust the value as needed for your desired spacing */
+  }
+  
+  .section-title {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+  
+  .instructions {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  
+  .submission-warning {
+    text-align: center;
+    color: red;
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+  
+  .submit-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+  }
+  
