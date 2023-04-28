@@ -153,13 +153,13 @@ async function readAndExtractTextFromS3(s3Bucket, s3Key) {
 
 // Function for ChatGPT to generate interview questions based on resume and job description uploads
 async function generateQuestions(text, role, numberOfQuestions) {
-  const prompt = `Please generate ${numberOfQuestions} first call phone screening interview questions that focus on evaluating career experience, job fit, and specific examples for the ${role} position. Consider the following job description and resume details while creating the questions:\n\n${text}\n`;
+  const prompt = `Please generate ${numberOfQuestions} first call phone screening interview questions that focus on evaluating career experience, job fit, and specific examples for the ${role} position. Take time to study and reference the following job description and candidate resume details while creating the questions:\n\n${text}\n`;
   const completion = await openai.createChatCompletion({
     model: 'gpt-3.5-turbo',
     messages: [
       {
         role: "system",
-        content: "You are a helpful recruiting assistant that generates interview questions based on input from a user's resume and job description. Each question should have a maximum length of 20 words per question that focus on evaluating career experience, job fit, and specific examples for the position. Ensure that at least one of these questions are behavioral, such as tell me about a time when you faced a challenge and how you overcame it"
+        content: "You are a helpful recruiting assistant that generates interview questions based on inputs from a user's resume and job description. Before generating the questions, study the provided candidate resume, and the job description for the role they are applying to, and base your questions off of these documents. Each question should have a maximum length of 25 words per question that focus on evaluating career experience, job fit, and specific examples for the position. Ensure that at least one of these questions are behavioral, such as tell me about a time when you faced a challenge and how you overcame it etc. You are allowed to refer to common first call screening interview questions and use them to model your questions around (if and where it makes sense to do so)."
       },
       {
         role: "user",
@@ -384,20 +384,22 @@ app.get('/get-assessment-status/:id', async (req, res) => {
 
   console.log(`Fetching assessment status for ID: ${id}`);
 
-  // Fetch the status from the CandidateAssessmentResults table
+  // Query the status from the CandidateAssessmentResults table using the GSI
   const params = {
     TableName: 'CandidateAssessmentResults',
-    Key: {
-      AssessmentId: id,
+    IndexName: 'AssessmentId-index',
+    KeyConditionExpression: 'AssessmentId = :id',
+    ExpressionAttributeValues: {
+      ':id': id,
     },
   };
 
   try {
-    const result = await dynamoDb.get(params).promise();
-    
-    if (result.Item) {
-      console.log(`Fetched assessment status: ${result.Item.AssessmentStatus}`);
-      res.status(200).send({ status: result.Item.AssessmentStatus }); // Send only the AssessmentStatus field
+    const result = await dynamoDb.query(params).promise();
+
+    if (result.Items && result.Items.length > 0) {
+      console.log(`Fetched assessment status: ${result.Items[0].AssessmentStatus}`);
+      res.status(200).send({ status: result.Items[0].AssessmentStatus }); // Send only the AssessmentStatus field
     } else {
       console.error("Error fetching assessment status: No item found for the given ID");
       res.status(404).send({ error: 'No assessment found for the given ID' });
