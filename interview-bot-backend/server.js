@@ -18,6 +18,7 @@ const { PORT } = process.env
 const pdfParse = require('pdf-parse');
 const { v4: uuidv4 } = require("uuid");
 const morgan = require('morgan');
+const sns = new AWS.SNS();
 
 
 // Configure AWS SDK and initialize S3 instance
@@ -446,7 +447,7 @@ app.get('/get-situational-questions', async (req, res) => {
   }
 });
 
-// 4. Submit assessment
+// 4. Submit assessment - writes candidate answers to dynamoDb CandidateAssessmentResults table based on AssessmentID, and triggers SNS topic to initiate grading lambda
 app.post('/submit-assessment', async (req, res) => {
   const { assessmentId, answers } = req.body;
 
@@ -481,6 +482,15 @@ app.post('/submit-assessment', async (req, res) => {
       };
 
       await dynamoDb.update(updateParams).promise();
+
+      // Publish the SNS message with the assessmentId
+      const snsParams = {
+        Message: JSON.stringify({ assessmentId }),
+        TopicArn: process.env.SNS_GRADING_TOPIC_ARN, // SNS topic ARN to trigger grading lambda
+      };
+
+      await sns.publish(snsParams).promise();
+
       res.status(200).send({ message: 'Assessment submitted successfully' });
     } else {
       res.status(404).send({ error: 'No assessment found for the given ID' });

@@ -12,9 +12,10 @@
     color: #d4af37; /* Deep gold/yellow color */
   }  
 
-.header-row {
-    display: flex;
-    justify-content: space-between;
+  .header-row {
+    display: grid;
+    grid-template-columns: 4fr repeat(5, 1fr);
+    gap: 8px;
     position: sticky;
     top: 0;
     background-color: rgb(48, 21, 21);
@@ -24,8 +25,9 @@
   }
   
   .question-row {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 4fr repeat(5, 1fr);
+    gap: 8px;
     align-items: center;
     padding: 10px;
     border-bottom: 1px solid #ccc;
@@ -35,8 +37,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 1; /* Distribute the space evenly */
-  }
+  }  
   
   .question-row,
   .situational-question {

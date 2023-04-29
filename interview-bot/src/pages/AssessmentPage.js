@@ -36,16 +36,24 @@ function Assessment() {
     }
   };  
 
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  };
+  
   const fetchPsychometricQuestions = async () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_BACKEND_API_URL}/get-psychometric-questions`);
       const data = response.data;
-      console.log('Psychometric questions data:', data); // Remove this line after verifying ALL question data is returned
+      shuffleArray(data); // Shuffle the questions before setting them to the state
+      console.log('Psychometric questions data:', data);
       setPsychometricQuestions(data);
     } catch (error) {
       console.error('Error fetching psychometric questions:', error);
     }
-  };
+  };  
 
   const fetchSituationalQuestions = async () => {
     try {
@@ -112,7 +120,7 @@ function Assessment() {
   const PsychometricQuestion = ({ question }) => {
     return (
       <div className="question-row">
-        <div>{question.QuestionId}. {question.QuestionText}</div>
+        <div>{question.QuestionText}</div>
         {question.AnswerChoices.map((choice, index) => (
           <div key={index} className="answer-option">
             <input type="radio" name={`psychometric-${question.QuestionId}`} value={index + 1} />
@@ -125,7 +133,7 @@ function Assessment() {
   const SituationalQuestion = ({ question }) => {
     return (
       <div className="situational-question">
-        <p>{question.QuestionId}. {question.QuestionText}</p>
+        <p>{question.QuestionText}</p>
         <div className="answer-options">
           {question.AnswerChoices.map((choice, index) => (
             <label key={index}>
