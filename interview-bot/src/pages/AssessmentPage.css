@@ -1,74 +1,76 @@
 .assessment-page {
-    background-color: #4c6484; /* Blueish gray */
-    color: white; /* Text color */
-    min-height: 100vh; /* Ensure the background color covers the full height of the page */
-    padding: 16px; /* Add some padding around the content */
-  }
-  
-  .section-title {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 16px;
-    color: #d4af37; /* Deep gold/yellow color */
-  }  
+  background-color: #4c6484;
+  color: white;
+  min-height: 100vh;
+  padding: 16px;
+  line-height: 1.5;
+  font-size: 16px;
+}
 
+.section-title {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: #d4af37;
+}
+
+.header-row {
+  display: grid;
+  grid-template-columns: 4fr repeat(5, 1fr);
+  gap: 8px;
+  position: sticky;
+  top: 0;
+  background-color: rgb(48, 21, 21);
+  z-index: 100;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.question-row {
+  display: grid;
+  grid-template-columns: 4fr repeat(5, 1fr);
+  gap: 8px;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.answer-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+.question-row,
+.situational-question {
+  margin-bottom: 20px;
+}
+
+.instructions {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.submission-warning {
+  text-align: center;
+  color: rgb(197, 18, 18);
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.submit-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+@media (max-width: 767px) {
+  .question-row,
   .header-row {
     display: grid;
-    grid-template-columns: 4fr repeat(5, 1fr);
-    gap: 8px;
-    position: sticky;
-    top: 0;
-    background-color: rgb(48, 21, 21);
-    z-index: 100;
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  .question-row {
-    display: grid;
-    grid-template-columns: 4fr repeat(5, 1fr);
-    gap: 8px;
+    grid-template-columns: 1fr;
+    grid-row-gap: 8px;
     align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
   }
-  
-  .answer-option {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }  
-  
-  .question-row,
-  .situational-question {
-    margin-bottom: 20px; /* Adjust the value as needed for your desired spacing */
-  }
-  
-  .instructions {
-    text-align: center;
-    margin-bottom: 32px;
-  }
-  
-  .submission-warning {
-    text-align: center;
-    color: rgb(197, 18, 18);
-    margin-top: 16px;
-    margin-bottom: 8px;
-  }
-  
-  .submit-button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 16px;
-  }
-  
-  /* Media queries for smaller screens */
-  @media (max-width: 767px) {
-    .question-row,
-    .header-row {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      grid-column-gap: 8px;
-      align-items: center;
-    }
-  }
+}

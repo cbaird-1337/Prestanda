@@ -122,9 +122,9 @@ function Assessment() {
       <div className="question-row">
         <div>{question.QuestionText}</div>
         {question.AnswerChoices.map((choice, index) => (
-          <div key={index} className="answer-option">
+          <label key={index} className="answer-option">
             <input type="radio" name={`psychometric-${question.QuestionId}`} value={index + 1} />
-          </div>
+          </label>
         ))}
       </div>
     );
