@@ -86,6 +86,14 @@ function Assessment() {
         answer: Number(document.querySelector(`input[name="situational-${question.QuestionId}"]:checked`)?.value) || 0,
       })),
     };
+    
+    // Check if all questions are answered
+    const allQuestionsAnswered = answers.psychometric.every((answer) => answer.answer !== 0) && answers.situational.every((answer) => answer.answer !== 0);
+
+    if (!allQuestionsAnswered) {
+      alert('Please answer all questions before submitting.');
+      return;
+    }
   
     try {
       const response = await axios.post(`${process.env.REACT_APP_BACKEND_API_URL}/submit-assessment`, {
