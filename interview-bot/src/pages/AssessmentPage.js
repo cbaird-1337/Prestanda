@@ -118,7 +118,7 @@ function Assessment() {
         <div>Psychometric Questions</div>
         <div>Strongly Disagree</div>
         <div>Disagree</div>
-        <div>Neither Agree nor Disagree</div>
+        <div>Neutral</div>
         <div>Agree</div>
         <div>Strongly Agree</div>
       </div>
