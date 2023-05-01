@@ -63,25 +63,17 @@ const Landing = () => {
         </Link>
       </div>
       <div className="centered-container">
-      <div className="value-propositions">
-          <ul>
-            <li>Streamline hiring: Save time, effort, and money with automated first call interview screening.</li>
-            <li>Gain early insights: Incorporate cost-effective psychometric assessments early in the interview process.</li>
-            <li>Level the playing field: Reduce bias in hiring by blinding initial screenings and incorporating objective psychometric assessments.</li>
-          </ul>
-        </div>
         <div className="login-container">
-          <div className="login-header">
-            <h1>Welcome to Prestanda!</h1>
-            <p>Automated first call interview screening & early stage psychometric assessments.</p>
-            <p>Please create an account or login to proceed.</p>
-          </div>
+        <div className="login-header">
+          <h1 className="header-title">Prestanda. Hiring Done Right.</h1>
+          <p className="header-text">Streamline your hiring process with automated first-round interviews, saving time and scaling your talent pipeline.</p>
+          <p className="header-text">Unlock personalized interview experiences by leveraging our AI-driven question generator, tailored to each candidate's resume and target role.</p>
+          <p className="header-text">Deploy comprehensive psychometric assessments early in the hiring cycle for an affordable, data-driven approach to candidate evaluation.</p>
+          <p className="header-text">Minimize bias and create equal opportunities by focusing solely on the qualities that truly matter in your candidates.</p>
+        </div>
           <div className="button-group">
             <Link to="/Signup" className="landing-button signup-button">
-              Create an Account
-            </Link>
-            <Link to="/login" className="landing-button login-button">
-              Login
+              Setup a Free Account
             </Link>
           </div>
         </div>
