@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './Blog.css';
+import './BlogPage.css';
 import * as xml2js from 'xml2js';
 
 const Blog = () => {
