@@ -5,23 +5,13 @@ import startAnimation from "../animations/blocks-animation.js";
 import Features from "./elements/Features";
 import "./elements/scroll-animation.css"; 
 import PricingCards from "./elements/PricingCards";
-import { Modal } from '@mantine/core';  //delete when moving into production!
 import { Button } from "@mantine/core";
 
 const Landing = () => {
-  const [modalOpened, setModalOpened] = useState(false); //delete when moving into production!
-
-  const handleModalClose = () => {  //delete when moving into production!
-    setModalOpened(false);  //delete when moving into production!
-  };   //delete when moving into production!
 
   useEffect(() => {
     document.body.classList.add("has-animations");
     startAnimation();
-
-    setTimeout(() => {         //delete these 3 lines for the modal at launch!
-      setModalOpened(true);
-    }, 5000);
 
     return () => {
       document.body.classList.remove("has-animations");
@@ -30,20 +20,6 @@ const Landing = () => {
 
   return (
     <div className="App">
-      <Modal  //delete this whole modal statement (lines 32-45) when moving into production!
-      opened={modalOpened}  
-      onClose={handleModalClose}  
-      transition="rotate-left"  
-      classNames={{ content: 'warning-modal-content' }}
-      overlayColor="transparent"  
-    >  
-      <div className="p-4"> 
-        <span role="img" aria-label="Warning">
-          ⚠️
-        </span>{' '}
-        Warning: this website is currently in active development. As such, please expect functionality to be limited or impaired until launch on June 30th 2023.
-      </div>
-    </Modal> 
       <div className="bg-shapes"></div>
       <div className="button-row">
         <Link to="/blog">
@@ -65,11 +41,11 @@ const Landing = () => {
       <div className="centered-container">
         <div className="login-container">
         <div className="login-header">
-          <h1 className="header-title">Prestanda. Hiring Done Right.</h1>
-          <p className="header-text">Streamline your hiring process with automated first-round interviews, saving time and scaling your talent pipeline.</p>
-          <p className="header-text">Unlock personalized interview experiences by leveraging our AI-driven question generator, tailored to each candidate's resume and target role.</p>
-          <p className="header-text">Deploy comprehensive psychometric assessments early in the hiring cycle for an affordable, data-driven approach to candidate evaluation.</p>
-          <p className="header-text">Minimize bias and create equal opportunities by focusing solely on the qualities that truly matter in your candidates.</p>
+        <h1 className="header-title">Prestanda. Hiring Done Right.</h1>
+        <p className="header-text">Automate first-round interviews, saving time and expanding your talent pipeline.</p>
+        <p className="header-text">Create personalized interviews with AI-generated questions based on each candidate's resume and target role.</p>
+        <p className="header-text">Use affordable, comprehensive psychometric assessments early in the hiring process for data-driven evaluations.</p>
+        <p className="header-text">Reduce bias and promote equal opportunities by focusing on candidate qualities that truly matter.</p>
         </div>
           <div className="button-group">
             <Link to="/Signup" className="landing-button signup-button">
