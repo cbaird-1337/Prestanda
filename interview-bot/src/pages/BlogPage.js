@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './BlogPage.css';
-import * as xml2js from 'xml2js';
 
 const Blog = () => {
   const [posts, setPosts] = useState([]);
@@ -10,8 +9,16 @@ const Blog = () => {
       const feedURL = 'https://medium.com/feed/@prestanda.io'; 
       const response = await fetch(feedURL);
       const text = await response.text();
-      const parsed = await xml2js.parseStringPromise(text, { explicitArray: false });
-      setPosts(parsed.rss.channel.item);
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(text, 'text/xml');
+      const items = xmlDoc.getElementsByTagName('item');
+      const parsedPosts = Array.from(items).map(item => {
+        return {
+          title: item.getElementsByTagName('title')[0].textContent,
+          link: item.getElementsByTagName('link')[0].textContent,
+        };
+      });
+      setPosts(parsedPosts);
     };
 
     fetchPosts();
@@ -30,7 +37,7 @@ const Blog = () => {
         ))}
       </ul>
     </div>
-  );
+  );  
 };
 
 export default Blog;
