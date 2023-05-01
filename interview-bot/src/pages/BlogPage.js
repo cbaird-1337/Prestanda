@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Parser from 'rss-parser';
-import './Blog.css';
+import './BlogPage.css';
 
 const Blog = () => {
   const [posts, setPosts] = useState([]);
