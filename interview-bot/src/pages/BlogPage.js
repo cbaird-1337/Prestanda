@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import Parser from 'rss-parser';
-import './BlogPage.css';
+import './Blog.css';
+import * as xml2js from 'xml2js';
 
 const Blog = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    const parser = new Parser();
-    const mediumRssFeedUrl = 'https://medium.com/feed/@prestanda.io'; // Replace 'yourusername' with your Medium username
     const fetchPosts = async () => {
-      try {
-        const feed = await parser.parseURL(mediumRssFeedUrl);
-        setPosts(feed.items);
-      } catch (error) {
-        console.error('Error fetching Medium RSS feed:', error);
-      }
+      const feedURL = 'https://medium.com/feed/@prestanda.io'; 
+      const response = await fetch(feedURL);
+      const text = await response.text();
+      const parsed = await xml2js.parseStringPromise(text, { explicitArray: false });
+      setPosts(parsed.rss.channel.item);
     };
+
     fetchPosts();
   }, []);
 
