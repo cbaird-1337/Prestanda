@@ -41,15 +41,15 @@ const LandingCounterBanner = () => {
     <div className="counter-container">
       <div className="counter">
         <span className="counter-value">{lastCommit}</span>
-        <span className="counter-label">Last Commit</span>
+        <span className="counter-label">Last Commit:</span>
       </div>
       <div className="counter">
         <span className="counter-value">{interviews}</span>
-        <span className="counter-label">Interview Screenings Performed</span>
+        <span className="counter-label"> Interview Screenings Performed</span>
       </div>
       <div className="counter">
         <span className="counter-value">{assessments}</span>
-        <span className="counter-label">Psychometric Assessments</span>
+        <span className="counter-label"> Psychometric Assessments Scheduled</span>
       </div>
     </div>
   );
