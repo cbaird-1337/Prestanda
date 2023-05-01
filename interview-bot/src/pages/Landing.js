@@ -6,6 +6,7 @@ import Features from "./elements/Features";
 import "./elements/scroll-animation.css"; 
 import PricingCards from "./elements/PricingCards";
 import { Button } from "@mantine/core";
+import LandingCounterBanner from './elements/LandingCounterBanner';
 
 const Landing = () => {
 
@@ -55,11 +56,12 @@ const Landing = () => {
           <span className="emphasized-text">Reduce bias and promote equal opportunity</span> by focusing on candidate qualities that truly matter.
         </p>
         </div>
-          <div className="button-group">
+        <div className="button-group">
             <Link to="/Signup" className="landing-button signup-button">
               Setup a Free Account
             </Link>
           </div>
+          <LandingCounterBanner />
         </div>
         <div className="content-container">
           {/* Add 'hero-figure' class to the container */}

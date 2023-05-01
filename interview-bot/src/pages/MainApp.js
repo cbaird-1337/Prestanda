@@ -70,13 +70,6 @@ function App() {
     }
   }, []);
 
-  //logging, delete this later
-  useEffect(() => {
-    console.log('App component mounted');
-    console.log(`Current location: ${window.location.href}`);
-  }, []);
- //delete above segment
-
   const handleResumeUpload = (event) => {
     setResumeFile(event.target.files[0]);
   };
@@ -124,6 +117,28 @@ function App() {
       setQuestions(response.data.questions);
     } catch (error) {
       console.error(error);
+    }
+  };  
+
+  //phone screening scheduling counter, calls backend to write to dynamoDB table: InterviewAndAssessmentCounter
+  const updatePhoneScreeningCounter = async () => {
+    try {
+      const response = await fetch("/update-counters", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ counterType: "interview" }),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Error updating phone screening counter");
+      }
+  
+      const data = await response.json();
+      console.log("Updated phone screening counter:", data.count);
+    } catch (error) {
+      console.error("Error updating phone screening counter:", error);
     }
   };  
 
@@ -189,6 +204,10 @@ function App() {
 
       if (sesResponse.data.success) {
         alert('Email sent successfully to the candidate.');
+
+          // Update the phone screening counter here
+        await updatePhoneScreeningCounter();
+
       } else {
         alert('Error sending email. Please try again.');
       }

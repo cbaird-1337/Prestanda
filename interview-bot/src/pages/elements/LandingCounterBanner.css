@@ -1,0 +1,23 @@
+.counter-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+    z-index: 15;
+    position: relative;
+  }
+  
+  .counter {
+    text-align: center;
+    padding: 0 10px; /* Add padding between counters */
+  }
+  
+  .counter-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .counter-label {
+    font-size: 1rem;
+  }
+  

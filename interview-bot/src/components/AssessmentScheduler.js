@@ -70,6 +70,15 @@ const handleSubmit = async (
       body: JSON.stringify(requestData),
     });
 
+    // Increment the assessment counter
+    await fetch(`${process.env.REACT_APP_BACKEND_API_URL}/update-counters`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ counterType: "assessment" }),
+    });
+
     setLoading(false);
     setSuccessModalOpened(true);
   } catch (error) {

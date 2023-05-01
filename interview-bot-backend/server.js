@@ -500,6 +500,73 @@ app.post('/submit-assessment', async (req, res) => {
   }
 });
 
+// Update interview and assessment counters each time one of these is scheduled. Used for landing page counter banner
+app.post("/update-counters", async (req, res) => {
+  const { counterType } = req.body;
+
+  if (!["interview", "assessment"].includes(counterType)) {
+    res.status(400).send({ error: "Invalid counter type" });
+    return;
+  }
+
+  try {
+    const docClient = new AWS.DynamoDB.DocumentClient();
+
+    const params = {
+      TableName: "InterviewAndAssessmentCounters",
+      Key: {
+        type: counterType,
+      },
+      UpdateExpression: "set #count = #count + :val",
+      ExpressionAttributeNames: {
+        "#count": "count",
+      },
+      ExpressionAttributeValues: {
+        ":val": 1,
+      },
+      ReturnValues: "UPDATED_NEW",
+    };
+
+    const updateResult = await docClient.update(params).promise();
+    res.status(200).send({ count: updateResult.Attributes.count });
+  } catch (error) {
+    console.error("Error updating counter:", error);
+    res.status(500).send({ error: error.message });
+  }
+});
+
+// Fetch interview and assessment counters for display in LandingCounterBanner frontend code to display on landing page
+app.get("/fetch-counts", async (req, res) => {
+  try {
+    const docClient = new AWS.DynamoDB.DocumentClient();
+
+    const interviewParams = {
+      TableName: "InterviewAndAssessmentCounters",
+      Key: {
+        type: "interview",
+      },
+    };
+
+    const assessmentParams = {
+      TableName: "InterviewAndAssessmentCounters",
+      Key: {
+        type: "assessment",
+      },
+    };
+
+    const interviewResult = await docClient.get(interviewParams).promise();
+    const assessmentResult = await docClient.get(assessmentParams).promise();
+
+    res.status(200).send({
+      interviews: interviewResult.Item.count,
+      assessments: assessmentResult.Item.count,
+    });
+  } catch (error) {
+    console.error("Error fetching counts:", error);
+    res.status(500).send({ error: error.message });
+  }
+});
+
 console.log('PORT', PORT)
 
 app.listen(PORT, () => {
