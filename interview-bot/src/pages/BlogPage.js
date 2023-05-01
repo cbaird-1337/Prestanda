@@ -6,16 +6,15 @@ const Blog = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const feedURL = 'https://medium.com/feed/@prestanda.io'; 
-      const response = await fetch(feedURL);
-      const text = await response.text();
-      const parser = new DOMParser();
-      const xmlDoc = parser.parseFromString(text, 'text/xml');
-      const items = xmlDoc.getElementsByTagName('item');
-      const parsedPosts = Array.from(items).map(item => {
+      const mediumUsername = '@prestanda.io';
+      const mediumURL = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/${mediumUsername}`;
+      
+      const response = await fetch(mediumURL);
+      const data = await response.json();
+      const parsedPosts = data.items.map(item => {
         return {
-          title: item.getElementsByTagName('title')[0].textContent,
-          link: item.getElementsByTagName('link')[0].textContent,
+          title: item.title,
+          link: item.link,
         };
       });
       setPosts(parsedPosts);

@@ -43,8 +43,8 @@ const Landing = () => {
         <div className="login-header">
         <h1 className="header-title">Prestanda. Hiring Done Right.</h1>
         <p className="header-text">Automate first-round interviews, saving time and expanding your talent pipeline.</p>
-        <p className="header-text">Create personalized interviews with AI-generated questions based on each candidate's resume and target role.</p>
-        <p className="header-text">Use affordable, comprehensive psychometric assessments early in the hiring process for data-driven evaluations.</p>
+        <p className="header-text">Personalized AI-generated interview questions based on each candidate's resume and target role.</p>
+        <p className="header-text">Affordable, comprehensive psychometric assessments deployed earlier for data-driven evaluations.</p>
         <p className="header-text">Reduce bias and promote equal opportunities by focusing on candidate qualities that truly matter.</p>
         </div>
           <div className="button-group">
