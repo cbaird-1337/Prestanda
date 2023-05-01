@@ -42,10 +42,18 @@ const Landing = () => {
         <div className="login-container">
         <div className="login-header">
         <h1 className="header-title">Prestanda. Hiring Done Right.</h1>
-        <p className="header-text">Automate first-round phone screenings, saving time and expanding your talent pipeline.</p>
-        <p className="header-text">Generate personalized interview questions based on each candidate's resume and target role.</p>
-        <p className="header-text">Affordable, comprehensive psychometric assessments deployed earlier for data-driven evaluations.</p>
-        <p className="header-text">Reduce bias and promote equal opportunity by focusing on candidate qualities that truly matter.</p>
+        <p className="header-text">
+        <span className="emphasized-text">Automate first-round phone screenings</span>, saving time and expanding your talent pipeline.
+        </p>
+        <p className="header-text">
+          Generate <span className="emphasized-text">personalized interview questions</span> based on each candidate's resume and target role.
+        </p>
+        <p className="header-text">
+          Affordable, <span className="emphasized-text">comprehensive psychometric assessments</span> deployed earlier for data-driven evaluations.
+        </p>
+        <p className="header-text">
+          <span className="emphasized-text">Reduce bias and promote equal opportunity</span> by focusing on candidate qualities that truly matter.
+        </p>
         </div>
           <div className="button-group">
             <Link to="/Signup" className="landing-button signup-button">
