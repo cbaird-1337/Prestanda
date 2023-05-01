@@ -96,6 +96,30 @@
 
 /* Add a media query for mobile devices */
 @media (max-width: 768px) {
+  .centered-container {
+    max-width: 90%;
+    padding-top: 5%;
+  }
+
+  .login-container {
+    padding: 1em;
+    border-radius: 0.1em;
+    max-width: 90%;
+  }
+
+  .login-header {
+    font-size: 1.2em;
+  }
+
+  .value-propositions ul {
+    font-size: 1rem;
+  }
+
+  .button-row {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
   .features-container {
     padding-top: 1rem;
   }
@@ -104,4 +128,28 @@
 .warning-modal-content {
   background-color: gray;
   color: maroon;
+}
+
+.button-row {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.value-propositions {
+  margin-bottom: 1rem;
+}
+
+.value-propositions ul {
+  list-style-type: none;
+  padding: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.value-propositions li {
+  margin-bottom: 0.5rem;
 }

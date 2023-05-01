@@ -1,0 +1,23 @@
+/* Blog.css */
+.blog-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+  }
+  
+  .blog-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .blog-posts {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .blog-post {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  

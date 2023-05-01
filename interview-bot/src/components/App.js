@@ -15,6 +15,7 @@ import PublicRoutes from './PublicRoutes';
 import Account, { AccountContext } from './auth/Account';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import AssessmentPage from '../pages/AssessmentPage';
+import Blog from '../pages/Blog';
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
         <Route path="/assessment/:assessmentId" element={<AssessmentPage />} />
+        <Route path="/blog" element={<Blog />} />
       </Routes>
     </Account>
   );

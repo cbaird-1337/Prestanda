@@ -6,6 +6,7 @@ import Features from "./elements/Features";
 import "./elements/scroll-animation.css"; 
 import PricingCards from "./elements/PricingCards";
 import { Modal } from '@mantine/core';  //delete when moving into production!
+import { Button } from "@mantine/core";
 
 const Landing = () => {
   const [modalOpened, setModalOpened] = useState(false); //delete when moving into production!
@@ -44,10 +45,35 @@ const Landing = () => {
       </div>
     </Modal> 
       <div className="bg-shapes"></div>
+      <div className="button-row">
+        <Link to="/blog">
+          <Button color="white" variant="outline" hover={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}>
+            Blog
+          </Button>
+        </Link>
+        <Link to="/Signup">
+          <Button color="white" variant="outline" hover={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}>
+            Sign Up
+          </Button>
+        </Link>
+        <Link to="/login">
+          <Button color="white" variant="outline" hover={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}>
+            Login
+          </Button>
+        </Link>
+      </div>
       <div className="centered-container">
+      <div className="value-propositions">
+          <ul>
+            <li>Streamline hiring: Save time, effort, and money with automated first call interview screening.</li>
+            <li>Gain early insights: Incorporate cost-effective psychometric assessments early in the interview process.</li>
+            <li>Level the playing field: Reduce bias in hiring by blinding initial screenings and incorporating objective psychometric assessments.</li>
+          </ul>
+        </div>
         <div className="login-container">
           <div className="login-header">
-            <h1>Welcome to Prestanda's Automated Interview Screening Service</h1>
+            <h1>Welcome to Prestanda!</h1>
+            <p>Automated first call interview screening & early stage psychometric assessments.</p>
             <p>Please create an account or login to proceed.</p>
           </div>
           <div className="button-group">
