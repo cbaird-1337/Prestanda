@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './LandingCounterBanner.css';
+import { Paper } from '@mantine/core';
+import { GithubIcon } from '@mantine/icons';
 
 const LandingCounterBanner = () => {
   const [lastCommit, setLastCommit] = useState('');
@@ -39,20 +41,21 @@ const LandingCounterBanner = () => {
 
   return (
     <div className="counter-container">
-      <div className="counter">
+      <Paper className="counter" padding="md" shadow="xs">
+        <GithubIcon className="github-icon" />
         <span className="counter-value">{lastCommit}</span>
         <span className="counter-label">Last Commit:</span>
-      </div>
-      <div className="counter">
+      </Paper>
+      <Paper className="counter" padding="md" shadow="xs">
         <span className="counter-value">{interviews}</span>
         <span className="counter-label"> Interview Screenings Scheduled</span>
-      </div>
-      <div className="counter">
+      </Paper>
+      <Paper className="counter" padding="md" shadow="xs">
         <span className="counter-value">{assessments}</span>
         <span className="counter-label"> Psychometric Assessments Scheduled</span>
-      </div>
+      </Paper>
     </div>
-  );
+  );  
 };
 
 export default LandingCounterBanner;

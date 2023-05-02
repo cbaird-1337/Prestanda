@@ -1,23 +1,37 @@
 .counter-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 20px;
-    z-index: 15;
-    position: relative;
-  }
-  
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  z-index: 15;
+  position: relative;
+}
+
+.counter {
+  text-align: center;
+  padding: 0 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 300px;
+  background-color: #f6f8fa;
+}
+
+.github-icon {
+  margin-right: 8px;
+}
+
+.counter-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.counter-label {
+  font-size: 1rem;
+}
+
+@media (min-width: 768px) {
   .counter {
-    text-align: center;
-    padding: 0 10px; /* Add padding between counters */
+    width: calc(33.3333% - 20px);
   }
-  
-  .counter-value {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  .counter-label {
-    font-size: 1rem;
-  }
-  
+}
