@@ -106,17 +106,19 @@
 @media (max-width: 768px) {
   .centered-container {
     max-width: 90%;
-    padding-top: 5%;
+    padding-top: 8%;
   }
 
   .login-container {
     padding: 1em;
     border-radius: 0.1em;
     max-width: 90%;
+    margin-bottom: 10%;
   }
 
   .login-header {
     font-size: 1.2em;
+    margin-bottom: 3%;
   }
 
   .value-propositions ul {
@@ -130,6 +132,7 @@
 
   .features-container {
     padding-top: 1rem;
+    margin-bottom: 10%;
   }
 }
 
@@ -159,6 +162,7 @@
   scroll-behavior: smooth;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS devices */
 }
 
 .scroll-snap-container::-webkit-scrollbar {
