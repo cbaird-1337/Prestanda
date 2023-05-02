@@ -103,7 +103,7 @@
 }
 
 /* Add a media query for mobile devices */
-@media (max-width: 480px) {
+@media (max-width: 400px) {
   .centered-container {
     max-width: 90%;
     padding-top: 8%;
@@ -184,4 +184,11 @@
   justify-content: center;
   align-items: center;
   padding: 1rem;
+}
+
+/* snap media query for mobile devices */
+@media (max-width: 400px) {
+  .snap {
+    height: auto;
+  }
 }

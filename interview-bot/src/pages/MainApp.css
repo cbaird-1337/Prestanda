@@ -49,7 +49,7 @@ body {
     gap: 1rem;
   }
   
-  @media (max-width: 480px) {
+  @media (max-width: 400px) {
     .form-content {
       flex-direction: column;
     }
