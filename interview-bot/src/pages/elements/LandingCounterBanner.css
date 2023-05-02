@@ -14,7 +14,12 @@
   margin-bottom: 20px;
   width: 100%;
   max-width: 300px;
-  background-color: #f6f8fa;
+  background-color: rgba(246, 248, 250, 0.7); /* Add transparency */
+  box-sizing: border-box; /* Add box-sizing */
+  min-height: 70px; /* Add min-height */
+  display: flex; /* Add display */
+  flex-direction: column; /* Add flex-direction */
+  justify-content: center; /* Add justify-content */
 }
 
 .github-icon {
