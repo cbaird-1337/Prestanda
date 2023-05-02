@@ -42,17 +42,17 @@ const LandingCounterBanner = () => {
   return (
     <div className="counter-container">
       <Paper className="counter" padding="md" shadow="xs">
-      <GitHubIcon className="github-icon" />
-        <span className="counter-value">{lastCommit}</span>
-        <span className="counter-label">Last Commit:</span>
-      </Paper>
-      <Paper className="counter" padding="md" shadow="xs">
         <span className="counter-value">{interviews}</span>
         <span className="counter-label"> Interview Screenings Scheduled</span>
       </Paper>
       <Paper className="counter" padding="md" shadow="xs">
         <span className="counter-value">{assessments}</span>
         <span className="counter-label"> Psychometric Assessments Scheduled</span>
+      </Paper>
+      <Paper className="counter" padding="md" shadow="xs">
+      <GitHubIcon className="github-icon" />
+        <span className="counter-value">{lastCommit}</span>
+        <span className="counter-label">Last Commit:</span>
       </Paper>
     </div>
   );  

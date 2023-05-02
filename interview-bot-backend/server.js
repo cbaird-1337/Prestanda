@@ -579,8 +579,14 @@ app.get("/last-commit", async (req, res) => {
         Accept: 'application/vnd.github+json',
       },
     };
-    const response = await axios.get(`https://api.github.com/repos/${repo}/commits/${branch}/statuses`, config);
-    const lastCommitDate = new Date(response.data[0].created_at);
+    const response = await axios.get(`https://api.github.com/repos/${repo}/commits`, {
+      ...config,
+      params: {
+        sha: branch,
+        per_page: 1, // Limit results to 1, as we only need the latest commit
+      },
+    });
+    const lastCommitDate = new Date(response.data[0].commit.author.date);
     res.status(200).send({ lastCommit: lastCommitDate.toLocaleString() });
   } catch (error) {
     console.error("Error fetching last commit:", error);
