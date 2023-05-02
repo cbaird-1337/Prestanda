@@ -567,6 +567,23 @@ app.get("/fetch-counts", async (req, res) => {
   }
 });
 
+// Get last Github commit date for prestanda repo - called by frontend LandingCounterBanner
+app.get("/last-commit", async (req, res) => {
+  try {
+    const token = process.env.GITHUB_TOKEN;
+    const repo = 'cbaird-1337/Prestanda';
+    const config = {
+      headers: { Authorization: `token ${token}` },
+    };
+    const response = await axios.get(`https://api.github.com/repos/${repo}/commits`, config);
+    const lastCommitDate = new Date(response.data[0].commit.author.date);
+    res.status(200).send({ lastCommit: lastCommitDate.toLocaleString() });
+  } catch (error) {
+    console.error("Error fetching last commit:", error);
+    res.status(500).send({ error: error.message });
+  }
+});
+
 console.log('PORT', PORT)
 
 app.listen(PORT, () => {
