@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './LandingCounterBanner.css';
 import { Paper } from '@mantine/core';
-import { GithubIcon } from '@mantine/icons';
+import { FaGithub } from 'react-icons/fa';
 
 const LandingCounterBanner = () => {
   const [lastCommit, setLastCommit] = useState('');
@@ -42,7 +42,7 @@ const LandingCounterBanner = () => {
   return (
     <div className="counter-container">
       <Paper className="counter" padding="md" shadow="xs">
-        <GithubIcon className="github-icon" />
+      <FaGithub className="github-icon" />
         <span className="counter-value">{lastCommit}</span>
         <span className="counter-label">Last Commit:</span>
       </Paper>
