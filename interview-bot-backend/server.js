@@ -587,7 +587,7 @@ app.get("/last-commit", async (req, res) => {
       },
     });
     const lastCommitDate = new Date(response.data[0].commit.author.date);
-    res.status(200).send({ lastCommit: lastCommitDate.toLocaleString() });
+    res.status(200).send({ lastCommit: lastCommitDate.toLocaleDateString() });
   } catch (error) {
     console.error("Error fetching last commit:", error);
     console.error("Error response data:", error.response.data);
