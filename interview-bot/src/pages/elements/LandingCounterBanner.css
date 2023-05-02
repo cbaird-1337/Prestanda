@@ -6,6 +6,7 @@
   margin-top: 20px;
   z-index: 15;
   position: relative;
+  padding-top: 15%;
 }
 
 .counter {
@@ -13,8 +14,8 @@
   padding: 0 10px;
   margin-bottom: 20px;
   width: 100%;
-  max-width: 300px;
-  background-color: rgba(246, 248, 250, 0.7); /* Add transparency */
+  max-width: 350px;
+  background-color: rgba(88, 127, 184, 0.75); /* Add transparency */
   box-sizing: border-box; /* Add box-sizing */
   min-height: 70px; /* Add min-height */
   display: flex; /* Add display */
@@ -37,6 +38,7 @@
 
 @media (min-width: 768px) {
   .counter {
-    width: calc(33.3333% - 20px);
+    width: calc(35% - 10px); /* Adjust width percentage and subtraction value */
+    margin-right: 15px; /* Add margin-right for spacing between boxes */
   }
 }
