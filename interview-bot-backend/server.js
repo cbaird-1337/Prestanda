@@ -572,14 +572,15 @@ app.get("/last-commit", async (req, res) => {
   try {
     const token = process.env.GITHUB_TOKEN;
     const repo = 'cbaird-1337/Prestanda';
+    const branch = 'main'; // Replace 'main' with the default branch for your repository
     const config = {
       headers: {
         Authorization: `token ${token}`,
         Accept: 'application/vnd.github+json',
       },
     };
-    const response = await axios.get(`https://api.github.com/repos/${repo}/commits`, config);
-    const lastCommitDate = new Date(response.data[0].commit.author.date);
+    const response = await axios.get(`https://api.github.com/repos/${repo}/commits/${branch}/statuses`, config);
+    const lastCommitDate = new Date(response.data[0].created_at);
     res.status(200).send({ lastCommit: lastCommitDate.toLocaleString() });
   } catch (error) {
     console.error("Error fetching last commit:", error);
