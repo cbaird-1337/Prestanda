@@ -73,19 +73,24 @@ function Assessment() {
     }
   
     // Collect user's answers and submit them to your API
-    const answers = {
-      psychometric: psychometricQuestions.map((question) => ({
-        questionId: question.QuestionId,
-        reverseCoded: question.ReverseCoded,
-        category: question.Category,
-        answer: Number(document.querySelector(`input[name="psychometric-${question.QuestionId}"]:checked`)?.value) || 0,
-      })),
-      situational: situationalQuestions.map((question) => ({
-        questionId: question.QuestionId,
-        category: question.Category,
-        answer: Number(document.querySelector(`input[name="situational-${question.QuestionId}"]:checked`)?.value) || 0,
-      })),
-    };
+  const PsychometricAnswers = psychometricQuestions.map((question) => ({
+    QuestionId: question.QuestionId,
+    ReverseCoded: question.ReverseCoded,
+    Category: question.Category,
+    Answer: Number(document.querySelector(`input[name="psychometric-${question.QuestionId}"]:checked`)?.value) || 0,
+  }));
+
+  const SituationalAnswers = situationalQuestions.map((question) => ({
+    QuestionId: question.QuestionId,
+    Category: question.Category,
+    Answer: Number(document.querySelector(`input[name="situational-${question.QuestionId}"]:checked`)?.value) || 0,
+  }));
+
+  const answers = {
+    AssessmentId: assessmentId,
+    PsychometricAnswers: PsychometricAnswers,
+    SituationalAnswers: SituationalAnswers,
+  };
     
     // Check if all questions are answered
     const allQuestionsAnswered = answers.psychometric.every((answer) => answer.answer !== 0) && answers.situational.every((answer) => answer.answer !== 0);

@@ -477,8 +477,8 @@ app.post('/submit-assessment', async (req, res) => {
         },
         UpdateExpression: 'set PsychometricAnswers = :psychometric, SituationalAnswers = :situational, AssessmentStatus = :status',
         ExpressionAttributeValues: {
-          ':psychometric': answers.psychometric,
-          ':situational': answers.situational,
+          ':psychometric': { "L": answers.PsychometricAnswers.map(answer => ({ "M": answer })) },
+          ':situational': { "L": answers.SituationalAnswers.map(answer => ({ "M": answer })) },
           ':status': 'Completed',
         },
       };
