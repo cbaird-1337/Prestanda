@@ -18,17 +18,17 @@ const Features = () => {
     {
       icon: featureIcon1,
       title: "Automated Phone Screening",
-      text: "Automated first call phone or chat based interview screening",
+      text: "Automated first call phone screening saves you time and mitigates talent pipeline backlogs",
     },
     {
       icon: featureIcon2,
-      title: "Customized Candidate Questions",
-      text: "Generate unique interview questions catered specifically to your role, and to each candidates background",
+      title: "Targeted Interview Questions",
+      text: "Interview questions that are generated from the job description you're hiring for, and each candidates resume",
     },
     {
       icon: featureIcon3,
       title: "Job Fit Analysis",
-      text: "Automated job fit recommendations provided by our system that rate the candidates fit based on your unique job description",
+      text: "Automated job fit recommendations that assess candidate responses as they relate to your job description",
     },
     {
       icon: featureIcon4,

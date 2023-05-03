@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 const PricingCards = () => {
   return (
     <div className="flex flex-col items-center space-y-12">
-      <h1 className="text-4xl font-bold text-[#b3b2af]">Pricing</h1>
+      <h1 className="text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-[#b3b2af]">Pricing</h1>
       <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-8 z-50">
         {/* Card 1 */}
-        <div className="bg-gradient-to-br from-[#0270d7] via-[#0270d7] to-[#004a9e] shadow-lg rounded-sm px-8 pt-8 pb-10 text-center w-[20rem] h-[28rem] flex flex-col justify-between"> {/* Increase height and add flex classes */}
+        <div className="bg-gradient-to-br from-[#0270d7] via-[#0270d7] to-[#004a9e] shadow-lg rounded-sm px-8 pt-8 pb-10 text-center w-[20rem] lg:w-[22rem] xl:w-[24rem] 2xl:w-[28rem] h-[28rem] lg:h-[32rem] xl:h-[36rem] 2xl:h-[40rem] flex flex-col justify-between"> {/* Increase height and add flex classes */}
           <h2 className="text-3xl font-semibold mb-4 text-[#c0b081]">FREE</h2>
           <div className="flex-grow flex items-center justify-center">
             <ul className="list-none space-y-2 text-[#dcd0d0] w-full" style={{listStyleType: 'disc'}}>
@@ -23,7 +23,7 @@ const PricingCards = () => {
         </div>
 
         {/* Card 2 */}
-        <div className="bg-gradient-to-br from-[#0270d7] via-[#0270d7] to-[#004a9e] shadow-lg rounded-sm px-8 pt-8 pb-10 text-center w-[20rem] h-[28rem] flex flex-col justify-between"> {/* Increase height and add flex classes */}
+        <div className="bg-gradient-to-br from-[#0270d7] via-[#0270d7] to-[#004a9e] shadow-lg rounded-sm px-8 pt-8 pb-10 text-center w-[20rem] lg:w-[22rem] xl:w-[24rem] 2xl:w-[28rem] h-[28rem] lg:h-[32rem] xl:h-[36rem] 2xl:h-[40rem] flex flex-col justify-between"> {/* Increase height and add flex classes */}
           <h2 className="text-3xl font-semibold mb-4 text-[#c0b081]">Pay As You Go</h2>
           <div className="flex-grow flex items-center justify-center">
             <ul className="list-none space-y-2 text-[#dcd0d0] w-full" style={{listStyleType: 'disc'}}>
@@ -39,7 +39,7 @@ const PricingCards = () => {
         </div>
 
         {/* Card 3 */}
-        <div className="bg-gradient-to-br from-[#0270d7] via-[#0270d7] to-[#004a9e] shadow-lg rounded-sm px-8 pt-8 pb-10 text-center w-[20rem] h-[28rem] flex flex-col justify-between"> {/* Increase height and add flex classes */}
+        <div className="bg-gradient-to-br from-[#0270d7] via-[#0270d7] to-[#004a9e] shadow-lg rounded-sm px-8 pt-8 pb-10 text-center w-[20rem] lg:w-[22rem] xl:w-[24rem] 2xl:w-[28rem] h-[28rem] lg:h-[32rem] xl:h-[36rem] 2xl:h-[40rem] flex flex-col justify-between"> {/* Increase height and add flex classes */}
           <h2 className="text-3xl font-semibold mb-4 text-[#c0b081]">Monthly or Annual Commit</h2>
           <div className="flex-grow flex items-center justify-center">
             <ul className="list-none space-y-2 text-[#dcd0d0] w-full" style={{listStyleType: 'disc'}}>
