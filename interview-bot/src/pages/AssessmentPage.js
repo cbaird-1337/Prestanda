@@ -134,7 +134,7 @@ function Assessment() {
           PsychometricAnswers: answers.PsychometricAnswers,
           SituationalAnswers: answers.SituationalAnswers,
         },
-        Timestamp: new Date().toISOString(),
+        TimeTakenAt: new Date().toISOString(),
       });
 
       if (response.status === 200) {

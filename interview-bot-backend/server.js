@@ -333,7 +333,7 @@ app.post("/schedule-assessment", async (req, res) => {
         AssessmentStatus: "pending",
         PsychometricAnswers: null,
         SituationalAnswers: null,
-        Timestamp: null,
+        TimeTakenAt: null,
       },
     };    
 
@@ -450,7 +450,7 @@ app.get('/get-situational-questions', async (req, res) => {
 
 // 4. Submit assessment - writes candidate answers to dynamoDb CandidateAssessmentResults table based on AssessmentID, and triggers SNS topic to initiate grading lambda
 app.post('/submit-assessment', async (req, res) => {
-  const { assessmentId, answers, Timestamp } = req.body;
+  const { assessmentId, answers, TimeTakenAt } = req.body;
 
   // First, query the CandidateAssessmentResults table using the GSI to get the primary key
   const queryParams = {
@@ -476,12 +476,12 @@ app.post('/submit-assessment', async (req, res) => {
           ManagerAccountId: primaryKey,
           AssessmentId: assessmentId, 
         },
-        UpdateExpression: 'set PsychometricAnswers = :psychometric, SituationalAnswers = :situational, AssessmentStatus = :status, Timestamp = :timestamp',
+        UpdateExpression: 'set PsychometricAnswers = :psychometric, SituationalAnswers = :situational, AssessmentStatus = :status, TimeTakenAt = :timeTakenAt',
         ExpressionAttributeValues: {
           ':psychometric': { "L": answers.PsychometricAnswers.map(answer => ({ "M": answer })) },
           ':situational': { "L": answers.SituationalAnswers.map(answer => ({ "M": answer })) },
           ':status': 'Completed',
-          ':timestamp': Timestamp,
+          ':timeTakenAt': TimeTakenAt,
         },
       };
       
