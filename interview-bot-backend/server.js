@@ -483,7 +483,9 @@ app.post('/submit-assessment', async (req, res) => {
         },
       };
       
-      await dynamoDb.update(updateParams).promise();      
+      await dynamoDb.update(updateParams).promise().catch((error) => {
+        return res.status(500).send({ error: `Error updating assessment: ${error.message}` });
+      });  
 
       // Publish the SNS message with the assessmentId
       const snsParams = {
@@ -498,6 +500,8 @@ app.post('/submit-assessment', async (req, res) => {
       res.status(404).send({ error: 'No assessment found for the given ID' });
     }
   } catch (error) {
+    console.error('Error submitting assessment:', error.message);
+    console.error(error.stack);
     res.status(500).send({ error: 'Error submitting assessment' });
   }
 });
