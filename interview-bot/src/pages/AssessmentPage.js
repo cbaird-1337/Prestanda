@@ -89,14 +89,13 @@ function Assessment() {
     // Collect user's answers and submit them to your API
     const PsychometricAnswers = Object.keys(psychometricAnswers).map((key) => ({
       QuestionId: Number(key),
-      ReverseCoded: psychometricQuestions.find((q) => q.QuestionId === Number(key)).ReverseCoded,
-      Category: psychometricQuestions.find((q) => q.QuestionId === Number(key)).Category,
+      ...(psychometricQuestions.find((q) => q.QuestionId === Number(key)) || {}),
       Answer: psychometricAnswers[key],
     }));
   
     const SituationalAnswers = Object.keys(situationalAnswers).map((key) => ({
       QuestionId: Number(key),
-      Category: situationalQuestions.find((q) => q.QuestionId === Number(key)).Category,
+      ...(situationalQuestions.find((q) => q.QuestionId === Number(key)) || {}),
       Answer: situationalAnswers[key],
     }));
 
@@ -216,7 +215,7 @@ function Assessment() {
                   handleAnswerChange("situational", question.QuestionId, Number(e.target.value))
                 }
               />
-              {choice.answer} {/* Extract the answer text from the choice object */}
+              {choice} {/* Extract the answer text from the choice object */}
             </label>
           ))}
         </div>
