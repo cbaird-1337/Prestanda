@@ -42,48 +42,8 @@
 /* Media query for 24-inch screens (1920x1080) */
 @media (min-width: 1921px) {
   .feature-icon {
-    width: 10rem;
-    height: 10rem;
-  }
-
-  .features-white-text {
-    font-size: 1.5rem;
-  }
-
-  .feature-title-text {
-    font-size: 2rem;
-  }
-
-  .text-sm {
-    font-size: 1.1rem;
-  }
-}
-
-/* Media query for 27-inch screens (2560x1440) */
-@media (min-width: 2561px) {
-  .feature-icon {
-    width: 12rem;
-    height: 12rem;
-  }
-
-  .features-white-text {
-    font-size: 1.75rem;
-  }
-
-  .feature-title-text {
-    font-size: 2.25rem;
-  }
-
-  .text-sm {
-    font-size: 1.3rem;
-  }
-}
-
-/* Media query for 32-inch screens and larger (3840x2160+) */
-@media (min-width: 3841px) {
-  .feature-icon {
-    width: 14rem;
-    height: 14rem;
+    width: 8rem;
+    height: 8rem;
   }
 
   .features-white-text {
@@ -93,9 +53,37 @@
   .feature-title-text {
     font-size: 2.5rem;
   }
+}
 
-  .text-sm {
-    font-size: 1.5rem;
+/* Media query for 27-inch screens (2560x1440) */
+@media (min-width: 2561px) {
+  .feature-icon {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .features-white-text {
+    font-size: 2.25rem;
+  }
+
+  .feature-title-text {
+    font-size: 2.75rem;
+  }
+}
+
+/* Media query for 32-inch screens and larger (3840x2160+) */
+@media (min-width: 3841px) {
+  .feature-icon {
+    width: 12rem;
+    height: 12rem;
+  }
+
+  .features-white-text {
+    font-size: 2.5rem;
+  }
+
+  .feature-title-text {
+    font-size: 3rem;
   }
 }
 
@@ -139,10 +127,6 @@
 
 .text-center {
   text-align: center;
-}
-
-.text-sm {
-  font-size: 0.90rem;
 }
 
 .mt-24 {
