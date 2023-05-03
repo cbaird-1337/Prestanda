@@ -19,7 +19,7 @@ const pdfParse = require('pdf-parse');
 const { v4: uuidv4 } = require("uuid");
 const morgan = require('morgan');
 const sns = new AWS.SNS();
-
+const { marshall } = AWS.DynamoDB.Converter;
 
 // Configure AWS SDK and initialize S3 instance
 AWS.config.update({
@@ -477,30 +477,26 @@ app.post('/submit-assessment', async (req, res) => {
       const updateParams = {
         TableName: 'CandidateAssessmentResults',
         Key: {
-          ManagerAccountId: primaryKey,
-          AssessmentId: AssessmentId, 
+          ManagerAccountId: { S: primaryKey },
+          AssessmentId: { S: AssessmentId },
         },
         UpdateExpression: 'set PsychometricAnswers = :psychometric, SituationalAnswers = :situational, AssessmentStatus = :status, TimeTakenAt = :timeTakenAt',
-        ExpressionAttributeValues: {
-          ':psychometric': { "L": PsychometricAnswers.map(answer => ({ "M": answer })) },
-          ':situational': { "L": SituationalAnswers.map(answer => ({ "M": answer })) },
-          ':status': 'Completed',
-          ':timeTakenAt': TimeTakenAt,
-        },
+        ExpressionAttributeValues: marshall({
+          ':psychometric': PsychometricAnswers.map(answer => ({ M: answer })),
+          ':situational': SituationalAnswers.map(answer => ({ M: answer })),
+          ':status': { S: 'Completed' },
+          ':timeTakenAt': { S: TimeTakenAt },
+        }),
       };
       
-      await dynamoDb.update(updateParams).promise().catch((error) => {
-        return res.status(500).send({ error: `Error updating assessment: ${error.message}` });
-      });  
+      await dynamoDb.update(updateParams).promise();
 
-      // Publish the SNS message with the assessmentId
       const snsParams = {
         Message: JSON.stringify({ AssessmentId }),
-        TopicArn: process.env.SNS_GRADING_TOPIC_ARN, // SNS topic ARN to trigger grading lambda
+        TopicArn: process.env.SNS_GRADING_TOPIC_ARN,
       };
 
       await sns.publish(snsParams).promise();
-
       res.status(200).send({ message: 'Assessment submitted successfully' });
     } else {
       res.status(404).send({ error: 'No assessment found for the given ID' });
@@ -508,7 +504,7 @@ app.post('/submit-assessment', async (req, res) => {
   } catch (error) {
     console.error('Error submitting assessment:', error.message);
     console.error(error.stack);
-    res.status(500).send({ error: 'Error submitting assessment' });
+    res.status(500).send({ error: `Error submitting assessment: ${error.message}` });
   }
 });
 
