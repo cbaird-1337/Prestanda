@@ -331,7 +331,8 @@ app.post("/schedule-assessment", async (req, res) => {
         JobTitle: jobTitle,
         CandidatePhoneNumber: req.body.candidatePhoneNumber,
         AssessmentStatus: "pending",
-        AssessmentResults: null,
+        PsychometricAnswers: null,
+        SituationalAnswers: null,
         Timestamp: null,
       },
     };    
@@ -474,14 +475,15 @@ app.post('/submit-assessment', async (req, res) => {
         Key: {
           ManagerAccountId: primaryKey,
         },
-        UpdateExpression: 'set AssessmentResults = :answers, AssessmentStatus = :status',
+        UpdateExpression: 'set PsychometricAnswers = :psychometric, SituationalAnswers = :situational, AssessmentStatus = :status',
         ExpressionAttributeValues: {
-          ':answers': answers,
+          ':psychometric': answers.psychometric,
+          ':situational': answers.situational,
           ':status': 'Completed',
         },
       };
-
-      await dynamoDb.update(updateParams).promise();
+      
+      await dynamoDb.update(updateParams).promise();      
 
       // Publish the SNS message with the assessmentId
       const snsParams = {
