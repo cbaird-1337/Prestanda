@@ -9,6 +9,8 @@ function Assessment() {
   const [psychometricQuestions, setPsychometricQuestions] = useState([]);
   const [situationalQuestions, setSituationalQuestions] = useState([]);
   const [unansweredQuestions, setUnansweredQuestions] = useState({});
+  const [psychometricAnswers, setPsychometricAnswers] = useState({});
+  const [situationalAnswers, setSituationalAnswers] = useState({});
 
   const { assessmentId } = useParams();
   const navigate = useNavigate();
@@ -75,18 +77,18 @@ function Assessment() {
     }
   
     // Collect user's answers and submit them to your API
-  const PsychometricAnswers = psychometricQuestions.map((question) => ({
-    QuestionId: question.QuestionId,
-    ReverseCoded: question.ReverseCoded,
-    Category: question.Category,
-    Answer: Number(document.querySelector(`input[name="psychometric-${question.QuestionId}"]:checked`)?.value) || 0,
-  }));
-
-  const SituationalAnswers = situationalQuestions.map((question) => ({
-    QuestionId: question.QuestionId,
-    Category: question.Category,
-    Answer: Number(document.querySelector(`input[name="situational-${question.QuestionId}"]:checked`)?.value) || 0,
-  }));
+    const PsychometricAnswers = Object.keys(psychometricAnswers).map((key) => ({
+      QuestionId: Number(key),
+      ReverseCoded: psychometricQuestions.find((q) => q.QuestionId === Number(key)).ReverseCoded,
+      Category: psychometricQuestions.find((q) => q.QuestionId === Number(key)).Category,
+      Answer: psychometricAnswers[key],
+    }));
+  
+    const SituationalAnswers = Object.keys(situationalAnswers).map((key) => ({
+      QuestionId: Number(key),
+      Category: situationalQuestions.find((q) => q.QuestionId === Number(key)).Category,
+      Answer: situationalAnswers[key],
+    }));
 
   const answers = {
     AssessmentId: assessmentId,
@@ -145,6 +147,18 @@ function Assessment() {
     );
   };  
 
+  const handleAnswerChange = (questionType, questionId, answer) => {
+    setUnansweredQuestions((prevUnanswered) => {
+      const newUnanswered = { ...prevUnanswered };
+      if (answer > 0) {
+        delete newUnanswered[`${questionType}-${questionId}`];
+      } else {
+        newUnanswered[`${questionType}-${questionId}`] = true;
+      }
+      return newUnanswered;
+    });
+  };
+
   const PsychometricQuestion = ({ question }) => {
     const isUnanswered = unansweredQuestions[`psychometric-${question.QuestionId}`];
     return (
@@ -152,13 +166,20 @@ function Assessment() {
         <div>{question.QuestionText}</div>
         {question.AnswerChoices.map((choice, index) => (
           <label key={index} className="answer-option">
-            <input type="radio" name={`psychometric-${question.QuestionId}`} value={index + 1} />
+            <input
+              type="radio"
+              name={`psychometric-${question.QuestionId}`}
+              value={index + 1}
+              onChange={(e) =>
+                handleAnswerChange("psychometric", question.QuestionId, Number(e.target.value))
+              }
+            />
           </label>
         ))}
       </div>
     );
-  };  
-  
+  };
+
   const SituationalQuestion = ({ question }) => {
     const isUnanswered = unansweredQuestions[`situational-${question.QuestionId}`];
     return (
@@ -167,14 +188,21 @@ function Assessment() {
         <div className="answer-options">
           {question.AnswerChoices.map((choice, index) => (
             <label key={index}>
-              <input type="radio" name={`situational-${question.QuestionId}`} value={index + 1} />
+              <input
+                type="radio"
+                name={`situational-${question.QuestionId}`}
+                value={index + 1}
+                onChange={(e) =>
+                  handleAnswerChange("situational", question.QuestionId, Number(e.target.value))
+                }
+              />
               {choice.answer} {/* Extract the answer text from the choice object */}
             </label>
           ))}
         </div>
       </div>
     );
-  };  
+  };
   
   return (
     <div className="assessment-page">

@@ -474,6 +474,7 @@ app.post('/submit-assessment', async (req, res) => {
         TableName: 'CandidateAssessmentResults',
         Key: {
           ManagerAccountId: primaryKey,
+          AssessmentId: assessmentId, 
         },
         UpdateExpression: 'set PsychometricAnswers = :psychometric, SituationalAnswers = :situational, AssessmentStatus = :status',
         ExpressionAttributeValues: {
