@@ -480,12 +480,15 @@ app.post('/submit-assessment', async (req, res) => {
           ManagerAccountId: { S: primaryKey },
           AssessmentId: { S: AssessmentId },
         },
+        ConditionExpression: 'ManagerAccountId = :managerAccountId AND AssessmentId = :assessmentId',
         UpdateExpression: 'set PsychometricAnswers = :psychometric, SituationalAnswers = :situational, AssessmentStatus = :status, TimeTakenAt = :timeTakenAt',
         ExpressionAttributeValues: marshall({
           ':psychometric': PsychometricAnswers.map(answer => ({ M: answer })),
           ':situational': SituationalAnswers.map(answer => ({ M: answer })),
           ':status': { S: 'Completed' },
           ':timeTakenAt': { S: TimeTakenAt },
+          ':managerAccountId': { S: primaryKey },
+          ':assessmentId': { S: AssessmentId },
         }),
       };
       
