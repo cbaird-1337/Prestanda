@@ -148,6 +148,12 @@ function Assessment() {
   };  
 
   const handleAnswerChange = (questionType, questionId, answer) => {
+    if (questionType === 'psychometric') {
+      setPsychometricAnswers((prevAnswers) => ({ ...prevAnswers, [questionId]: answer }));
+    } else if (questionType === 'situational') {
+      setSituationalAnswers((prevAnswers) => ({ ...prevAnswers, [questionId]: answer }));
+    }
+  
     setUnansweredQuestions((prevUnanswered) => {
       const newUnanswered = { ...prevUnanswered };
       if (answer > 0) {
@@ -157,7 +163,7 @@ function Assessment() {
       }
       return newUnanswered;
     });
-  };
+  };  
 
   const PsychometricQuestion = ({ question }) => {
     const isUnanswered = unansweredQuestions[`psychometric-${question.QuestionId}`];
