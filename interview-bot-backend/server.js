@@ -450,7 +450,7 @@ app.get('/get-situational-questions', async (req, res) => {
 
 // 4. Submit assessment - writes candidate answers to dynamoDb CandidateAssessmentResults table based on AssessmentID, and triggers SNS topic to initiate grading lambda
 app.post('/submit-assessment', async (req, res) => {
-  const { assessmentId, answers, TimeTakenAt } = req.body;
+  const { AssessmentId, PsychometricAnswers, SituationalAnswers, TimeTakenAt } = req.body;
 
   // First, query the CandidateAssessmentResults table using the GSI to get the primary key
   const queryParams = {
@@ -458,7 +458,7 @@ app.post('/submit-assessment', async (req, res) => {
     IndexName: 'AssessmentId-index',
     KeyConditionExpression: 'AssessmentId = :id',
     ExpressionAttributeValues: {
-      ':id': assessmentId,
+      ':id': AssessmentId,
     },
   };
 
@@ -468,18 +468,20 @@ app.post('/submit-assessment', async (req, res) => {
     if (queryResult.Items && queryResult.Items.length > 0) {
       // Get the primary key (e.g., CandidateId or UserId) from the fetched document
       const primaryKey = queryResult.Items[0].ManagerAccountId.S;
+      console.log('primaryKey:', primaryKey);
+      console.log('assessmentId:', assessmentId);
 
       // Now, update the document using the primary key
       const updateParams = {
         TableName: 'CandidateAssessmentResults',
         Key: {
           ManagerAccountId: primaryKey,
-          AssessmentId: assessmentId, 
+          AssessmentId: AssessmentId, 
         },
         UpdateExpression: 'set PsychometricAnswers = :psychometric, SituationalAnswers = :situational, AssessmentStatus = :status, TimeTakenAt = :timeTakenAt',
         ExpressionAttributeValues: {
-          ':psychometric': { "L": answers.PsychometricAnswers.map(answer => ({ "M": answer })) },
-          ':situational': { "L": answers.SituationalAnswers.map(answer => ({ "M": answer })) },
+          ':psychometric': { "L": PsychometricAnswers.map(answer => ({ "M": answer })) },
+          ':situational': { "L": SituationalAnswers.map(answer => ({ "M": answer })) },
           ':status': 'Completed',
           ':timeTakenAt': TimeTakenAt,
         },
@@ -491,7 +493,7 @@ app.post('/submit-assessment', async (req, res) => {
 
       // Publish the SNS message with the assessmentId
       const snsParams = {
-        Message: JSON.stringify({ assessmentId }),
+        Message: JSON.stringify({ AssessmentId }),
         TopicArn: process.env.SNS_GRADING_TOPIC_ARN, // SNS topic ARN to trigger grading lambda
       };
 

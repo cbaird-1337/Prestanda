@@ -100,12 +100,6 @@ function Assessment() {
       Answer: Number(document.querySelector(`input[name="situational-${question.QuestionId}"]:checked`)?.value) || 0,
     }));
     
-    const answers = {
-      AssessmentId: assessmentId,
-      PsychometricAnswers: PsychometricAnswers,
-      SituationalAnswers: SituationalAnswers,
-    };    
-    
    // Calculate the unanswered questions
   const newUnansweredQuestions = {};
     PsychometricAnswers.forEach((answer) => {
@@ -120,7 +114,7 @@ function Assessment() {
     });
 
     setUnansweredQuestions(newUnansweredQuestions);
-    const allQuestionsAnswered = answers.PsychometricAnswers.every((answer) => answer.Answer !== 0) && answers.SituationalAnswers.every((answer) => answer.Answer !== 0);
+    const allQuestionsAnswered = PsychometricAnswers.every((answer) => answer.Answer !== 0) && SituationalAnswers.every((answer) => answer.Answer !== 0);
 
     if (!allQuestionsAnswered) {
       alert('Please answer all questions before submitting.');
@@ -129,11 +123,9 @@ function Assessment() {
 
     try {
       const response = await axios.post(`${process.env.REACT_APP_BACKEND_API_URL}/submit-assessment`, {
-        assessmentId: assessmentId, 
-        answers: {
-          PsychometricAnswers: answers.PsychometricAnswers,
-          SituationalAnswers: answers.SituationalAnswers,
-        },
+        AssessmentId: assessmentId, 
+        PsychometricAnswers: PsychometricAnswers,
+        SituationalAnswers: SituationalAnswers,
         TimeTakenAt: new Date().toISOString(),
       });
 
