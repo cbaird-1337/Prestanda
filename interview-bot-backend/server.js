@@ -492,7 +492,7 @@ app.post('/submit-assessment', async (req, res) => {
         }),
       };
 
-      console.log('updateParams:', updateParams); //delete this once the submit is fixed
+      console.log(updateParams); //delete this once the submit is fixed
       
       await dynamoDb.update(updateParams).promise();
 
