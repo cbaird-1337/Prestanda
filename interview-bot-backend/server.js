@@ -491,6 +491,8 @@ app.post('/submit-assessment', async (req, res) => {
           ':assessmentId': { S: AssessmentId },
         }),
       };
+
+      console.log('updateParams:', updateParams); //delete this once the submit is fixed
       
       await dynamoDb.update(updateParams).promise();
 
