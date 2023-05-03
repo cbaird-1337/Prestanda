@@ -47,6 +47,11 @@
   margin-bottom: 20px;
 }
 
+.unanswered {
+  background-color: #ffe6e6;
+  border: 1px solid #ff0000;
+}
+
 .instructions {
   text-align: center;
   margin-bottom: 32px;

@@ -8,6 +8,7 @@ function Assessment() {
   const [assessmentStatus, setAssessmentStatus] = useState(null);
   const [psychometricQuestions, setPsychometricQuestions] = useState([]);
   const [situationalQuestions, setSituationalQuestions] = useState([]);
+  const [unansweredQuestions, setUnansweredQuestions] = useState({});
 
   const { assessmentId } = useParams();
   const navigate = useNavigate();
@@ -66,6 +67,7 @@ function Assessment() {
     }
   };
 
+    //submit assessment handler
   const handleSubmit = async () => {
     if (assessmentStatus === 'Completed') {
       alert('Sorry, this test can only be taken once.');
@@ -92,20 +94,33 @@ function Assessment() {
     SituationalAnswers: SituationalAnswers,
   };
     
-    // Check if all questions are answered
-    const allQuestionsAnswered = answers.psychometric.every((answer) => answer.answer !== 0) && answers.situational.every((answer) => answer.answer !== 0);
+   // Calculate the unanswered questions
+  const newUnansweredQuestions = {};
+    PsychometricAnswers.forEach((answer) => {
+      if (answer.Answer === 0) {
+        newUnansweredQuestions[`psychometric-${answer.QuestionId}`] = true;
+      }
+    });
+    SituationalAnswers.forEach((answer) => {
+      if (answer.Answer === 0) {
+        newUnansweredQuestions[`situational-${answer.QuestionId}`] = true;
+      }
+    });
+
+    setUnansweredQuestions(newUnansweredQuestions);
+    const allQuestionsAnswered = Object.keys(newUnansweredQuestions).length === 0;
 
     if (!allQuestionsAnswered) {
       alert('Please answer all questions before submitting.');
       return;
     }
-  
+
     try {
       const response = await axios.post(`${process.env.REACT_APP_BACKEND_API_URL}/submit-assessment`, {
         assessmentId: assessmentId,
         answers: answers,
       });
-  
+
       if (response.status === 200) {
         alert('Assessment submitted successfully');
         setAssessmentStatus('completed');
@@ -131,8 +146,9 @@ function Assessment() {
   };  
 
   const PsychometricQuestion = ({ question }) => {
+    const isUnanswered = unansweredQuestions[`psychometric-${question.QuestionId}`];
     return (
-      <div className="question-row">
+      <div className={`question-row ${isUnanswered ? 'unanswered' : ''}`}>
         <div>{question.QuestionText}</div>
         {question.AnswerChoices.map((choice, index) => (
           <label key={index} className="answer-option">
@@ -144,8 +160,9 @@ function Assessment() {
   };  
   
   const SituationalQuestion = ({ question }) => {
+    const isUnanswered = unansweredQuestions[`situational-${question.QuestionId}`];
     return (
-      <div className="situational-question">
+      <div className={`situational-question ${isUnanswered ? 'unanswered' : ''}`}>
         <p>{question.QuestionText}</p>
         <div className="answer-options">
           {question.AnswerChoices.map((choice, index) => (
