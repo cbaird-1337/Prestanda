@@ -51,7 +51,6 @@ function Assessment() {
       const response = await axios.get(`${process.env.REACT_APP_BACKEND_API_URL}/get-psychometric-questions`);
       const data = response.data;
       shuffleArray(data); // Shuffle the questions before setting them to the state
-      console.log('Psychometric questions data:', data);
       setPsychometricQuestions(data);
     } catch (error) {
       console.error('Error fetching psychometric questions:', error);
@@ -62,7 +61,6 @@ function Assessment() {
     try {
       const response = await axios.get(`${process.env.REACT_APP_BACKEND_API_URL}/get-situational-questions`);
       const data = response.data;
-      console.log('Situational questions data:', data); // Remove this line after verifying ALL question data is returned
       setSituationalQuestions(data);
     } catch (error) {
       console.error('Error fetching situational questions:', error);
@@ -167,6 +165,7 @@ function Assessment() {
 
   const PsychometricQuestion = ({ question }) => {
     const isUnanswered = unansweredQuestions[`psychometric-${question.QuestionId}`];
+    const currentAnswer = psychometricAnswers[question.QuestionId] || 0;
     return (
       <div className={`question-row ${isUnanswered ? 'unanswered' : ''}`}>
         <div>{question.QuestionText}</div>
@@ -176,6 +175,7 @@ function Assessment() {
               type="radio"
               name={`psychometric-${question.QuestionId}`}
               value={index + 1}
+              checked={currentAnswer === index + 1}
               onChange={(e) =>
                 handleAnswerChange("psychometric", question.QuestionId, Number(e.target.value))
               }
@@ -184,10 +184,11 @@ function Assessment() {
         ))}
       </div>
     );
-  };
+  };  
 
   const SituationalQuestion = ({ question }) => {
     const isUnanswered = unansweredQuestions[`situational-${question.QuestionId}`];
+    const currentAnswer = situationalAnswers[question.QuestionId] || 0;
     return (
       <div className={`situational-question ${isUnanswered ? 'unanswered' : ''}`}>
         <p>{question.QuestionText}</p>
@@ -198,6 +199,7 @@ function Assessment() {
                 type="radio"
                 name={`situational-${question.QuestionId}`}
                 value={index + 1}
+                checked={currentAnswer === index + 1}
                 onChange={(e) =>
                   handleAnswerChange("situational", question.QuestionId, Number(e.target.value))
                 }
@@ -208,7 +210,7 @@ function Assessment() {
         </div>
       </div>
     );
-  };
+  };  
   
   return (
     <div className="assessment-page">
