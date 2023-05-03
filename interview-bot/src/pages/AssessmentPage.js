@@ -67,6 +67,18 @@ function Assessment() {
     }
   };
 
+  useEffect(() => {
+    const initializeAnswers = (questions) => {
+      return questions.reduce((acc, question) => {
+        acc[question.QuestionId] = 0;
+        return acc;
+      }, {});
+    };
+  
+    setPsychometricAnswers(initializeAnswers(psychometricQuestions));
+    setSituationalAnswers(initializeAnswers(situationalQuestions));
+  }, [psychometricQuestions, situationalQuestions]);  
+
     //submit assessment handler
   const handleSubmit = async () => {
     if (assessmentStatus === 'Completed') {
@@ -214,6 +226,7 @@ function Assessment() {
   
   return (
     <div className="assessment-page">
+     <div className="assessment-wrapper">
       <h2 className="section-title">Candidate Psychometric Assessment</h2>
       <div className="instructions">
         <p>Below you will find a pool of 100 psychometric questions to answer. There are no right or wrong answers, this assessment is designed to provide the hiring manager insights into your personality type and motivators. Please ensure that you are in a space where you can focus, and have enough time to complete the full assessment, as it cannot be saved and resumed. Please answer as honestly as possible:</p>
@@ -235,6 +248,7 @@ function Assessment() {
       <div className="submit-button-container">
         <Button onClick={handleSubmit} variant="outline">Submit Assessment</Button>
       </div>
+     </div>
     </div>
   );   
 }
