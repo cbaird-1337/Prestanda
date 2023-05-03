@@ -482,14 +482,14 @@ app.post('/submit-assessment', async (req, res) => {
         },
         ConditionExpression: 'ManagerAccountId = :managerAccountId AND AssessmentId = :assessmentId',
         UpdateExpression: 'set PsychometricAnswers = :psychometric, SituationalAnswers = :situational, AssessmentStatus = :status, TimeTakenAt = :timeTakenAt',
-        ExpressionAttributeValues: marshall({
-          ':psychometric': PsychometricAnswers.map(answer => ({ M: answer })),
-          ':situational': SituationalAnswers.map(answer => ({ M: answer })),
+        ExpressionAttributeValues: {
+          ':psychometric': { L: PsychometricAnswers.map(answer => ({ M: answer })) },
+          ':situational': { L: SituationalAnswers.map(answer => ({ M: answer })) },
           ':status': { S: 'Completed' },
           ':timeTakenAt': { S: TimeTakenAt },
           ':managerAccountId': { S: primaryKey },
           ':assessmentId': { S: AssessmentId },
-        }),
+        },
       };
 
       console.log(updateParams); //delete this once the submit is fixed
