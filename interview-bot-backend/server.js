@@ -469,7 +469,9 @@ app.post('/submit-assessment', async (req, res) => {
       // Get the primary key (e.g., CandidateId or UserId) from the fetched document
       const primaryKey = queryResult.Items[0].ManagerAccountId.S;
       console.log('primaryKey:', primaryKey);
-      console.log('assessmentId:', assessmentId);
+      console.log('AssessmentId:', AssessmentId);
+      console.log('queryResult:', queryResult);
+      console.log('Fetched item:', queryResult.Items[0]);
 
       // Now, update the document using the primary key
       const updateParams = {
