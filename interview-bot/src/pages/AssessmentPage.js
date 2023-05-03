@@ -87,23 +87,24 @@ function Assessment() {
     }
   
     // Collect user's answers and submit them to your API
-    const PsychometricAnswers = Object.keys(psychometricAnswers).map((key) => ({
-      QuestionId: Number(key),
-      ...(psychometricQuestions.find((q) => q.QuestionId === Number(key)) || {}),
-      Answer: psychometricAnswers[key],
+    const PsychometricAnswers = psychometricQuestions.map((question) => ({
+      QuestionId: question.QuestionId,
+      ReverseCoded: question.ReverseCoded,
+      Category: question.Category,
+      Answer: Number(document.querySelector(`input[name="psychometric-${question.QuestionId}"]:checked`)?.value) || 0,
     }));
-  
-    const SituationalAnswers = Object.keys(situationalAnswers).map((key) => ({
-      QuestionId: Number(key),
-      ...(situationalQuestions.find((q) => q.QuestionId === Number(key)) || {}),
-      Answer: situationalAnswers[key],
+    
+    const SituationalAnswers = situationalQuestions.map((question) => ({
+      QuestionId: question.QuestionId,
+      Category: question.Category,
+      Answer: Number(document.querySelector(`input[name="situational-${question.QuestionId}"]:checked`)?.value) || 0,
     }));
-
-  const answers = {
-    AssessmentId: assessmentId,
-    PsychometricAnswers: PsychometricAnswers,
-    SituationalAnswers: SituationalAnswers,
-  };
+    
+    const answers = {
+      AssessmentId: assessmentId,
+      PsychometricAnswers: PsychometricAnswers,
+      SituationalAnswers: SituationalAnswers,
+    };    
     
    // Calculate the unanswered questions
   const newUnansweredQuestions = {};
@@ -119,7 +120,7 @@ function Assessment() {
     });
 
     setUnansweredQuestions(newUnansweredQuestions);
-    const allQuestionsAnswered = Object.keys(newUnansweredQuestions).length === 0;
+    const allQuestionsAnswered = answers.PsychometricAnswers.every((answer) => answer.Answer !== 0) && answers.SituationalAnswers.every((answer) => answer.Answer !== 0);
 
     if (!allQuestionsAnswered) {
       alert('Please answer all questions before submitting.');
@@ -128,8 +129,12 @@ function Assessment() {
 
     try {
       const response = await axios.post(`${process.env.REACT_APP_BACKEND_API_URL}/submit-assessment`, {
-        assessmentId: assessmentId,
-        answers: answers,
+        assessmentId: assessmentId, 
+        answers: {
+          PsychometricAnswers: answers.PsychometricAnswers,
+          SituationalAnswers: answers.SituationalAnswers,
+        },
+        Timestamp: new Date().toISOString(),
       });
 
       if (response.status === 200) {
@@ -191,6 +196,7 @@ function Assessment() {
                 handleAnswerChange("psychometric", question.QuestionId, Number(e.target.value))
               }
             />
+            {choice.answer} {/* Extract the answer text from the choice object */}
           </label>
         ))}
       </div>
@@ -215,7 +221,7 @@ function Assessment() {
                   handleAnswerChange("situational", question.QuestionId, Number(e.target.value))
                 }
               />
-              {choice} {/* Extract the answer text from the choice object */}
+              {choice.answer} {/* Extract the answer text from the choice object */}
             </label>
           ))}
         </div>
