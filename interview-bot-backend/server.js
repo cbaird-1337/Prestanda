@@ -19,7 +19,10 @@ const pdfParse = require('pdf-parse');
 const { v4: uuidv4 } = require("uuid");
 const morgan = require('morgan');
 const sns = new AWS.SNS();
-const { marshall } = AWS.DynamoDB.Converter;
+const { DynamoDB } = require('@aws-sdk/client-dynamodb');
+const { DynamoDBDocument } = require('@aws-sdk/lib-dynamodb');
+const ddbDocumentClient = DynamoDBDocument.from(new DynamoDB({}));
+
 
 // Configure AWS SDK and initialize S3 instance
 AWS.config.update({
@@ -467,7 +470,7 @@ app.post('/submit-assessment', async (req, res) => {
 
     if (queryResult.Items && queryResult.Items.length > 0) {
       // Get the primary key (e.g., CandidateId or UserId) from the fetched document
-      const primaryKey = queryResult.Items[0].ManagerAccountId.S;
+      const primaryKey = queryResult.Items[0].ManagerAccountId;
       console.log('primaryKey:', primaryKey);
       console.log('AssessmentId:', AssessmentId);
       console.log('queryResult:', queryResult);
@@ -477,24 +480,24 @@ app.post('/submit-assessment', async (req, res) => {
       const updateParams = {
         TableName: 'CandidateAssessmentResults',
         Key: {
-          ManagerAccountId: { S: primaryKey },
-          AssessmentId: { S: AssessmentId },
+          ManagerAccountId: primaryKey,
+          AssessmentId: AssessmentId,
         },
         ConditionExpression: 'ManagerAccountId = :managerAccountId AND AssessmentId = :assessmentId',
         UpdateExpression: 'set PsychometricAnswers = :psychometric, SituationalAnswers = :situational, AssessmentStatus = :status, TimeTakenAt = :timeTakenAt',
         ExpressionAttributeValues: {
-          ':psychometric': { L: PsychometricAnswers.map(answer => ({ M: answer })) },
-          ':situational': { L: SituationalAnswers.map(answer => ({ M: answer })) },
-          ':status': { S: 'Completed' },
-          ':timeTakenAt': { S: TimeTakenAt },
-          ':managerAccountId': { S: primaryKey },
-          ':assessmentId': { S: AssessmentId },
+          ':psychometric': PsychometricAnswers,
+          ':situational': SituationalAnswers,
+          ':status': 'Completed',
+          ':timeTakenAt': TimeTakenAt,
+          ':managerAccountId': primaryKey,
+          ':assessmentId': AssessmentId,
         },
-      };
+      };      
 
       console.log(updateParams); //delete this once the submit is fixed
       
-      await dynamoDb.update(updateParams).promise();
+      await ddbDocumentClient.update(updateParams);
 
       const snsParams = {
         Message: JSON.stringify({ AssessmentId }),
