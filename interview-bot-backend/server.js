@@ -159,11 +159,11 @@ async function readAndExtractTextFromS3(s3Bucket, s3Key) {
 async function generateQuestions(text, role, numberOfQuestions) {
   const prompt = `Please generate ${numberOfQuestions} first call phone screening interview questions that focus on evaluating career experience, job fit, and specific examples for the ${role} position. Take time to study and reference the following job description and candidate resume details while creating the questions:\n\n${text}\n`;
   const completion = await openai.createChatCompletion({
-    model: 'gpt-3.5-turbo',
+    model: 'gpt-4',
     messages: [
       {
         role: "system",
-        content: "You are a helpful recruiting assistant that generates interview questions based on inputs from a user's resume and job description. Before generating the questions, study the provided candidate resume, and the job description for the role they are applying to, and base your questions off of these documents. Each question should have a maximum length of 25 words per question that focus on evaluating career experience, job fit, and specific examples for the position. Ensure that at least one of these questions are behavioral, such as tell me about a time when you faced a challenge and how you overcame it etc. You are allowed to refer to common first call screening interview questions and use them to model your questions around (if and where it makes sense to do so)."
+        content: "You are a helpful recruiting assistant that generates interview questions based on inputs from a user's resume and job description that is being hired for. Before generating the questions, study the provided candidate resume, and the job description for the role they are applying to, and base your questions off of these documents. Each question should be no more than 20 words per question, and focus on evaluating career experience, job fit, and specific examples for the position. Ensure that at least one of these questions are behavioral, such as tell me about a time when you faced a challenge and how you overcame it etc. You are allowed to refer to common first call screening interview questions and use them to model your questions around (if and where it makes sense to do so)."
       },
       {
         role: "user",
