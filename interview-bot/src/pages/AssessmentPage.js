@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import './AssessmentPage.css';
 import { Button } from '@mantine/core';
+import { useModal } from '@mantine/hooks';
 
 function Assessment() {
   const [assessmentStatus, setAssessmentStatus] = useState(null);
@@ -14,6 +15,7 @@ function Assessment() {
 
   const { assessmentId } = useParams();
   const navigate = useNavigate();
+  const [modal, handlers] = useModal();
 
   useEffect(() => {
     fetchAssessmentStatus(assessmentId);
@@ -130,7 +132,7 @@ function Assessment() {
       });
 
       if (response.status === 200) {
-        alert('Assessment submitted successfully');
+        handlers.open();
         setAssessmentStatus('completed');
       } else {
         throw new Error('Error submitting assessment');
@@ -139,6 +141,11 @@ function Assessment() {
       console.error('Error submitting assessment:', error);
     }
   };
+
+  const handleAcknowledge = () => {
+    handlers.close();
+    window.close(); // This will close the current page/tab
+  };  
   
   const PsychometricHeader = () => {
     return (
@@ -223,31 +230,56 @@ function Assessment() {
   
   return (
     <div className="assessment-page">
-     <div className="assessment-wrapper">
-      <h2 className="section-title">Candidate Psychometric Assessment</h2>
-      <div className="instructions">
-        <p>Below you will find a pool of 100 psychometric questions to answer. There are no right or wrong answers, this assessment is designed to provide the hiring manager insights into your personality type and motivators. Please ensure that you are in a space where you can focus, and have enough time to complete the full assessment, as it cannot be saved and resumed. Please answer as honestly as possible:</p>
+      <div className="assessment-wrapper">
+        <h2 className="section-title">Candidate Psychometric Assessment</h2>
+        <div className="instructions">
+          <p>
+            Below you will find a pool of 100 psychometric questions to answer. There are no right or
+            wrong answers, this assessment is designed to provide the hiring manager insights into
+            your personality type and motivators. Please ensure that you are in a space where you can
+            focus, and have enough time to complete the full assessment, as it cannot be saved and
+            resumed. Please answer as honestly as possible:
+          </p>
+        </div>
+        <PsychometricHeader />
+        {psychometricQuestions.map((question) => (
+          <PsychometricQuestion key={question.QuestionId} question={question} />
+        ))}
+        <h2 className="section-title">Situational Assessment Questions</h2>
+        <div className="instructions">
+          <p>
+            Below you will find 10 situational judgement questions. Please select the answer that
+            reflects the course of action you feel is best suited to the given scenario.
+          </p>
+        </div>
+        {situationalQuestions.map((question) => (
+          <SituationalQuestion key={question.QuestionId} question={question} />
+        ))}
+        <div className="submission-warning">
+          Submissions are final, and you can only take this assessment once. Please ensure you have
+          answered all questions.
+        </div>
+        <div className="submit-button-container">
+          <Button onClick={handleSubmit} variant="outline">
+            Submit Assessment
+          </Button>
+        </div>
       </div>
-      <PsychometricHeader />
-      {psychometricQuestions.map((question) => (
-        <PsychometricQuestion key={question.QuestionId} question={question} />
-      ))}
-      <h2 className="section-title">Situational Assessment Questions</h2>
-      <div className="instructions">
-        <p>Below you will find 10 situational judgement questions. Please select the answer that reflects the course of action you feel is best suited to the given scenario.</p>
-      </div>
-      {situationalQuestions.map((question) => (
-        <SituationalQuestion key={question.QuestionId} question={question} />
-      ))}
-      <div className="submission-warning">
-        Submissions are final, and you can only take this assessment once. Please ensure you have answered all questions.
-      </div>
-      <div className="submit-button-container">
-        <Button onClick={handleSubmit} variant="outline">Submit Assessment</Button>
-      </div>
-     </div>
+      <Modal
+        {...modal}
+        hideCloseButton
+        closeButtonLabel="Acknowledge"
+        title="Success!"
+        onClose={handleAcknowledge}
+      >
+        <p>
+          Your assessment has been submitted and the hiring manager has been notified. Thank you for
+          your time!
+        </p>
+        <Button onClick={handleAcknowledge}>Exit Session</Button>
+      </Modal>
     </div>
-  );   
-}
+  );
+}  
 
 export default Assessment;
