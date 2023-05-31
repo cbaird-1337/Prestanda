@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import './AssessmentPage.css';
 import { Button } from '@mantine/core';
-import { useModal } from '@mantine/hooks';
+import { useDisclosure } from '@mantine/hooks';
 
 function Assessment() {
   const [assessmentStatus, setAssessmentStatus] = useState(null);
@@ -15,7 +15,7 @@ function Assessment() {
 
   const { assessmentId } = useParams();
   const navigate = useNavigate();
-  const [modal, handlers] = useModal();
+  const [opened, handlers] = useDisclosure(false);
 
   useEffect(() => {
     fetchAssessmentStatus(assessmentId);
@@ -265,13 +265,13 @@ function Assessment() {
           </Button>
         </div>
       </div>
-      <Modal
-        {...modal}
-        hideCloseButton
-        closeButtonLabel="Acknowledge"
-        title="Success!"
-        onClose={handleAcknowledge}
-      >
+        <Modal
+          opened={opened}
+          onClose={handleAcknowledge}
+          hideCloseButton
+          closeButtonLabel="Acknowledge"
+          title="Success!"
+        >
         <p>
           Your assessment has been submitted and the hiring manager has been notified. Thank you for
           your time!
