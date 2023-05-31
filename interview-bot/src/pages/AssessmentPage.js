@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import './AssessmentPage.css';
-import { Button, useModal } from '@mantine/core';
+import { Button } from '@mantine/core';
+import { useModal } from '@mantine/hooks';
 
 function Assessment() {
   const [assessmentStatus, setAssessmentStatus] = useState(null);
