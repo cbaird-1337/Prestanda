@@ -132,7 +132,7 @@ function Assessment() {
       });
 
       if (response.status === 200) {
-        handlers.open();
+        modalHandlers.open();
         setAssessmentStatus('completed');
       } else {
         throw new Error('Error submitting assessment');
@@ -143,7 +143,7 @@ function Assessment() {
   };
 
   const handleAcknowledge = () => {
-    handlers.close();
+    modalHandlers.close();
     window.close(); // This will close the current page/tab
   };  
   
