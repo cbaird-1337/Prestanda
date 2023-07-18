@@ -1,26 +1,20 @@
-// tailwind.config.js
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-  darkMode: 'media', // 'media' or 'class'
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ['Roboto', 'ui-sans-serif', 'system-ui'],
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          "primary": "#1e40af",
+          "secondary": "#3b82f6",
+          "accent": "#fef08a",
+          "neutral": "#d1d5db",
+          "base-100": "#44403c",
+          "info": "#93c5fd",
+          "success": "#86efac",
+          "warning": "#fde047",
+          "error": "#f87171",
+        },
       },
-      backgroundColor: {
-        dark: '#1f1f1f',
-        accent: '#007bff',
-      },
-      borderColor: {
-        dark: '#444',
-      },
-      backgroundImage: {
-        'gradient': 'linear-gradient(135deg, #0b132b 0%, #3a506b 100%)',
-      },
+    ],
     },
-  },
-  variants: {
-    extend: {},
-  },
-  plugins: [],
-};
+    plugins: [require('daisyui')],
+  };
