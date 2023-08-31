@@ -3,14 +3,14 @@ module.exports = {
     themes: [
       {
         mytheme: {
-          "primary": "#1e40af",
-          "secondary": "#3b82f6",
-          "accent": "#fef08a",
-          "neutral": "#d1d5db",
-          "base-100": "#44403c",
-          "info": "#93c5fd",
-          "success": "#86efac",
-          "warning": "#fde047",
+          "primary": "#d6d3d1",
+          "secondary": "#93c5fd",
+          "accent": "#4dd6f2",                   
+          "neutral": "#26233e",                   
+          "base-100": "#393a51",                   
+          "info": "#ffedd5",                   
+          "success": "#34d399",                   
+          "warning": "#fde047",                   
           "error": "#f87171",
         },
       },
